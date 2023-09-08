@@ -57,8 +57,8 @@ export class PageComponent implements OnInit {
   }
 
   initParams(){
-    // this.params = this.params.set('orderBy', this.sort.orderBy)
-    // this.params = this.params.set('order', this.sort.order)
+    this.params = this.params.set('orderBy', this.sort.orderBy)
+    this.params = this.params.set('order', this.sort.order)
 
     let urlParams = this.routerService.params
     let keys = Object.keys(urlParams)

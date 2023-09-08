@@ -43,6 +43,18 @@
             </ul>
          </li>
          <li
+            nz-menu-item
+            nz-tooltip
+            nzTooltipPlacement="right"
+            [routerLink]="'pages'"
+            class="text-[12px] text-second-100 font-bold"
+            routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive"
+         >
+            <span nz-icon nzType="file" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Pages</span>
+         </li>
+         <li
             nz-submenu
             nzTitle="Quản trị"
             nzIcon="setting"

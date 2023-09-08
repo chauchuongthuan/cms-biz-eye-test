@@ -22,6 +22,7 @@ import { HistoryComponent } from '../modules/history/pages/pages.component';
 import { ViewPostComponent } from '../modules/view-post/pages/view-post.component';
 import { MenuDNDComponent } from '../modules/menu/pages/pages.component';
 import { InterestComponent } from '../modules/interest/pages/interest.component';
+import { PageHomeComponent } from '../modules/pages/components/page-home/page-home.component';
 
 
 const routes: Routes = [
@@ -85,6 +86,10 @@ const routes: Routes = [
     {
       path: 'pages',
       component: PageComponent,
+    },
+    {
+      path: 'page-home',
+      component: PageHomeComponent,
     },
     {
       path: 'customers',

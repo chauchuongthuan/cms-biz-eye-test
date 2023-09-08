@@ -69,7 +69,7 @@ export class PageService {
 
   getPage(params: HttpParams) {
     return this.apiService
-      .get(environment.BASE_URL + 'admin/posts', this.auth.getHeaderAuth(), params)
+      .get(environment.BASE_URL + 'admin/pages', this.auth.getHeaderAuth(), params)
       .pipe(
         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
         map((response) => this.apiService.handleSuccessObservable(response, this.notification))

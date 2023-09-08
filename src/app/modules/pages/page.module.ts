@@ -8,6 +8,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { CreateEditPageCategoryComponent } from './components/create-category/create-edit-page-category.component';
 import { CreateEditPageComponent } from './components/create-edit-page/create-edit-page.component';
 import { PageComponent } from './pages/page.component';
+import { PageHomeComponent } from './components/page-home/page-home.component';
 
 const IMPORT = [
     ReactiveFormsModule,
@@ -23,7 +24,8 @@ const IMPORT = [
 const DECLARATIONS = [
     PageComponent,
     CreateEditPageComponent,
-    CreateEditPageCategoryComponent
+    CreateEditPageCategoryComponent,
+    PageHomeComponent
 ]
 
 
