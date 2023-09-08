@@ -1,0 +1,58 @@
+.ant-row {
+    width: 100%;
+    margin: 0 !important;
+}
+.filter {
+    margin-bottom: 16px;
+}
+[nz-button] {
+    margin-right: 8px;
+    margin-bottom: 12px;
+}
+.ant-picker-range {
+    width: 100%;
+}
+.filter-group {
+    padding-top: 16px;
+    display: flex;
+    justify-content: end;
+    padding-right: 0 !important;
+}
+.ant-divider-horizontal.ant-divider-with-text {
+    margin: 0 !important;
+}
+.box-comments {
+    background: #f7f7f7 !important;
+}
+.box-footer {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top: 1px solid #f4f4f4;
+    padding: 10px;
+    background-color: #fff;
+}
+.img-sm, 
+.box-comments .box-comment img, 
+.user-block.user-block-sm img {
+    width: 30px !important;
+    height: 30px !important;
+}
+.img-sm, .img-md, 
+.img-lg, .box-comments .box-comment img, 
+.user-block.user-block-sm img {
+    float: left;
+}
+.box-comments .comment-text {
+    margin-left: 40px;
+    color: #555;
+}
+.box-comments .username {
+    color: #444;
+    display: block;
+    font-weight: 600;
+}
+.sub-drawer {
+    z-index: 1000000;
+}

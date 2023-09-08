@@ -1,0 +1,13 @@
+<div #ContainerRef>
+   <ngx-charts-pie-chart
+      [view]="[ContainerRef.offsetWidth, 340]"
+      [scheme]="colorScheme"
+      [results]="single"
+      [animations]="true"
+      [legend]="true"
+      [doughnut]="true"
+      legendTitle="Devices"
+      [legendPosition]="below"
+   >
+   </ngx-charts-pie-chart>
+</div>

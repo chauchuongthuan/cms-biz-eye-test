@@ -1,0 +1,61 @@
+<div class="bg-[white] p-[16px] mt-[16px] rounded-t-lg">
+    <div class="flex w-full">
+      <form [formGroup]="filterForm" class="lg:flex w-full">
+        <div class="w-12/12 lg:w-11/12 lg:flex gap-4">
+          <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0"><input nzSize="large" class="w-full" formControlName="email" nz-input type="text" placeholder="Email" /></div>
+          <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0"><input nzSize="large" formControlName="name" nz-input type="text" placeholder="Tên" />
+          </div>
+          <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
+            <nz-select nzSize="large" formControlName="role" class="w-full" nzPlaceHolder="Quyền">
+              <nz-option *ngFor="let item of roleList" nzLabel="{{item.name}}" nzValue="{{item.value}}">
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+        <div class="w-12/12 lg:w-1/12 ml-[8px] flex justify-center pt-[16px] lg:pt-0">
+          <a class="text-[white] text-[12px] items-center flex justify-center rounded-lg uppercase w-full py-[8px] px-[16px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]" (click)="onApply()">
+            Tìm kiếm
+          </a>
+        </div>
+    </form>
+    </div>
+    <!-- <div nz-row [nzGutter]="16">
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="'vertical'">Email</nz-form-label>
+          <nz-input-group>
+            <input formControlName="email" nz-input type="text" placeholder="Email" />
+          </nz-input-group>
+        </nz-form-item>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="'vertical'">Tên</nz-form-label>
+          <nz-input-group>
+            <input formControlName="name" nz-input type="text" placeholder="Tên" />
+          </nz-input-group>
+        </nz-form-item>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="8">
+        <nz-form-item>
+          <nz-form-control>
+            <nz-form-label [nzSpan]="'vertical'">Quyền</nz-form-label>
+            <nz-select formControlName="role">
+              <nz-option *ngFor="let item of roleList" nzLabel="{{item.name}}" nzValue="{{item.value}}">
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <nz-space style="float: right; margin-bottom: 20px;">
+      <button *nzSpaceItem nz-button nzType="primary" (click)="onApply()">
+        <span nz-icon nzType="search"></span>
+        Search
+      </button>
+      <button *nzSpaceItem nz-button (click)="onRefresh()">
+        <span nz-icon nzType="undo" nzTheme="outline"></span>
+        Reset
+      </button>
+    </nz-space> -->
+</div>

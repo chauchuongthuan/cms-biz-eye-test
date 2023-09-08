@@ -1,0 +1,42 @@
+<button nz-button nzType="primary" (click)="open()">
+  <span nz-icon nzType="plus"></span>
+  Chat GPT
+</button>
+<nz-drawer [nzMaskClosable]="false" [nzSize]="size" [nzVisible]="visible" nzPlacement="right" [nzTitle]="'Chat GPT'"
+  (nzOnClose)="close()" [nzMaskClosable]="true">
+  <ng-container *nzDrawerContent>
+    <nz-spin [nzSpinning]="isLoading">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="postForm" (ngSubmit)="confirmDrawer()">
+        <div nz-row [nzGutter]="16">
+          <div nz-col class="gutter-row" [nzSpan]="24">
+              <nz-form-item>
+                  <nz-form-control>
+                      <nz-form-label nzRequired="false">Chat với chatgpt</nz-form-label>
+                      <textarea rows="6" type="text" nz-input formControlName="message"
+                      name="message" placeholder="Message"></textarea>
+                  </nz-form-control>
+              </nz-form-item>
+          </div>
+      </div>
+      <div nz-row [nzGutter]="16">
+          <div nz-col class="gutter-row" [nzSpan]="24">
+              <button [disabled]="isChat" nz-button nzType="primary" (click)="chat()" type="button" >Send</button>
+          </div>
+      </div>
+      <div nz-row [nzGutter]="16">
+          <div nz-col class="gutter-row" [nzSpan]="24">
+              <nz-form-item *ngIf="visible">
+                  <nz-form-control>
+                      <nz-form-label nzRequired="true">Nội dung</nz-form-label>
+                      <nz-spin nzSimple *ngIf="isChat">
+                      </nz-spin>
+                      <app-digitop-editor *ngIf="!isChat" [initData]="dataEditor" (onChangeData)="onChangeEditor($event)">
+                      </app-digitop-editor>
+                  </nz-form-control>
+              </nz-form-item>
+          </div>
+      </div>   
+      </form>
+    </nz-spin>
+  </ng-container>
+</nz-drawer>

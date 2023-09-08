@@ -1,0 +1,13 @@
+<nz-tree [nzData]="nodes" nzDraggable [nzTreeTemplate]="treeNodeTemplate"></nz-tree>
+
+<ng-template #treeNodeTemplate let-node>
+    <span
+    class="custom-tree-node"
+        (nzDragStart)="onDragStart($event)"
+        (nzDragEnd)="onDragEnd($event)"
+    >
+    <!-- You can use custom classes on various parts of the node -->
+    <span class="node-icon" [class.custom-icon]="node.isCustom"></span>
+    {{ node.title }}
+  </span>
+</ng-template>

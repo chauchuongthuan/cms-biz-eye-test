@@ -1,0 +1,88 @@
+<div class="relative">
+   <div class="bg-[white] px-[16px] flex h-[52px] w-full relative z-20">
+      <div class="max-w-7xl py-[10px] w-full mx-auto">
+         <img src="../../../../assets/logo.svg" alt="" srcset="" />
+      </div>
+   </div>
+   <div class="relative login-page bg-[#EFF3FA] flex justify-center items-center px-[16px]">
+      <div class="max-w-7xl justify-start w-full mx-auto items-center flex flex-col">
+         <div class="w-full relative z-20">
+            <span class="text-[12px] text-blue-100 font-medium uppercase">Vui lòng đăng nhập</span>
+            <h1 class="lg:text-[64px] text-[32px] font-bold text-pink-100 leading-[64px] pt-[8px] pb-[20px]">
+               Quản lý tài khoản
+            </h1>
+            <div class="w-12/12 lg:w-8/12">
+               <div class="form">
+                  <form class="w-full" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                     <div class="lg:flex flex-row gap-8">
+                        <div class="w-12/12 lg:w-6/12">
+                           <label for="email" class="block text-[12px] font-medium text-second-100 uppercase pb-[4px]"
+                              >Email</label
+                           >
+                           <input
+                              placeholder="example@wearegtoproup.com"
+                              formControlName="email"
+                              type="text"
+                              id="email"
+                              name="email"
+                              class="mt-1 p-4 w-full rounded-lg focus:outline-none focus-visible:ring-pink-100 focus:ring-[1px] min-h-[46px]"
+                           />
+                        </div>
+                        <div class="w-12/12 lg:w-6/12 lg:pt-0 pt-[16px]">
+                           <label for="password" class="block text-[12px] font-medium text-second-100 uppercase pb-[4px]"
+                              >Mật khẩu</label
+                           >
+                           <input
+                              placeholder="*********"
+                              formControlName="password"
+                              type="password"
+                              id="password"
+                              name="password"
+                              class="mt-1 p-4 w-full focus:outline-none focus-visible:ring-pink-100 focus:ring-[1px] rounded-lg min-h-[46px]"
+                           />
+                        </div>
+                     </div>
+                     <div class="pt-[16px]">
+                        <button
+                           href="#"
+                           type="submit"
+                           class="bg-pink-100 rounded-lg text-[white] hover:text-[white] hover:bg-blue-100 hover:duration-300 text-[12px] uppercase font-bold px-[20px] py-[16px]"
+                        >
+                           Đăng nhập ngay
+                        </button>
+                        <a href="#" class="text-second-100 font-bold text-[12px] pl-[16px] uppercase"> Quên mật khẩu? </a>
+                     </div>
+                  </form>
+                  <div class="flex items-center pt-[16px]">
+                     <input
+                        checked
+                        id="inline-checked-checkbox"
+                        type="checkbox"
+                        value=""
+                        class="w-[30px] h-[30px] text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-root-100 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                     />
+                     <label for="inline-checked-checkbox" class="text-second-100 font-medium text-[16px] pl-[16px] uppercase"
+                        >Lưu tài khoản</label
+                     >
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <br />
+
+      <div class="absolute top-0 w-full h-full hidden lg:block">
+         <img
+            class="z-[1] bg-2 top-0 w-[50%] h-full object-cover right-0 absolute"
+            src="../../../../assets/bg-2.svg"
+            alt=""
+            srcset=""
+         />
+      </div>
+   </div>
+   <div class="bg-pink-100 px-[16px] flex h-[82px] w-full z-20 relative">
+      <div class="max-w-7xl py-[10px] w-full mx-auto items-center flex">
+         <div class="text-[white] text-[12px] justify-center uppercase">Copyright ©2022 tose. All rights reserved.</div>
+      </div>
+   </div>
+</div>

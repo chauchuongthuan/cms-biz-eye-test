@@ -1,0 +1,66 @@
+<div class="pageDashboard">
+   <div nz-row [nzGutter]="16">
+      <div nz-col class="gutter-row w-full tl-p:hidden">
+         <div #containerRef>
+            <ngx-charts-number-card
+               class="card-top-dashboard"
+               [view]="[containerRef.offsetWidth, 150]"
+               [scheme]="colorScheme"
+               [results]="single"
+               [cardColor]="cardColor"
+               (select)="onSelect($event)"
+            >
+            </ngx-charts-number-card>
+         </div>
+      </div>
+
+      <div nz-col class="gutter-row w-full hidden tl-p:block">
+         <div #containerRefMb>
+            <ngx-charts-number-card
+               class="card-top-dashboard"
+               [view]="[containerRefMb.offsetWidth, 400]"
+               [scheme]="colorScheme"
+               [results]="single"
+               [cardColor]="cardColor"
+               (select)="onSelect($event)"
+            >
+            </ngx-charts-number-card>
+         </div>
+      </div>
+   </div>
+   <div class="tl-p:w-full" nz-row>
+      <div nz-col class="gutter-row w-1/2 px-[8px] tl-p:px-0 tl-p:w-full tl-p:mb-[16px]">
+         <nz-card nzTitle="Người dùng trong 30 phút qua">
+            <app-vertical-bar-live-user></app-vertical-bar-live-user>
+         </nz-card>
+      </div>
+      <div nz-col class="gutter-row w-1/4 px-[8px] tl-p:px-0 tl-p:w-full tl-p:mb-[16px]">
+         <nz-card nzTitle="Lượt truy cập theo quốc gia">
+            <app-session-by-countries></app-session-by-countries>
+         </nz-card>
+      </div>
+      <div nz-col class="gutter-row w-1/4 px-[8px] tl-p:px-0 tl-p:w-full">
+         <nz-card nzTitle="Danh sách bài viết được xem nhiều">
+            <app-top-link></app-top-link>
+         </nz-card>
+      </div>
+   </div>
+   <div class="tl-p:w-full" nz-row style="padding-top: 16px">
+      <div nz-col class="gutter-row w-1/4 px-[8px] tl-p:px-0 tl-p:w-full tl-p:mb-[16px]">
+         <nz-card nzTitle="Thiết bị truy cập">
+            <app-session-by-devices></app-session-by-devices>
+         </nz-card>
+      </div>
+      <div nz-col class="gutter-row w-1/4 px-[8px] tl-p:px-0 tl-p:w-full tl-p:mb-[16px]">
+         <nz-card nzTitle="Người đăng kí mới">
+            <app-register-user></app-register-user>
+         </nz-card>
+      </div>
+
+      <div nz-col class="gutter-row w-1/2 px-[8px] tl-p:px-0 tl-p:w-full">
+         <nz-card nzTitle="Lịch sử hoạt động">
+            <app-history-activity></app-history-activity>
+         </nz-card>
+      </div>
+   </div>
+</div>

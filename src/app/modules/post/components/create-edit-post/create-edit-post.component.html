@@ -1,0 +1,266 @@
+<a nz-button nzType="primary" [href]="'/admin/news'">
+  <span nz-icon nzType="plus"></span>
+  Tạo mới
+</a>
+
+<app-digitop-drawer [title]="state+' bài viết'" [visible]="visible" [size]="size" (onConfirm)="confirmDrawer()"
+  (onLeave)="visible=false">
+  <ng-container content>
+    <nz-spin [nzSpinning]="isLoading">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="postForm" (ngSubmit)="confirmDrawer()">
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <app-digitop-upload [fileList]="image" [title]="'Hình ảnh'"
+                  (changeFile)="changeFileUpload($event, 'image')" [multiple]="false"></app-digitop-upload>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <app-digitop-upload [fileList]="imageMb" [title]="'Hình ảnh mobile'"
+                  (changeFile)="changeFileUpload($event, 'imageMb')" [multiple]="false"></app-digitop-upload>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Assigned to</nz-form-label>
+                <nz-select ngDefaultControl formControlName="assigned" nzMode="tags">
+                  <ng-container *ngIf="assignList">
+                    <nz-option [nzValue]="item.id" [nzLabel]="item.name" *ngFor="let item of assignList"></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Danh mục <span class="required">(*)</span></nz-form-label>
+                <nz-select ngDefaultControl formControlName="postCategory">
+                  <ng-container *ngIf="categories && categories.length">
+                    <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="let item of categories"></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Tag</nz-form-label>
+                <nz-select ngDefaultControl formControlName="tags" nzMode="tags">
+                  <ng-container *ngIf="tags">
+                    <nz-option [nzValue]="item.name" [nzLabel]="item.name" *ngFor="let item of tags;"></nz-option>
+                  </ng-container>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Nổi bật</nz-form-label>
+                <nz-select ngDefaultControl formControlName="feature">
+                  <nz-option [nzValue]="false" nzLabel="Không"></nz-option>
+                  <nz-option [nzValue]="true" nzLabel="Có"></nz-option>
+                </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Thứ tự <span class="required">(*)</span></nz-form-label>
+                <nz-input-group>
+                  <input formControlName="sortOrder"
+                    [ngClass]="submitted && postForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="Thứ tự" type="number" min="1" step="1" />
+                </nz-input-group>
+                <div *ngIf="submitted && postForm.get('sortOrder')?.errors" class="input-text-error">
+                  <span>Vui lòng nhập số thứ tự</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Thời gian đọc<span class="required">(*)</span></nz-form-label>
+                <nz-input-group>
+                  <input formControlName="readTime"
+                    [ngClass]="submitted && postForm.get('readTime')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="Thời gian đọc"/>
+                </nz-input-group>
+                <div *ngIf="submitted && postForm.get('readTime')?.errors" class="input-text-error">
+                  <span>Vui lòng nhập thời gian đọc</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Tiêu đề danh mục <span class="required">(*)</span></nz-form-label>
+                <nz-input-group>
+                  <input formControlName="title"
+                    [ngClass]="submitted && postForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="Tiêu đề" (ngModelChange)="onChangeTitle('vi')" />
+                </nz-input-group>
+                <div *ngIf="submitted && postForm.get('title')?.errors" class="input-text-error">
+                  <span>Vui lòng nhập tên tiêu đề</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Slug <span class="required">(*)</span></nz-form-label>
+                <nz-input-group>
+                  <input formControlName="slug" nz-input placeholder="Tên slug" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-row [nzGutter]="[hGutter, vGutter]" *ngIf="this.user.role?.name == 'admin'">
+            <div nz-col class="gutter-row" [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-form-label [nzSpan]="'vertical'">Trạng thái</nz-form-label>
+                  <nz-select formControlName="status" name="status" [ngModel]="'1'">
+                    <nz-option nzValue="1" nzLabel="NEW"></nz-option>
+                    <nz-option nzValue="2" nzLabel="IN_REVIEW"></nz-option>
+                    <nz-option nzValue="3" nzLabel="CENSORSHIP"></nz-option>
+                    <nz-option nzValue="4" nzLabel="PUBLISHED"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+
+            </div>
+            <div nz-col class="gutter-row" [nzSpan]="12">
+              <nz-form-item>
+                <nz-form-control>
+                  <nz-form-label [nzSpan]="'vertical'">Publish At</nz-form-label>
+                  <nz-input-group>
+                    <nz-date-picker ngDefaultControl formControlName="publishedAt"
+                      style="width: 100%;"></nz-date-picker>
+                  </nz-input-group>
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="24">
+            <nz-form-item *ngIf="visible">
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Nội dung</nz-form-label>
+                <app-digitop-editor [initData]="this.dataEditor"
+                  (onChangeData)="onChangeEditor($event)"></app-digitop-editor>
+                <!-- <div *ngIf="submitted && postForm.get('content')?.errors" class="input-text-error">
+                <span>Vui lòng nhập mô tả</span>
+              </div> -->
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="24">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Mô tả bài viết</nz-form-label>
+                <nz-textarea-count [nzMaxCharacterCount]="100">
+                  <textarea
+                    [ngClass]="submitted && postForm.get('shortDescription')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    rows="4" formControlName="shortDescription" nz-input></textarea>
+                </nz-textarea-count>
+                <!-- <div *ngIf="submitted && postForm.get('shortDescription')?.errors" class="input-text-error">
+                <span>Vui lòng nhập mô tả</span>
+              </div> -->
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <nz-divider nzText="SEO Website"></nz-divider>
+        <div nz-row [nzGutter]="[hGutter, vGutter]" class="content-seo">
+          <div nz-col class="gutter-row" [nzSpan]="5">
+            <nz-form-item>
+              <nz-form-control>
+                <app-digitop-upload [fileList]="metaImage" [title]="'Hình ảnh'"
+                  (changeFile)="changeFileUpload($event, 'metaImage')" [multiple]="false"></app-digitop-upload>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="19">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Meta title</nz-form-label>
+                <nz-input-group>
+                  <input formControlName="metaTitle" nz-input placeholder="Meta tile" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Meta keywork</nz-form-label>
+                <nz-input-group>
+                  <input formControlName="metaKeyword" nz-input placeholder="Tên danh mục" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="24">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Meta description</nz-form-label>
+                <nz-textarea-count [nzMaxCharacterCount]="100">
+                  <textarea rows="4" formControlName="metaDescription" nz-input></textarea>
+                </nz-textarea-count>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </nz-spin>
+    <ng-container *ngIf="state == 'Cập nhật' && visible">
+      <nz-divider nzText="Comment"></nz-divider>
+      <app-create-comment [user]="this.user" [idPost]="this.idPost" (onSuccess)="getComment()"></app-create-comment>
+      <div *ngFor="let item of commentList; index as index" class="box-footer box-comments">
+        <div class="box-comment">
+          <div class="img-circle img-sm" title="{{item.author?.email}}">
+            <nz-avatar *ngIf="item.author?.profileImage" nzSize="small" nzSrc="{{item.author?.profileImage}}">
+            </nz-avatar>
+            <nz-avatar *ngIf="!item.author?.profileImage" nzSize="small" nzText="{{item.author.name[0]}}"
+              style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+          </div>
+          <div class="comment-text">
+            <span class="username">
+              {{item.author?.name}}
+              <span>{{item.createdAt}}</span>
+            </span>
+            <span style="font-size: 12px;" *ngIf="item.updatedAt !== item.createdAt"> (Edited) </span>
+            <span [innerHTML]="item.content"></span>
+          </div>
+          <div *ngIf="this.user.id == item.author.id">
+            <span style="text-decoration: underline; cursor: pointer;" (click)="onEditComment(item, index)">Edit</span>
+            <span> • </span>
+            <span style="text-decoration: underline; cursor: pointer;" [nz-popconfirm]="'Bạn có chắc muốn xóa?'"
+              (nzOnConfirm)="onDeleteComment(item.id)">Delete</span>
+          </div>
+          <app-edit-comment *ngIf="index + '' == openeEditComment" #editComment [user]="this.user"
+            (onClose)="getComment()" (onSuccess)="getComment()"></app-edit-comment>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+</app-digitop-drawer>

@@ -1,0 +1,19 @@
+<nz-drawer [nzMaskClosable]="false" [nzSize]="size" [nzVisible]="visible" [nzPlacement]="placement" [nzTitle]="title"
+  (nzOnClose)="close()" [nzFooter]="footer" [nzMaskClosable]="true" class="w-full">
+  <ng-content *nzDrawerContent select="[content]">
+    
+  </ng-content>
+</nz-drawer>
+
+<ng-template #footer>
+  <nz-space *ngIf="isFooter">
+    <!-- <button *nzSpaceItem nz-button (click)="close()">Cancel</button> -->
+    <a class="text-[white] mr-[8px] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]" (click)="close()">
+      Cancel
+    </a>
+    <!-- <button *nzSpaceItem nz-button nzType="primary" (click)="confirmDrawer()">Save</button> -->
+    <a class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]" (click)="confirmDrawer()">
+      Save
+    </a>
+  </nz-space>
+</ng-template>

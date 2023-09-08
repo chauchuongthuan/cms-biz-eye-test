@@ -1,0 +1,3 @@
+<ng-container *ngIf="isReady">
+    <ckeditor [(ngModel)]="this.initData" [config]="config" (change)="onChange($event)"  [editor]="Editor"></ckeditor>
+</ng-container>

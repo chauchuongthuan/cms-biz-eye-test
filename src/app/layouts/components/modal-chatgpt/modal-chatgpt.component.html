@@ -1,0 +1,54 @@
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="isOkLoading"
+    [nzFooter]="null" [nzMaskClosable]="false" [nzCloseIcon]="''">
+    <div *nzModalContent style="border-radius: 20px;">
+        <div class="wrap-chatgpt">
+            <form [formGroup]="promtForm" (ngSubmit)="enterPromt(10)">
+                <nz-input-group nzSize="large" [nzSuffix]="suffixIconSearch">
+                    <input formControlName="promt" type="text" nz-input placeholder="Nhập prompt và chọn yêu cầu" />
+                </nz-input-group>
+                <ng-template #suffixIconSearch>
+                    <img src="assets/chat.svg" alt="chatcms" style="width: 32px;">
+                </ng-template>
+            </form>
+        </div>
+        <div class="option-promt">
+            Yêu cầu
+        </div>
+        <div class="function-promt">
+            <ul class="items">
+                <li class="sub">
+                    <a>Tạo bài viết từ prompt</a>
+                    <span class="item-create"  (click)="enterPromt(10)">
+                        <span nz-icon nzType="right" nzTheme="outline"></span>
+                    </span>
+                </li>
+                <li class="sub">
+                    <a>Cải thiện đoạn văn</a>
+                    <span class="item-create"  (click)="enterPromt(20)">
+                        <span nz-icon nzType="right" nzTheme="outline"></span>
+                    </span>
+                </li>
+                <li class="sub choose">
+                    <a style="margin-right: 16px">Dịch sang tiếng:
+                        <span style="width: 150px;">
+                            <nz-select style="width: 100%;" [(ngModel)]="selectedValue" nzShowSearch 
+                                (ngModelChange)="log($event)" nzAllowClear nzPlaceHolder="Chọn ngôn ngữ">
+                                <nz-option *ngFor="let option of optionList" [nzValue]="option.label"
+                                    [nzLabel]="option.label"></nz-option>
+                            </nz-select>
+                        </span>
+                    </a>
+                    <span class="item-create" (click)="enterPromt(30)">
+                        <span nz-icon nzType="right" nzTheme="outline"></span>
+                    </span>
+                </li>
+                <li class="sub">
+                    <a>Trả lời câu hỏi</a>
+                    <span class="item-create" (click)="enterPromt(40)">
+                        <span nz-icon nzType="right" nzTheme="outline"></span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nz-modal>

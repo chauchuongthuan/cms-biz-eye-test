@@ -1,0 +1,17 @@
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkLoading]="isOkLoading"
+    [nzFooter]="null" nzWidth="768px" [nzCloseIcon]="''" nzClosable="false" style="border-radius: 20px;" nzTitle="ChatGPT">
+    <div *nzModalContent >
+        <div *ngIf="content" style="padding: 16px;white-space:pre-wrap;"> 
+            <div class="content">
+                <div class="data" [innerHTML]="content">
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!content" class="default">
+            <div class="default">
+                <nz-spin nzSimple></nz-spin>
+            </div>
+        </div>
+
+    </div>
+</nz-modal>

@@ -1,0 +1,64 @@
+.option-promt {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px 16px;
+}
+.items {
+  padding: 0;
+  .sub {
+      padding: 16px;
+      list-style-type: none;
+      border-top: 1px solid #ccc;
+      cursor: pointer;
+      &:hover {
+          background-color: #141414;
+          a {
+              color: white;
+          }
+          .item-create {
+              color: white;
+          }
+      }
+      a {
+          font-size: 16px;
+          color: black;
+      }
+  }
+}
+.content {
+  background: #e2e2e2;
+  padding: 16px;
+  max-height: 450px;
+  position: relative;
+  overflow: auto;
+  .copy {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #e2e2e2;
+    padding: 8px;
+    cursor: pointer;
+  }
+}
+
+.choose {
+  display: flex;
+}
+.sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.item-create {
+  padding: 8px 16px;
+  border: 1px solid;
+}
+
+.loadmore {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.notification-list {
+  padding: 15px 20px;
+}

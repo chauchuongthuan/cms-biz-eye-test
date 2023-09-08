@@ -1,0 +1,49 @@
+<!-- <nz-modal
+    [(nzVisible)]="isVisible"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()"
+    [nzOkLoading]="isOkLoading"
+    [nzFooter]="null"
+    [nzCloseIcon]="''"
+    nzClosable="false"
+    style="border-radius: 20px"
+>
+    <div *nzModalContent>
+        <nz-list class="notification-list" [nzLoading]="initLoading">
+            <nz-list-item *ngFor="let item of listNotification">
+                <nz-list-item-meta>
+                    <nz-list-item-meta-title (click)="clickNotification(item.id)">
+                        <a [href]="'/admin/posts?limit=10&page=1&orderBy=createdAt&order=-1&idIn='+item.data" *ngIf="item.type==1">{{item.message}}</a>
+                    </nz-list-item-meta-title>
+                    <nz-list-item-meta-description>
+                        {{convertToTimeAgo(item.createdAt)}}
+                    </nz-list-item-meta-description>
+                </nz-list-item-meta>
+                <nz-list-item-extra *ngIf="!item.seen">
+                    <nz-badge nzStatus="processing"></nz-badge>
+                </nz-list-item-extra>
+            </nz-list-item>
+            <div class="loadmore" *ngIf="isShowMore" nz-list-load-more>
+                <button nz-button (click)="showMore()">loading more</button>
+            </div>
+        </nz-list>
+    </div>
+</nz-modal> -->
+<nz-list class="notification-list" [nzLoading]="initLoading">
+    <nz-list-item *ngFor="let item of listNotification">
+        <nz-list-item-meta>
+            <nz-list-item-meta-title (click)="clickNotification(item.id)">
+                <a [href]="'/admin/posts?limit=10&page=1&orderBy=createdAt&order=-1&idIn='+item.data" *ngIf="item.type==1">{{item.message}}</a>
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-description>
+                {{convertToTimeAgo(item.createdAt)}}
+            </nz-list-item-meta-description>
+        </nz-list-item-meta>
+        <nz-list-item-extra *ngIf="!item.seen">
+            <nz-badge nzStatus="processing"></nz-badge>
+        </nz-list-item-extra>
+    </nz-list-item>
+    <div class="loadmore" *ngIf="isShowMore" nz-list-load-more>
+        <button type="button" nz-button (click)="showMore()">loading more</button>
+    </div>
+</nz-list>

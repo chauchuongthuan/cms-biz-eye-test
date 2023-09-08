@@ -1,0 +1,19 @@
+.login-page {
+    background-image: url("../../../../assets/bg-login.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 134px);
+    .title {
+        font-size: 32px;
+        margin-bottom: 24px;
+    }
+    .ant-btn-primary {
+        margin-top: 8px;
+    }
+}
+// .bg-2 {
+//     background-image: url("../../../../assets/bg-2.png");
+//     background-repeat: no-repeat;
+//     width: 100%;
+//     height: 100%;
+// }

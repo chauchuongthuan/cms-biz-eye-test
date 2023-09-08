@@ -1,0 +1,11 @@
+::ng-deep {
+    .custom-tree-node {
+        padding: 8px;
+        width: 100%;
+    }
+    .ant-tree .ant-tree-node-content-wrapper {
+        min-height: 40px !important;
+        width: 300px;
+        background-color: rgba(0,0,0,.08);
+    }
+  }

@@ -1,0 +1,142 @@
+<!-- <button nz-button nzType="primary" (click)="showLarge()">
+  <span nz-icon nzType="plus"></span>
+  Tạo mới
+</button> -->
+<a class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]" (click)="showLarge()">
+  Tạo mới
+</a>
+<app-digitop-drawer [title]="state + ' khách hàng'" [visible]="visible" [size]="size" (onConfirm)="confirmDrawer()"
+  (onLeave)="close()">
+  <ng-container content>
+    <nz-spin [nzSpinning]="isLoading">
+      <form nz-form [nzLayout]="'inline'" [formGroup]="customerForm" (ngSubmit)="confirmDrawer()">
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <app-digitop-upload [fileList]="profileImage" [title]="'Ảnh đại diện'"
+                  (changeFile)="changeFileUpload($event, 'profileImage')" [multiple]="false"></app-digitop-upload>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Ngày sinh</nz-form-label>
+                <nz-input-group>
+                  <nz-date-picker ngDefaultControl nzFormat="dd-MM-yyyy" formControlName="dateOfBirth" style="width: 100%;"
+                    nzPlaceHolder="Chọn ngày"></nz-date-picker>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">SĐT</nz-form-label>
+                <nz-input-group>
+                  <input formControlName="phone"
+                    [ngClass]="submitted && customerForm.get('phone')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="SĐT" />
+                </nz-input-group>
+                <div *ngIf="submitted && customerForm.get('phone')?.errors?.['required']" class="input-text-error">
+                  <span>Vui lòng nhập SĐT</span>
+                </div>
+                <div *ngIf="submitted && (customerForm.get('phone')?.errors?.['pattern'] || customerForm.get('phone')?.errors?.['minlength'] || customerForm.get('phone')?.errors?.['maxlength'])" class="input-text-error">
+                  <span>Vui lòng nhập định dạng SĐT</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="8">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzRequired]="true">Danh xưng</nz-form-label>
+                <nz-select formControlName="gender" name="gender">
+                  <nz-option nzLabel="Chọn danh xưng" nzValue=""></nz-option>
+                  <nz-option *ngFor="let gender of genderList" nzValue="{{gender.value}}"
+                    nzLabel="{{gender.name}}"></nz-option>
+                </nz-select>
+                <div *ngIf="submitted && customerForm.get('gender')?.errors" class="input-text-error">
+                  <span>Vui lòng chọn danh xưng</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Tên</nz-form-label>
+                <nz-input-group>
+                  <input formControlName="name"
+                    [ngClass]="submitted && customerForm.get('name')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="Tên" />
+                </nz-input-group>
+                <div *ngIf="submitted && customerForm.get('name')?.errors" class="input-text-error">
+                  <span>Vui lòng nhập tên</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Email</nz-form-label>
+                <nz-input-group>
+                  <input formControlName="email"
+                    [ngClass]="submitted && customerForm.get('email')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="Email" />
+                </nz-input-group>
+                <div *ngIf="submitted && customerForm.get('email')?.errors?.['required']" class="input-text-error">
+                  <span>Vui lòng nhập email</span>
+                </div>
+                <div *ngIf="submitted && customerForm.get('email')?.errors?.['pattern']" class="input-text-error">
+                  <span>Vui lòng nhập định dạng email</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+        <div nz-row [nzGutter]="[hGutter, vGutter]">
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzRequired]="!isEdit" [nzSpan]="'vertical'">Password</nz-form-label>
+                <nz-input-group>
+                  <input formControlName="password"
+                    [ngClass]="submitted && customerForm.get('password')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="Password" type="password" />
+                </nz-input-group>
+                <div *ngIf="submitted && customerForm.get('password')?.errors" class="input-text-error">
+                  <span>Vui lòng nhập password</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzRequired]="!isEdit" [nzSpan]="'vertical'">Confirm password</nz-form-label>
+                <nz-input-group>
+                  <input type="password" formControlName="confirmPassword"
+                    [ngClass]="submitted && (customerForm.get('confirmPassword')?.errors || (customerForm.controls['confirmPassword'].value !== customerForm.controls['password'].value)) ? 'ant-input-status-error ng-invalid' : ''"
+                    nz-input placeholder="Confirm password" />
+                </nz-input-group>
+                <div *ngIf="submitted && customerForm.get('confirmPassword')?.errors" class="input-text-error">
+                  <span>Vui lòng nhập confirm password</span>
+                </div>
+                <div *ngIf="submitted && (customerForm.controls['confirmPassword'].value !== customerForm.controls['password'].value)" class="input-text-error">
+                  <span>Mật khẩu không trùng khớp</span>
+                </div>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </nz-spin>
+  </ng-container>
+</app-digitop-drawer>

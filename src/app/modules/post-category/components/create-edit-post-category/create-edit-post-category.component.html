@@ -1,0 +1,160 @@
+<!-- <button nz-button nzType="primary" (click)="open()">
+  <span nz-icon nzType="plus"></span>
+  Tạo mới
+</button> -->
+<a
+   class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+   (click)="open()"
+>
+   Tạo mới
+</a>
+<app-digitop-drawer
+   [title]="state + ' danh mục bài viết'"
+   [visible]="visible"
+   [size]="size"
+   (onConfirm)="confirmDrawer()"
+   (onLeave)="close()"
+>
+   <ng-container content>
+      <nz-spin [nzSpinning]="isLoading">
+         <form nz-form [nzLayout]="'inline'" [formGroup]="categoryForm" (ngSubmit)="confirmDrawer()">
+            <div nz-row [nzGutter]="[hGutter, vGutter]">
+               <div nz-col class="gutter-row" [nzSpan]="12">
+                  <nz-form-item>
+                     <nz-form-control>
+                        <nz-form-label [nzSpan]="'vertical'">Trạng thái <span class="required">(*)</span></nz-form-label>
+                        <nz-select ngDefaultControl formControlName="active" [(ngModel)]="this.dataActive">
+                           <nz-option [nzValue]="false" nzLabel="Tạm khoá"></nz-option>
+                           <nz-option [nzValue]="true" nzLabel="Hoạt động"></nz-option>
+                        </nz-select>
+                     </nz-form-control>
+                  </nz-form-item>
+               </div>
+               <div nz-col class="gutter-row" [nzSpan]="12">
+                  <nz-form-item>
+                     <nz-form-control>
+                        <nz-form-label [nzSpan]="'vertical'">Thứ tự <span class="required">(*)</span></nz-form-label>
+                        <nz-input-group>
+                           <input
+                              formControlName="sortOrder"
+                              [ngClass]="
+                                 submitted && categoryForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
+                              "
+                              nz-input
+                              placeholder="Thứ tự"
+                              type="number"
+                              min="1"
+                              step="1"
+                           />
+                        </nz-input-group>
+                        <div *ngIf="submitted && categoryForm.get('sortOrder')?.errors" class="input-text-error">
+                           <span>Vui lòng nhập số thứ tự</span>
+                        </div>
+                     </nz-form-control>
+                  </nz-form-item>
+               </div>
+            </div>
+            <div nz-row [nzGutter]="[hGutter, vGutter]">
+               <div nz-col class="gutter-row" [nzSpan]="12">
+                  <nz-form-item>
+                     <nz-form-control>
+                        <nz-form-label [nzSpan]="'vertical'">Tiêu đề danh mục <span class="required">(*)</span></nz-form-label>
+                        <nz-input-group>
+                           <input
+                              formControlName="title"
+                              [ngClass]="
+                                 submitted && categoryForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''
+                              "
+                              nz-input
+                              placeholder="Tiêu đề"
+                              (ngModelChange)="onChangeTitle('vi')"
+                           />
+                        </nz-input-group>
+                        <div *ngIf="submitted && categoryForm.get('title')?.errors" class="input-text-error">
+                           <span>Vui lòng nhập tên tiêu đề</span>
+                        </div>
+                     </nz-form-control>
+                  </nz-form-item>
+               </div>
+               <div nz-col class="gutter-row" [nzSpan]="12">
+                  <nz-form-item>
+                     <nz-form-control>
+                        <nz-form-label [nzSpan]="'vertical'">Slug <span class="required">(*)</span></nz-form-label>
+                        <nz-input-group>
+                           <input class="disabled-ip" formControlName="slug" nz-input placeholder="Tên slug" readonly />
+                        </nz-input-group>
+                     </nz-form-control>
+                  </nz-form-item>
+               </div>
+               <div nz-col class="gutter-row" [nzSpan]="24">
+                  <nz-form-item>
+                     <nz-form-control>
+                        <nz-form-label [nzSpan]="'vertical'">Mô tả danh mục <span class="required">(*)</span></nz-form-label>
+                        <nz-textarea-count [nzMaxCharacterCount]="100">
+                           <textarea
+                              [ngClass]="
+                                 submitted && categoryForm.get('shortDescription')?.errors
+                                    ? 'ant-input-status-error ng-invalid'
+                                    : ''
+                              "
+                              rows="4"
+                              formControlName="shortDescription"
+                              nz-input
+                           ></textarea>
+                        </nz-textarea-count>
+                        <div *ngIf="submitted && categoryForm.get('shortDescription')?.errors" class="input-text-error">
+                           <span>Vui lòng nhập mô tả</span>
+                        </div>
+                     </nz-form-control>
+                  </nz-form-item>
+               </div>
+            </div>
+            <nz-divider nzText="SEO Website"></nz-divider>
+            <div class="pt-1">
+               <div nz-row [nzGutter]="[hGutter, vGutter]" class="content-seo">
+                  <div nz-col class="gutter-row" [nzSpan]="5">
+                     <nz-form-item>
+                        <nz-form-control>
+                           <app-digitop-upload
+                              [fileList]="metaImage"
+                              [title]="'Hình ảnh'"
+                              (changeFile)="changeFileUpload($event, 'metaImage')"
+                              [multiple]="false"
+                           ></app-digitop-upload>
+                        </nz-form-control>
+                     </nz-form-item>
+                  </div>
+                  <div nz-col class="gutter-row" [nzSpan]="19">
+                     <nz-form-item>
+                        <nz-form-control>
+                           <nz-form-label [nzSpan]="'vertical'">Meta title</nz-form-label>
+                           <nz-input-group>
+                              <input formControlName="metaTitle" nz-input placeholder="Meta tile" />
+                           </nz-input-group>
+                        </nz-form-control>
+                     </nz-form-item>
+                     <nz-form-item>
+                        <nz-form-control>
+                           <nz-form-label [nzSpan]="'vertical'">Meta keywork</nz-form-label>
+                           <nz-input-group>
+                              <input formControlName="metaKeyword" nz-input placeholder="Tên danh mục" />
+                           </nz-input-group>
+                        </nz-form-control>
+                     </nz-form-item>
+                  </div>
+                  <div nz-col class="gutter-row" [nzSpan]="24">
+                     <nz-form-item>
+                        <nz-form-control>
+                           <nz-form-label [nzSpan]="'vertical'">Meta description</nz-form-label>
+                           <nz-textarea-count [nzMaxCharacterCount]="100">
+                              <textarea rows="4" formControlName="metaDescription" nz-input></textarea>
+                           </nz-textarea-count>
+                        </nz-form-control>
+                     </nz-form-item>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </nz-spin>
+   </ng-container>
+</app-digitop-drawer>

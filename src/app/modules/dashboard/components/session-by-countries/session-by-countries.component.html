@@ -1,0 +1,14 @@
+<div #ContainerRef>
+   <ngx-charts-bar-vertical
+      [view]="[ContainerRef.offsetWidth, 400]"
+      [scheme]="colorScheme"
+      [results]="single"
+      [gradient]="gradient"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+   >
+   </ngx-charts-bar-vertical>
+</div>
+<!-- (select)="onSelect($event)"
+(activate)="onActivate($event)"
+(deactivate)="onDeactivate($event)" -->

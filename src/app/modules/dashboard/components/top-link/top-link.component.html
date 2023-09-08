@@ -1,0 +1,14 @@
+<nz-table #basicTable [nzData]="listOfData">
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td><a [href]="'/admin/news?id='+data._id">{{ data.title }}</a></td>
+        <td>{{ data.view }}</td>
+      </tr>
+    </tbody>
+  </nz-table>

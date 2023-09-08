@@ -1,0 +1,29 @@
+<nz-spin [nzSpinning]="isLoading">
+  <form nz-form [nzLayout]="'inline'" [formGroup]="commentForm" (ngSubmit)="confirmDrawer()">
+    <div nz-row [nzGutter]="[hGutter, vGutter]">
+      <div nz-col class="gutter-row" [nzSpan]="2" title="{{user.email}}">
+        <nz-avatar *ngIf="!user.profileImage" nzSize="default" nzText="{{user.name[0]}}"
+          style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+        <nz-avatar *ngIf="user.profileImage" nzSize="default" nzSrc="{{user.profileImage}}"></nz-avatar>
+      </div>
+      <div nz-col class="gutter-row" [nzSpan]="22">
+        <nz-form-item>
+          <nz-form-control>
+            <app-digitop-editor [placeHolder]="'Write a comment...'" [initData]="dataEditor" (onChangeData)="onChangeEditor($event)">
+            </app-digitop-editor>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row [nzGutter]="16">
+      <div nz-col class="gutter-row" [nzSpan]="2"></div>
+      <div nz-col class="gutter-row" [nzSpan]="22">
+        <nz-space>
+          <button nz-button nzType="primary" (click)="confirmDrawer()" type="button" >Edit</button>
+          <button nz-button (click)="close()" type="button" >Discard changes</button>
+        </nz-space>
+          
+      </div>
+    </div>
+  </form>
+</nz-spin>

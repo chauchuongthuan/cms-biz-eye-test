@@ -1,0 +1,83 @@
+<div class="category" #mainScreen>
+   <nz-row [nzGutter]="16" class="head-table">
+      <div nz-col class="gutter-row pl-0" [nzSpan]="12">
+         <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">TAG ({{ paginator.total }})</h3>
+      </div>
+      <div nz-col class="gutter-row filter-group" [nzSpan]="12">
+         <app-create-edit-tag #editForm (onSuccess)="onSuccess()"></app-create-edit-tag>
+         <!-- <button nz-button nzType="default" class="second-background" (click)="onExport()">
+            <span nz-icon nzType="download"></span>
+            Xuất excel
+         </button> -->
+         <a
+            class="text-[white] flex w-6/12 lg:w-auto lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] ml-[20px] duration-300"
+            (click)="onExport()"
+         >
+            <span nz-icon nzType="download"></span>
+            Xuất excel
+         </a>
+      </div>
+   </nz-row>
+
+   <div class="filter">
+      <app-filter-tag (onFilter)="onFilter($event)"></app-filter-tag>
+   </div>
+
+   <div class="w-full rounded-b-lg overflow-hidden">
+      <nz-table
+         (nzQueryParams)="tableChange($event)"
+         [nzScroll]="{ y: 'calc(100vh - 310px)' }"
+         #tableTag
+         [nzTotal]="paginator.total"
+         [nzPageSize]="paginator.limit"
+         [nzPageIndex]="paginator.currentPage"
+         nzOuterBordered
+         [nzData]="listTag"
+         nzTableLayout="fixed"
+         [nzLoading]="tableLoading"
+         nzShowSizeChanger
+         [nzFrontPagination]="false"
+      >
+         <thead>
+            <tr>
+               <th [nzSortFn]="true" [nzColumnKey]="'name'">Tên</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'slug'">Slug</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'active'">Trạng thái</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Ngày tạo</th>
+               <th>Hành động</th>
+            </tr>
+         </thead>
+         <tbody *ngIf="listTag?.length > 0">
+            <ng-container *ngFor="let data of tableTag.data">
+               <tr>
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.slug }}</td>
+                  <td>
+                     <nz-tag [nzColor]="'red'" *ngIf="!data.active">Tạm khoá</nz-tag>
+                     <nz-tag [nzColor]="'green'" *ngIf="data.active">Hoạt động</nz-tag>
+                  </td>
+                  <td>{{ data.createdAt }}</td>
+                  <td>
+                     <a
+                           class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
+                           (click)="onEdit(data)"
+                           nz-popconfirm
+                        >
+                           Chỉnh sửa
+                        </a>
+                        <a
+                           nz-popconfirm
+                           class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                           [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'"
+                           nzPopconfirmPlacement="bottom"
+                           (nzOnConfirm)="onDelete(data.id)"
+                        >
+                           <span nz-icon nzType="delete"></span>
+                        </a>
+                  </td>
+               </tr>
+            </ng-container>
+         </tbody>
+      </nz-table>
+   </div>
+</div>

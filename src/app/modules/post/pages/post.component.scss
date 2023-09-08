@@ -1,0 +1,128 @@
+.ant-row {
+  width: 100%;
+  margin: 0 !important;
+}
+[nz-button] {
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
+.ant-picker-range {
+  width: 100%;
+}
+.filter-group {
+  // padding-top: 16px;
+  display: flex;
+  justify-content: end;
+  padding-right: 0 !important;
+}
+.head-table {
+  align-items: center;
+}
+// .droplist-group {
+//   overflow-x: auto;
+//   white-space: nowrap;
+//   overflow-y: hidden;
+//   bottom: 0;
+//   left: 0;
+//   padding-bottom: 8px;
+//   margin-bottom: 8px;
+//   height: 90%;
+// }
+// .droplist-container {
+//   width: 400px;
+//   max-width: 100%;
+//   max-height: 100vh;
+//   margin: 0 25px 25px 0;
+//   display: inline-block;
+//   vertical-align: top;
+// }
+
+.droplist-list {
+  min-height: 240px;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 7px;
+  margin: 0 4px;
+  padding: 1px 4px 0;
+  border: none;
+  // min-height: 60px;
+  background: #fff;
+  border-radius: 10px;
+  display: block;
+  padding: 25px 15px;
+}
+.droplist-list__wrapper {
+  height: 60vh;
+  overflow-y: auto;
+
+}
+.card-post-control {
+  // display: none;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+.droplist-box:hover .card-post-control{
+  height: 30px;
+}
+.droplist-box {
+  height: auto;
+  position: relative;
+  border: solid 1px #ccc;
+  padding: 20px 20px;
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.87);
+  align-items: center;
+  border-radius: 10px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: white;
+  font-size: 14px;
+  margin: 15px 4px 15px 0px;
+}
+
+.droplist-title {
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: flex;
+  margin: 0 0 4px;
+  text-decoration: none;
+}
+
+.droplist-assigned {
+  // display: flex;
+  // justify-content: space-between;
+  margin-top: 5px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box; 
+  border-radius: 10px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.cdk-drag-placeholder {
+  color: #cfd2da;
+  cursor: grabbing; 
+  border: none;
+  background-color: #cfd2da;
+  .drop__footer {
+    opacity: 0;
+  }
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  cursor: grabbing; 
+}
+
+.cdk-drop-list-dragging {
+  cursor: grabbing;
+}
+
+// .droplist-list.cdk-drop-list-dragging .droplist-box:not(.cdk-drag-placeholder) {
+//   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+// }

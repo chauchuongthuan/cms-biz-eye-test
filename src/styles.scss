@@ -1,0 +1,188 @@
+// @import "~ng-zorro-antd/ng-zorro-antd.variable.min.css";
+// @import "~ng-zorro-antd/ng-zorro-antd.dark.css";
+body {
+   font-family: "Quicksand", sans-serif;
+   overflow-x: hidden;
+}
+
+.ant-menu-light .ant-menu-item-active,
+.ant-menu-light .ant-menu-item:hover,
+.ant-menu-light .ant-menu-submenu-active,
+.ant-menu-light .ant-menu-submenu-title:hover,
+.ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open {
+   color: #ff0a6c;
+   span {
+      color: #ff0a6c;
+   }
+}
+.ant-menu-item-selected span {
+   color: #ff0a6c !important;
+}
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected,
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow,
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-expand-icon,
+.ant-menu-vertical .ant-menu-submenu-selected,
+.ant-menu-vertical-left .ant-menu-submenu-selected,
+.ant-menu-vertical-right .ant-menu-submenu-selected {
+   color: #ff0a6c;
+}
+.ant-menu-item a:hover {
+   color: #ff0a6c;
+}
+.ant-menu-item-selected,
+.ant-menu-item-selected a,
+.ant-menu-item-selected a:hover,
+.ant-menu-item > .ant-badge a:hover {
+   color: #ff0a6c;
+}
+.ant-menu-inline .ant-menu-item::after,
+.ant-menu-vertical .ant-menu-item::after,
+.ant-menu-vertical-left .ant-menu-item::after,
+.ant-menu-vertical-right .ant-menu-item::after {
+   border-right: 3px solid #ff0a6c;
+}
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+   background-color: #ff0a6c14;
+}
+.ant-table-footer, .ant-table-thead>tr>th {
+   background: #EFF3FA;
+}
+.ant-table-pagination.ant-pagination {
+   background: white;
+   justify-content: start;
+   margin: 0;
+   padding-top: 16px;
+   padding-bottom: 16px;
+   padding-left: 16px;
+}
+.ant-pagination-item-active a, .ant-pagination-item:focus-visible a, .ant-pagination-item:hover a {
+   color: white;
+}
+.ant-pagination-item-active {
+   border-color: #ff0a6c;
+   background-color: #ff0a6c;
+}
+* {
+   scrollbar-width: thin;
+   scrollbar-color: #61b8ff;
+}
+.ant-table-content{ overflow: auto; }
+.ant-table-wrapper{overflow: auto;}
+/* Works on Chrome, Edge, and Safari */
+// *::-webkit-scrollbar {
+//    width: 2px;
+// }
+
+// *::-webkit-scrollbar-track {
+//    // background: orange;
+// }
+
+// *::-webkit-scrollbar-thumb {
+//    background-color: #cccccc;
+//    border-radius: 20px;
+// }
+.nz-table, nz-table-inner-default, nz-table-inner-scroll, nz-table-selection, nz-table-title-footer {
+   display: unset;
+}
+.second-background {
+   background-color: orange;
+   color: white;
+   &:hover {
+      border-color: orange;
+      color: black;
+   }
+}
+
+.card-top-dashboard {
+   background-color: #3673e8;
+}
+.ant-modal-body {
+   padding: 0 !important;
+}
+.ant-upload {
+   padding: 10px !important;
+}
+.ant-form-item-label > label::after {
+   display: none !important;
+}
+.required {
+   color: red;
+}
+.input-text-error {
+   font-size: 12px;
+   color: red;
+}
+.eslip-text {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.disabled-ip {
+   color: #00000040;
+   background-color: #f5f5f5;
+   border-color: #d9d9d9;
+   box-shadow: none;
+   cursor: not-allowed;
+   opacity: 1;
+}
+
+/** TEXT INPUT CUSTOM**/
+.ip-text {
+   padding-right: 6px;
+}
+
+/** Padding define **/
+.pt-1 {
+   padding-top: 16px;
+}
+.pt-2 {
+   padding-top: 20px;
+}
+.pt-3 {
+   padding-top: 24px;
+}
+.pt-4 {
+   padding-top: 28px;
+}
+.pb-1 {
+   padding-bottom: 16px;
+}
+.pb-2 {
+   padding-bottom: 20px;
+}
+.pb-3 {
+   padding-bottom: 24px;
+}
+.pb-4 {
+   padding-bottom: 28px;
+}
+.pl-0 {
+   padding-left: 0 !important;
+}
+.p-5 {
+   padding: 5px !important;
+}
+/** Custom Table **/
+tbody {
+   .ant-table-cell {
+      padding: 30px 16px !important;
+   }
+}
+.ant-card-body {
+   padding: 24px 10px 10px !important;
+}
+
+/** button **/
+.full-w-button {
+   button {
+      width: 100%;
+   }
+}

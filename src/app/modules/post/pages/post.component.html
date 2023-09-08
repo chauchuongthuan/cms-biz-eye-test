@@ -1,0 +1,673 @@
+<div class="post" #mainScreen>
+   <div class="pl-0 w-12/12 flex w-full justify-between items-center">
+      <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">Bài viết ({{ paginator.total }})</h3>
+      <div class="flex justify-end items-center gap-4">
+         <a
+            (click)="changeMode()"
+            [ngClass]="{ 'text-pink-100': isList }"
+            class="text-[white] flex w-12/12 lg:w-3/12 h-[44px] lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-[white] hover:text-pink-100 text-[#4F4F4F] font-bold hover:text-[white]"
+         >
+            <a [ngClass]="{ 'text-pink-100': isList }" class="text-[#4F4F4F] hover:text-pink-100 flex items-center">
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="fill-current"
+               >
+                  <path
+                     fill-rule="evenodd"
+                     clip-rule="evenodd"
+                     d="M2 2V6H18V2H2ZM1 0C0.447715 0 0 0.447715 0 1V7C0 7.55228 0.447716 8 1 8H19C19.5523 8 20 7.55228 20 7V1C20 0.447715 19.5523 0 19 0H1Z"
+                  />
+                  <path
+                     fill-rule="evenodd"
+                     clip-rule="evenodd"
+                     d="M2 14V18H18V14H2ZM1 12C0.447715 12 0 12.4477 0 13V19C0 19.5523 0.447716 20 1 20H19C19.5523 20 20 19.5523 20 19V13C20 12.4477 19.5523 12 19 12H1Z"
+                  />
+               </svg>
+               <span class="ml-[8px]">LIST</span>
+            </a>
+         </a>
+         <a
+            (click)="changeMode()"
+            [ngClass]="{ 'text-pink-100': !isList }"
+            class="text-[white] flex w-12/12 lg:w-3/12 h-[44px] lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-[white] hover:text-pink-100 text-[#4F4F4F] font-bold hover:text-[white]"
+         >
+            <a [ngClass]="{ 'text-pink-100': !isList }" class="text-[#4F4F4F] hover:text-pink-100 flex items-center">
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  class="fill-current"
+               >
+                  <path
+                     fill-rule="evenodd"
+                     clip-rule="evenodd"
+                     d="M18 2L11 2L11 12H18V2ZM20 1C20 0.447716 19.5523 3.54811e-07 19 3.36241e-07L9 0L9 13C9 13.5523 9.44771 14 10 14H19C19.5523 14 20 13.5523 20 13V1Z"
+                  />
+                  <path
+                     fill-rule="evenodd"
+                     clip-rule="evenodd"
+                     d="M9 18L9 2L2 2L2 18H9ZM11 3.69866e-07L1 3.36242e-08C0.447717 1.50542e-08 1.05423e-06 0.447716 1.02285e-06 1L0 19C-3.13834e-08 19.5523 0.447715 20 1 20H10C10.5523 20 11 19.5523 11 19L11 3.69866e-07Z"
+                  />
+               </svg>
+               <span class="ml-[8px]">BOARD</span>
+            </a>
+         </a>
+         <a
+            href="/admin/news"
+            class="text-[white] flex w-12/12 lg:w-3/12 h-[44px] lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+         >
+            Tạo bài viết
+         </a>
+      </div>
+   </div>
+   <div class="filter">
+      <app-filter-post (onFilter)="onFilter($event)"></app-filter-post>
+   </div>
+   <div class="duration-150 list" *ngIf="isList">
+      <nz-table
+         (nzQueryParams)="tableChange($event)"
+         #tablePost
+         [nzTotal]="paginator.total"
+         [nzPageSize]="paginator.limit"
+         [nzPageIndex]="paginator.currentPage"
+         nzOuterBordered
+         [nzData]="listPost"
+         nzTableLayout="fixed"
+         [nzLoading]="tableLoading"
+         nzShowSizeChanger
+         [nzFrontPagination]="false"
+      >
+         <thead>
+            <tr class="hidden lg:contents">
+               <th [nzColumnKey]="'image'">Hình ảnh</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'title'">Tiêu đề bài viết</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'author'">Tác giả</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'postCategory'">Danh mục</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'statusText'">Trạng thái</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Ngày tạo</th>
+               <th>Hành động</th>
+            </tr>
+         </thead>
+         <tbody *ngIf="listPost?.length > 0">
+            <ng-container *ngFor="let data of tablePost.data" class="flex lg:contents">
+               <tr class="flex lg:table-row">
+                  <td class="lg:w-full w-[120px]">
+                     <img style="width: 100px; cursor: pointer" nz-image [nzSrc]="data.image" *ngIf="data.image" alt="" />
+                  </td>
+                  <td class="lg:w-full min-w-[300px]">{{ data.title }}</td>
+                  <td>{{ data.author?.name || "" }}</td>
+                  <td>{{ data.postCategory.title }}</td>
+                  <td>
+                     <nz-tag [nzColor]="'default'" *ngIf="data.status == 1">NEW</nz-tag>
+                     <nz-tag [nzColor]="'orange'" *ngIf="data.status == 2">IN_REVIEW</nz-tag>
+                     <nz-tag [nzColor]="'blue'" *ngIf="data.status == 3">CENSORSHIP</nz-tag>
+                     <nz-tag [nzColor]="'green'" *ngIf="data.status == 4">PUBLISHED</nz-tag>
+                     <nz-tag [nzColor]="'red'" *ngIf="data.status == 5">IN_ACTIVE</nz-tag>
+                  </td>
+                  <td>{{ data.createdAt }}</td>
+                  <td>
+                     <div nz-row class="lg:flex items-center py-[16px] min-w-[230px]">
+                        <a
+                           class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
+                           (click)="goToDetail(data.id)"
+                           nz-popconfirm
+                        >
+                           Chỉnh sửa
+                        </a>
+                        <a
+                           nz-popconfirm
+                           class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                           [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'"
+                           nzPopconfirmPlacement="bottom"
+                           (nzOnConfirm)="onDelete(data.id)"
+                        >
+                           <span nz-icon nzType="delete"></span>
+                        </a>
+                     </div>
+                  </td>
+               </tr>
+            </ng-container>
+         </tbody>
+      </nz-table>
+   </div>
+   <div class="duration-150 board" *ngIf="!isList">
+      <nz-spin [nzSpinning]="isSpin">
+         <div cdkDropListGroup class="mt-[16px] droplist-group lg:flex w-full">
+            <div class="droplist-container w-12/12 lg:w-3/12">
+               <div cdkDropList [cdkDropListData]="newPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
+                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">
+                     Bài viết mới
+                  </h2>
+                  <div class="droplist-list__wrapper">
+                     <ng-container *ngFor="let item of newPostList; let i = index">
+                        <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                           <div class="w-12/12 pb-[16px]">
+                              <img [src]="item.image" alt="title" srcset="" class="w-full" />
+                           </div>
+                           <div class="droplist-title text-[12px] font-semibold">{{ item.title }}</div>
+                           <div nz-row style="justify-content: space-between" class="drop__footer">
+                              <div nz-col>
+                                 <div nz-row>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Sửa nhanh"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="goToDetail(item.id)"
+                                    >
+                                       <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                                    </button>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Chi tiết"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="goToDetail(item.id)"
+                                    >
+                                       <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                                    </button>
+                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                       <span
+                                          nz-icon
+                                          nzType="comment"
+                                          nz-tooltip
+                                          nzTooltipTitle="Số lượt bình luận"
+                                          nzTheme="outline"
+                                       ></span>
+                                       {{ item.commentCount }}
+                                    </div>
+                                 </div>
+                              </div>
+                              <div nz-col>
+                                 <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
+                                    <ng-container *ngFor="let assigned of item.assigned">
+                                       <nz-avatar
+                                          *ngIf="assigned?.profileImage"
+                                          nzSize="small"
+                                          nzSrc="{{ assigned?.profileImage }}"
+                                          title="{{ assigned?.name }}"
+                                       >
+                                       </nz-avatar>
+                                       <nz-avatar
+                                          *ngIf="!assigned?.profileImage"
+                                          nzSize="small"
+                                          nzText="{{ assigned.name[0] }}"
+                                          title="{{ assigned?.name }}"
+                                          style="color: #f56a00; background-color: #fde3cf"
+                                       ></nz-avatar>
+                                    </ng-container>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="flex">
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
+                              <span class="px-[8px]">|</span>
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
+                           </div>
+                        </div>
+                     </ng-container>
+                  </div>
+               </div>
+            </div>
+            <div class="droplist-container w-12/12 lg:w-3/12">
+               <div cdkDropList [cdkDropListData]="reviewPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
+                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Xem trước</h2>
+                  <div class="droplist-list__wrapper">
+                     <ng-container *ngFor="let item of reviewPostList; let i = index">
+                        <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                           <div class="w-12/12 pb-[16px]">
+                              <img [src]="item.image" alt="title" srcset="" class="w-full" />
+                           </div>
+                           <div class="droplist-title text-[12px] font-semibold">{{ item.title }}</div>
+                           <div nz-row style="justify-content: space-between" class="drop__footer">
+                              <div nz-col>
+                                 <div nz-row>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Sửa nhanh"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="handleClick(item)"
+                                    >
+                                       <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                                    </button>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Chi tiết"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="goToDetail(item.id)"
+                                    >
+                                       <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                                    </button>
+                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                       <span
+                                          nz-icon
+                                          nzType="comment"
+                                          nz-tooltip
+                                          nzTooltipTitle="Số lượt bình luận"
+                                          nzTheme="outline"
+                                       ></span>
+                                       {{ item.commentCount }}
+                                    </div>
+                                 </div>
+                              </div>
+                              <div nz-col>
+                                 <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
+                                    <ng-container *ngFor="let assigned of item.assigned">
+                                       <nz-avatar
+                                          *ngIf="assigned?.profileImage"
+                                          nzSize="small"
+                                          nzSrc="{{ assigned?.profileImage }}"
+                                          title="{{ assigned?.name }}"
+                                       >
+                                       </nz-avatar>
+                                       <nz-avatar
+                                          *ngIf="!assigned?.profileImage"
+                                          nzSize="small"
+                                          nzText="{{ assigned.name[0] }}"
+                                          title="{{ assigned?.name }}"
+                                          style="color: #f56a00; background-color: #fde3cf"
+                                       ></nz-avatar>
+                                    </ng-container>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="flex">
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
+                              <span class="px-[8px]">|</span>
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
+                           </div>
+                        </div>
+                     </ng-container>
+                  </div>
+               </div>
+            </div>
+            <div class="droplist-container w-12/12 lg:w-3/12">
+               <div cdkDropList [cdkDropListData]="censorshipPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
+                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Kiểm định</h2>
+                  <div class="droplist-list__wrapper">
+                     <ng-container *ngFor="let item of censorshipPostList; let i = index">
+                        <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                           <div class="w-12/12 pb-[16px]">
+                              <img [src]="item.image" alt="title" srcset="" class="w-full" />
+                           </div>
+                           <div class="droplist-title text-[12px] font-semibold">{{ item.title }}</div>
+                           <div nz-row style="justify-content: space-between" class="drop__footer">
+                              <div nz-col>
+                                 <div nz-row>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Sửa nhanh"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="handleClick(item)"
+                                    >
+                                       <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                                    </button>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Chi tiết"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="goToDetail(item.id)"
+                                    >
+                                       <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                                    </button>
+                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                       <span
+                                          nz-icon
+                                          nzType="comment"
+                                          nz-tooltip
+                                          nzTooltipTitle="Số lượt bình luận"
+                                          nzTheme="outline"
+                                       ></span>
+                                       {{ item.commentCount }}
+                                    </div>
+                                 </div>
+                              </div>
+                              <div nz-col>
+                                 <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
+                                    <ng-container *ngFor="let assigned of item.assigned">
+                                       <nz-avatar
+                                          *ngIf="assigned?.profileImage"
+                                          nzSize="small"
+                                          nzSrc="{{ assigned?.profileImage }}"
+                                          title="{{ assigned?.name }}"
+                                       >
+                                       </nz-avatar>
+                                       <nz-avatar
+                                          *ngIf="!assigned?.profileImage"
+                                          nzSize="small"
+                                          nzText="{{ assigned.name[0] }}"
+                                          title="{{ assigned?.name }}"
+                                          style="color: #f56a00; background-color: #fde3cf"
+                                       ></nz-avatar>
+                                    </ng-container>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="flex">
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
+                              <span class="px-[8px]">|</span>
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
+                           </div>
+                        </div>
+                     </ng-container>
+                  </div>
+               </div>
+            </div>
+            <div class="droplist-container w-12/12 lg:w-3/12">
+               <div cdkDropList [cdkDropListData]="publishPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
+                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Công khai</h2>
+                  <div class="droplist-list__wrapper">
+                     <ng-container *ngFor="let item of publishPostList; let i = index">
+                        <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                           <div class="w-12/12 pb-[16px]">
+                              <img [src]="item.image" alt="title" srcset="" class="w-full" />
+                           </div>
+                           <div class="droplist-title text-[12px] font-semibold">{{ item.title }}</div>
+                           <div nz-row style="justify-content: space-between" class="drop__footer">
+                              <div nz-col>
+                                 <div nz-row>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Sửa nhanh"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="handleClick(item)"
+                                    >
+                                       <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                                    </button>
+                                    <button
+                                       nz-tooltip
+                                       nzTooltipTitle="Chi tiết"
+                                       nz-button
+                                       nzType="default"
+                                       style="border: none"
+                                       [nzSize]="'small'"
+                                       (click)="goToDetail(item.id)"
+                                    >
+                                       <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                                    </button>
+                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                       <span
+                                          nz-icon
+                                          nzType="comment"
+                                          nz-tooltip
+                                          nzTooltipTitle="Số lượt bình luận"
+                                          nzTheme="outline"
+                                       ></span>
+                                       {{ item.commentCount }}
+                                    </div>
+                                 </div>
+                              </div>
+                              <div nz-col>
+                                 <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
+                                    <ng-container *ngFor="let assigned of item.assigned">
+                                       <nz-avatar
+                                          *ngIf="assigned?.profileImage"
+                                          nzSize="small"
+                                          nzSrc="{{ assigned?.profileImage }}"
+                                          title="{{ assigned?.name }}"
+                                       >
+                                       </nz-avatar>
+                                       <nz-avatar
+                                          *ngIf="!assigned?.profileImage"
+                                          nzSize="small"
+                                          nzText="{{ assigned.name[0] }}"
+                                          title="{{ assigned?.name }}"
+                                          style="color: #f56a00; background-color: #fde3cf"
+                                       ></nz-avatar>
+                                    </ng-container>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="flex">
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
+                              <span class="px-[8px]">|</span>
+                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
+                           </div>
+                        </div>
+                     </ng-container>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </nz-spin>
+   </div>
+   <nz-tabset>
+      <!-- <nz-tab nzTitle="Table">
+      <nz-spin [nzSpinning]="isSpin">
+        <div cdkDropListGroup class="droplist-group">
+          <div class="droplist-container">
+            <div cdkDropList [cdkDropListData]="newPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
+              <h2>Bài viết mới</h2>
+              <div class="droplist-list__wrapper">
+                <ng-container *ngFor="let item of newPostList let i = index">
+                  <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                    <div class="droplist-title">{{item.title}}</div>
+                    <div nz-row style="justify-content: space-between;" class="drop__footer">
+                      <div nz-col>
+                        <div nz-row >
+                          <button nz-tooltip nzTooltipTitle="Sửa nhanh" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="handleClick(item)">
+                            <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                          </button>
+                          <button nz-tooltip nzTooltipTitle="Chi tiết" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="goToDetail(item.id)">
+                            <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                          </button>
+                          <div *ngIf="item.commentCount > 0" title="Comments">
+                            <span nz-icon nzType="comment" nz-tooltip nzTooltipTitle="Số lượt bình luận" nzTheme="outline"></span>
+                            {{item.commentCount}}t
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col>
+                        <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]" >
+                          <ng-container *ngFor="let assigned of item.assigned">
+                            <nz-avatar *ngIf="assigned?.profileImage" nzSize="small" nzSrc="{{assigned?.profileImage}}" title="{{assigned?.name}}">
+                            </nz-avatar>
+                            <nz-avatar *ngIf="!assigned?.profileImage" nzSize="small" nzText="{{assigned.name[0]}}" title="{{assigned?.name}}"
+                              style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>           
+            </div>
+          </div>
+          <div class="droplist-container">
+            <div cdkDropList [cdkDropListData]="reviewPostList" class="droplist-list"
+            (cdkDropListDropped)="drop($event)">
+              <h2>Xem trước</h2>
+              <div class="droplist-list__wrapper">
+                <ng-container *ngFor="let item of reviewPostList let i = index">
+                  <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                    <div class="droplist-title">{{item.title}}</div>
+                    <div nz-row style="justify-content: space-between;" class="drop__footer">
+                      <div nz-col>
+                        <div nz-row >
+                          <button nz-tooltip nzTooltipTitle="Sửa nhanh" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="handleClick(item)">
+                            <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                          </button>
+                          <button nz-tooltip nzTooltipTitle="Chi tiết" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="goToDetail(item.id)">
+                            <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                          </button>
+                          <div *ngIf="item.commentCount > 0" title="Comments">
+                            <span nz-icon nzType="comment" nz-tooltip nzTooltipTitle="Số lượt bình luận" nzTheme="outline"></span>
+                            {{item.commentCount}}
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col>
+                        <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]" >
+                          <ng-container *ngFor="let assigned of item.assigned">
+                            <nz-avatar *ngIf="assigned?.profileImage" nzSize="small" nzSrc="{{assigned?.profileImage}}" title="{{assigned?.name}}">
+                            </nz-avatar>
+                            <nz-avatar *ngIf="!assigned?.profileImage" nzSize="small" nzText="{{assigned.name[0]}}" title="{{assigned?.name}}"
+                              style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="droplist-container">
+            <div cdkDropList [cdkDropListData]="censorshipPostList" class="droplist-list"
+            (cdkDropListDropped)="drop($event)">
+              <h2>Kiểm định</h2>
+              <div class="droplist-list__wrapper">
+                <ng-container *ngFor="let item of censorshipPostList let i = index">
+                  <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                    <div class="droplist-title">{{item.title}}</div>
+                    <div nz-row style="justify-content: space-between;" class="drop__footer">
+                      <div nz-col>
+                        <div nz-row >
+                          <button nz-tooltip nzTooltipTitle="Sửa nhanh" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="handleClick(item)">
+                            <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                          </button>
+                          <button nz-tooltip nzTooltipTitle="Chi tiết" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="goToDetail(item.id)">
+                            <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                          </button>
+                          <div *ngIf="item.commentCount > 0" title="Comments">
+                            <span nz-icon nzType="comment" nz-tooltip nzTooltipTitle="Số lượt bình luận" nzTheme="outline"></span>
+                            {{item.commentCount}}
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col>
+                        <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]" >
+                          <ng-container *ngFor="let assigned of item.assigned">
+                            <nz-avatar *ngIf="assigned?.profileImage" nzSize="small" nzSrc="{{assigned?.profileImage}}" title="{{assigned?.name}}">
+                            </nz-avatar>
+                            <nz-avatar *ngIf="!assigned?.profileImage" nzSize="small" nzText="{{assigned.name[0]}}" title="{{assigned?.name}}"
+                              style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+          <div class="droplist-container">
+            <div cdkDropList [cdkDropListData]="publishPostList" class="droplist-list"
+            (cdkDropListDropped)="drop($event)">
+              <h2>Công khai</h2>
+              <div class="droplist-list__wrapper">
+                <ng-container *ngFor="let item of publishPostList let i = index">
+                  <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
+                    <div class="droplist-title">{{item.title}}</div>
+                    <div nz-row style="justify-content: space-between;" class="drop__footer">
+                      <div nz-col>
+                        <div nz-row >
+                          <button nz-tooltip nzTooltipTitle="Sửa nhanh" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="handleClick(item)">
+                            <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
+                          </button>
+                          <button nz-tooltip nzTooltipTitle="Chi tiết" nz-button nzType="default" style="border: none;" [nzSize]="'small'" (click)="goToDetail(item.id)">
+                            <span nz-icon nzType="align-left" nzTheme="outline"></span>
+                          </button>
+                          <div *ngIf="item.commentCount > 0" title="Comments">
+                            <span nz-icon nzType="comment" nz-tooltip nzTooltipTitle="Số lượt bình luận" nzTheme="outline"></span>
+                            {{item.commentCount}}
+                          </div>
+                        </div>
+                      </div>
+                      <div nz-col>
+                        <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]" >
+                          <ng-container *ngFor="let assigned of item.assigned">
+                            <nz-avatar *ngIf="assigned?.profileImage" nzSize="small" nzSrc="{{assigned?.profileImage}}" title="{{assigned?.name}}">
+                            </nz-avatar>
+                            <nz-avatar *ngIf="!assigned?.profileImage" nzSize="small" nzText="{{assigned.name[0]}}" title="{{assigned?.name}}"
+                              style="color:#f56a00; background-color:#fde3cf;"></nz-avatar>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nz-spin>
+    </nz-tab> -->
+      <!-- <nz-tab nzTitle="List">
+      <div class="filter">
+        <app-filter-post (onFilter)="onFilter($event)"></app-filter-post>
+      </div>
+      <nz-table (nzQueryParams)="tableChange($event)" #tablePost
+        [nzTotal]="paginator.total" [nzPageSize]="paginator.limit" [nzPageIndex]="paginator.currentPage" nzOuterBordered
+        [nzData]="listPost" nzTableLayout="fixed" [nzLoading]="tableLoading" nzShowSizeChanger
+        [nzFrontPagination]="false">
+        <thead>
+          <tr>
+            <th [nzColumnKey]="'image'">Hình ảnh</th>
+            <th [nzSortFn]="true" [nzColumnKey]="'title'">Tiêu đề bài viết</th>
+            <th [nzSortFn]="true" [nzColumnKey]="'author'">Tác giả</th>
+            <th [nzSortFn]="true" [nzColumnKey]="'postCategory'">Danh mục</th>
+            <th [nzSortFn]="true" [nzColumnKey]="'statusText'">Trạng thái</th>
+            <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Ngày tạo</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="listPost?.length > 0">
+          <ng-container *ngFor="let data of tablePost.data">
+            <tr>
+              <td>
+                <img style="width: 100px; cursor: pointer;" nz-image [nzSrc]="data.image" *ngIf="data.image " alt="">
+              </td>
+              <td>{{ data.title }}</td>
+              <td>{{ data.author.name }}</td>
+              <td>{{ data.postCategory.title }}</td>
+              <td>
+                <nz-tag [nzColor]="'default'" *ngIf="data.status==1">NEW</nz-tag>
+                <nz-tag [nzColor]="'orange'" *ngIf="data.status==2">IN_REVIEW</nz-tag>
+                <nz-tag [nzColor]="'blue'" *ngIf="data.status==3">CENSORSHIP</nz-tag>
+                <nz-tag [nzColor]="'green'" *ngIf="data.status==4">PUBLISHED</nz-tag>
+                <nz-tag [nzColor]="'red'" *ngIf="data.status==5">IN_ACTIVE</nz-tag>
+              </td>
+              <td>{{ data.createdAt }}</td>
+              <td>
+                <button nz-button nzType="primary" (click)="onEdit(data)">
+                  <span nz-icon nzType="edit"></span>
+                </button>
+                <button nz-button nzType="primary" nzDanger nz-popconfirm
+                  [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'" nzPopconfirmPlacement="bottom"
+                  (nzOnConfirm)="onDelete(data.id)">
+                  <span nz-icon nzType="delete"></span>
+                </button>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </nz-table>
+    </nz-tab> -->
+   </nz-tabset>
+</div>
