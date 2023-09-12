@@ -4,19 +4,9 @@
          <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">WEBSITE ({{ paginator.total }})</h3>
       </div>
    </nz-row>
-   <nz-table
-      [nzScroll]="{ y: 'calc(100vh - 310px)' }"
-      #tablePage
-      [nzTotal]="paginator.total"
-      [nzPageSize]="paginator.limit"
-      [nzPageIndex]="paginator.currentPage"
-      nzOuterBordered
-      [nzData]="listPage"
-      nzTableLayout="fixed"
-      [nzLoading]="tableLoading"
-      nzShowSizeChanger
-      [nzFrontPagination]="false"
-   >
+   <nz-table [nzScroll]="{ y: 'calc(100vh - 310px)' }" #tablePage [nzTotal]="paginator.total"
+      [nzPageSize]="paginator.limit" [nzPageIndex]="paginator.currentPage" nzOuterBordered [nzData]="listPage"
+      nzTableLayout="fixed" [nzLoading]="tableLoading" nzShowSizeChanger [nzFrontPagination]="false">
       <thead>
          <tr>
             <th [nzSortFn]="true" [nzColumnKey]="'name'">Tên</th>
@@ -30,9 +20,14 @@
                <td>{{ data.name }}</td>
                <td>{{ data.createdAt }}</td>
                <td>
-                  <button nz-button nzType="primary" (click)="onEdit(data)">
-                     <span nz-icon nzType="edit"></span>
-                  </button>
+                  <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[8px]"
+                     (click)="onEdit(data)" nz-popconfirm>
+                     Chỉnh sửa
+                  </a>
+                  <a class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                     (click)="onEdit(data)" nz-popconfirm>
+                     Xóa
+                  </a>
                </td>
             </tr>
          </ng-container>

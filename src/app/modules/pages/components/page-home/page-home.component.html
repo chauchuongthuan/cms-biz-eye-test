@@ -13,21 +13,30 @@
             <div class="p-[16px]">
                 <form [formGroup]="form">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div formArrayName="heroBanner" *ngFor="let line of lines.controls; let i = index" class="relative">
+                        <div formArrayName="heroBanner" *ngFor="let line of lines.controls; let i = index"
+                            class="relative">
                             <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
                                 <div class="gap-4 pt-[16px] flex">
                                     <div class="w-4/12 flex gap-4">
                                         <div class="w-full">
-                                            <app-digitop-upload [fileList]="bannerImageMobile" [title]="'Desktop Image'"
-                                                CENSORSHIP class="w-full"
-                                                (changeFile)="changeFileUpload($event,i, 'bannerImage')"
+                                            <app-digitop-upload [fileList]="[line.get('bannerImage')?.value]"
+                                                [title]="'Desktop Image'" CENSORSHIP class="w-full"
+                                                (changeFile)="changeFileUpload($event,i, 'bannerImage', 'lines')"
                                                 [multiple]="false"></app-digitop-upload>
+                                            <div *ngIf="submitted && line.get('bannerImage')?.errors"
+                                                class="input-text-error">
+                                                <span>Image not blank</span>
+                                            </div>
                                         </div>
                                         <div class="w-full">
-                                            <app-digitop-upload [fileList]="bannerImageMobile"
+                                            <app-digitop-upload [fileList]="[line.get('bannerImageMobile')?.value]"
                                                 [title]="'Desktop mobile'" CENSORSHIP class="w-full"
-                                                (changeFile)="changeFileUpload($event,i, 'bannerImageMobile')"
+                                                (changeFile)="changeFileUpload($event,i, 'bannerImageMobile', 'lines')"
                                                 [multiple]="false"></app-digitop-upload>
+                                            <div *ngIf="submitted && line.get('bannerImageMobile')?.errors"
+                                                class="input-text-error">
+                                                <span>Image not blank</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="w-8/12 gap-4">
@@ -43,18 +52,70 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]" (click)="removeLine(i)">
+                                <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                                    (click)="removeLine(i)">
                                     <span nz-icon nzType="delete"></span>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <button (click)="submit()">Submit</button>
+                    <!-- <button (click)="submit()">Submit</button> -->
                 </form>
             </div>
         </div>
+        <div
+            class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Our Clients</div>
+            <a class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]"
+                (click)="addClient()">Add Client</a>
+        </div>
+        <div class="p-[16px]">
+            <form [formGroup]="form">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div formArrayName="clients" *ngFor="let line of clients.controls; let i = index" class="relative">
+                        <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
+                            <div class="gap-4 pt-[16px] flex">
+                                <div class="w-2/12 flex gap-4">
+                                    <div class="w-full">
+                                        <app-digitop-upload [fileList]="[line.get('bannerImage')?.value]"
+                                            [title]="'Image'" CENSORSHIP class="w-full"
+                                            (changeFile)="changeFileUpload($event,i, 'bannerImage', 'clients')"
+                                            [multiple]="false"></app-digitop-upload>
+                                        <div *ngIf="submitted && line.get('bannerImage')?.errors"
+                                            class="input-text-error">
+                                            <span>Image not blank</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-10/12 gap-4">
+                                    <div class="w-12/12">
+                                        <label class="labelForm">External link</label>
+                                        <input formControlName="link" nz-input class="w-full" nzSize="large"
+                                            placeholder="External link" type="text" />
+                                    </div>
+                                    <div class="w-12/12 pt-[8px]">
+                                        <label class="labelForm">Sort Order</label>
+                                        <input formControlName="order" nz-input class="w-full" nzSize="large"
+                                            placeholder="Sort Order" type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                                (click)="removeClient(i)">
+                                <span nz-icon nzType="delete"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="text-[16px] text-blue-100 font-bold px-[16px] py-[16px] border-y border-[#f2f2f2]">Nội dung SEO
+                <!-- <button (click)="submit()">Submit</button> -->
+            </form>
+        </div>
+        <div
+            class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center"></div>
+            <a class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]"
+                (click)="submit()">Save</a>
         </div>
     </div>
