@@ -21,6 +21,7 @@
                                         <div class="w-full">
                                             <app-digitop-upload [fileList]="[line.get('bannerImage')?.value]"
                                                 [title]="'Desktop Image'" CENSORSHIP class="w-full"
+                                                [isUsingFormArray]="true"
                                                 (changeFile)="changeFileUpload($event,i, 'bannerImage', 'lines')"
                                                 [multiple]="false"></app-digitop-upload>
                                             <div *ngIf="submitted && line.get('bannerImage')?.errors"
@@ -30,7 +31,8 @@
                                         </div>
                                         <div class="w-full">
                                             <app-digitop-upload [fileList]="[line.get('bannerImageMobile')?.value]"
-                                                [title]="'Desktop mobile'" CENSORSHIP class="w-full"
+                                                [title]="'Mobile Image'" CENSORSHIP class="w-full"
+                                                [isUsingFormArray]="true"
                                                 (changeFile)="changeFileUpload($event,i, 'bannerImageMobile', 'lines')"
                                                 [multiple]="false"></app-digitop-upload>
                                             <div *ngIf="submitted && line.get('bannerImageMobile')?.errors"
@@ -79,7 +81,7 @@
                                 <div class="w-2/12 flex gap-4">
                                     <div class="w-full">
                                         <app-digitop-upload [fileList]="[line.get('bannerImage')?.value]"
-                                            [title]="'Image'" CENSORSHIP class="w-full"
+                                            [title]="'Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
                                             (changeFile)="changeFileUpload($event,i, 'bannerImage', 'clients')"
                                             [multiple]="false"></app-digitop-upload>
                                         <div *ngIf="submitted && line.get('bannerImage')?.errors"

@@ -56,8 +56,8 @@ export class PageHomeComponent implements OnInit {
             }
             this.lines.push(
                this.fb.group({
-                  bannerImage: [{ value: "", preview: item.bannerImage }],
-                  bannerImageMobile: [{ value: "", preview: item.bannerImageMobile }],
+                  bannerImage: [{ value: null, preview: item.bannerImage }],
+                  bannerImageMobile: [{ value: null, preview: item.bannerImageMobile }],
                   link: item.link,
                   video: item.video,
                }),
@@ -69,7 +69,7 @@ export class PageHomeComponent implements OnInit {
          data?.content?.clients?.forEach((item: { bannerImage: any; link: any; order: any }) => {
             this.clients.push(
                this.fb.group({
-                  bannerImage: [{ value: "", preview: item.bannerImage }],
+                  bannerImage: [{ value: null, preview: item.bannerImage }],
                   link: item.link,
                   order: item.order,
                }),
@@ -84,7 +84,7 @@ export class PageHomeComponent implements OnInit {
    addClient() {
       this.clients.push(
          this.fb.group({
-            bannerImage: new FormControl("", [Validators.required]),
+            bannerImage: new FormControl({ value: null, preview: null }, [Validators.required]),
             link: "",
             order: "",
          }),
@@ -100,8 +100,8 @@ export class PageHomeComponent implements OnInit {
    addLine() {
       this.lines.push(
          this.fb.group({
-            bannerImage: new FormControl({ value: "", preview: null }, [Validators.required]),
-            bannerImageMobile: new FormControl({ value: "", preview: null }, [Validators.required]),
+            bannerImage: new FormControl({ value: null, preview: null }, [Validators.required]),
+            bannerImageMobile: new FormControl({ value: null, preview: null }, [Validators.required]),
             link: "",
             video: "",
          }),
@@ -115,9 +115,9 @@ export class PageHomeComponent implements OnInit {
 
    changeFileUpload(data: any, index: number, field: string, types: string) {
       if (types === "lines") {
-         this.lines.controls[index].get(field)?.setValue([data]);
+         this.lines.controls[index].get(field)?.setValue(data);
       } else {
-         this.clients.controls[index].get(field)?.setValue([data]);
+         this.clients.controls[index].get(field)?.setValue(data);
       }
    }
 

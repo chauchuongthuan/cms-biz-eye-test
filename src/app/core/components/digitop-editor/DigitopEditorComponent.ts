@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { AuthenticationService } from "src/app/common/services/auth.service";
-// import { CKFinder } from '@ckeditor/ckeditor5-ckfinder';
-import Editor from "../../../../../ckeditor5/build/ckeditor";
 const { convert } = require("html-to-text");
+
 @Component({
    selector: "app-digitop-editor",
    templateUrl: "./digitop-editor.component.html",
@@ -16,7 +15,7 @@ export class DigitopEditorComponent implements OnInit {
    @Input() text: string = "";
    @Input() placeHolder: string;
    // public Editor = Editor;
-   public Editor = Editor as {
+   public Editor = ClassicEditor as {
       create: any;
    };
    public isReady: boolean = false;

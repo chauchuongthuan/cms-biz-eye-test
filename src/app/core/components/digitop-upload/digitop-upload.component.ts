@@ -12,6 +12,7 @@ export class DigitopUploadComponent implements OnInit {
    loading = false;
    @Input() length: number = 1;
    @Input() multiple: boolean = false;
+   @Input() isUsingFormArray: boolean = false;
    @Input() fileList: any = [];
    @Input() title: string;
    @Input() deleteActive: boolean = true;
@@ -44,7 +45,11 @@ export class DigitopUploadComponent implements OnInit {
             this.fileList = this.fileList.concat({ value: file, preview: img });
             if (this.multiple) {
                this.changeFile.emit(this.fileList);
-            } else this.changeFile.emit(this.fileList[0] ? this.fileList[0] : { value: "", preview: "" });
+            } else if (this.isUsingFormArray) {
+               this.changeFile.emit(this.fileList[1] ? this.fileList[1] : { value: "", preview: "" });
+            } else {
+               this.changeFile.emit(this.fileList[0] ? this.fileList[0] : { value: "", preview: "" });
+            }
          });
       });
 
