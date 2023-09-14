@@ -1,25 +1,24 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { FormControl, UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { PageService } from "../services/page.service";
-import { Ipaginator, option, params, sort } from "src/app/common/constant/list.model";
 import { HttpParams } from "@angular/common/http";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { UntypedFormGroup, UntypedFormBuilder, FormControl } from "@angular/forms";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { params, Ipaginator, option, sort } from "src/app/common/constant/list.model";
 import { RouterService } from "src/app/common/services/router.service";
-import { CreateEditPageComponent } from "../components/create-edit-page/create-edit-page.component";
-import { PageHomeComponent } from "../components/page-home/page-home.component";
-import { Router } from "@angular/router";
+import { CategoryService } from "../../post-category/services/postCategory.service";
+import { CategoryOurWorkService } from "../services/category.service";
+import { CreateEditCategoryComponent } from "../components/create-edit-category/create-edit-category.component";
 
 @Component({
-   selector: "app-page",
-   templateUrl: "./page.component.html",
-   styleUrls: ["./page.component.scss"],
+   selector: "app-pages",
+   templateUrl: "./pages.component.html",
+   styleUrls: ["./pages.component.scss"],
 })
-export class PageComponent implements OnInit {
+export class PagesComponent implements OnInit {
    public tableLoading: boolean = false;
    public checked: boolean = true;
    public expandSet = new Set<number>();
    public filterForm!: UntypedFormGroup;
-   public listPage: any;
+   public listCategory: any;
    public visible = false;
    public size: "large" | "default" = "default";
    public params: HttpParams = params;
@@ -39,15 +38,14 @@ export class PageComponent implements OnInit {
       orderBy: "createdAt",
    };
    // public listOfData = [];
-   @ViewChild("editForm") editForm: CreateEditPageComponent;
-   @ViewChild("pageHome") pageHome: PageHomeComponent;
+   @ViewChild("editForm") editForm: CreateEditCategoryComponent;
 
    constructor(
       private fb: UntypedFormBuilder,
-      private pageService: PageService,
+      private categoryOurWorkService: CategoryOurWorkService,
+      private categoryService: CategoryService,
       private msg: NzMessageService,
       private routerService: RouterService,
-      private router: Router,
    ) {}
 
    ngOnInit(): void {
@@ -57,12 +55,12 @@ export class PageComponent implements OnInit {
          active: new FormControl("", []),
          date: new FormControl("", []),
       });
-      this.getPage(this.params);
+      this.getCategory(this.params);
    }
 
    initParams() {
-      this.params = this.params.set("orderBy", this.sort.orderBy);
-      this.params = this.params.set("order", this.sort.order);
+      // this.params = this.params.set('orderBy', this.sort.orderBy)
+      // this.params = this.params.set('order', this.sort.order)
 
       let urlParams = this.routerService.params;
       let keys = Object.keys(urlParams);
@@ -79,10 +77,11 @@ export class PageComponent implements OnInit {
       }
    }
 
-   getPage(params: HttpParams) {
+   getCategory(params: HttpParams) {
       this.tableLoading = true;
-      this.pageService.getPage(params).subscribe((data: any) => {
-         this.listPage = data.list;
+      console.log(params);
+      this.categoryOurWorkService.getCategory(params).subscribe((data) => {
+         this.listCategory = data.list;
          this.paginator = {
             ...data.paginator,
             option,
@@ -103,23 +102,24 @@ export class PageComponent implements OnInit {
             }
          });
       }
-      this.getPage(this.params);
+      this.getCategory(this.params);
    }
    onEdit(data: any) {
-      // this.editForm.visible = true;
-      console.log(">>>>>>>", data);
-      switch (data.code) {
-         case "HOME":
-            this.router.navigate([`admin/page-home`], { queryParams: { id: data.id } });
-            break;
-         case "ABOUT":
-            this.router.navigate([`admin/page-about`], { queryParams: { id: data.id } });
-            break;
-         default:
-            break;
-      }
+      this.editForm.visible = true;
+      this.editForm.initData(data);
+   }
 
-      // this.pageHome.initData(data);
+   onDelete(id: string) {
+      this.tableLoading = true;
+      this.categoryService.deleteCategory(id).subscribe(
+         (data) => {
+            this.getCategory(this.params);
+         },
+         (error) => (this.tableLoading = false),
+      );
+   }
+   onExport() {
+      this.categoryService.exportCategory(this.params);
    }
 
    get title(): string {
@@ -144,10 +144,10 @@ export class PageComponent implements OnInit {
       this.params = this.params.set("limit", limit);
       this.params = this.params.set("orderBy", sort.orderBy);
       this.params = this.params.set("order", sort.order);
-      this.getPage(this.params);
+      this.getCategory(this.params);
    }
    onSuccess() {
-      this.getPage(this.params);
+      this.getCategory(this.params);
    }
 }
 

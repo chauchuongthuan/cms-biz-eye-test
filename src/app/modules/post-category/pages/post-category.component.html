@@ -9,10 +9,8 @@
             <span nz-icon nzType="download"></span>
             Xuất excel
          </button> -->
-         <a
-            class="text-[white] flex w-6/12 lg:w-auto lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] ml-[20px] duration-300"
-            (click)="onExport()"
-         >
+         <a class="text-[white] flex w-6/12 lg:w-auto lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] ml-[20px] duration-300"
+            (click)="onExport()">
             <span nz-icon nzType="download"></span>
             Xuất excel
          </a>
@@ -22,20 +20,10 @@
       <app-filter-post-category (onFilter)="onFilter($event)"></app-filter-post-category>
    </div>
    <div class="w-full rounded-b-lg overflow-hidden">
-      <nz-table
-         (nzQueryParams)="tableChange($event)"
-         [nzScroll]="{ y: 'calc(100vh - 310px)' }"
-         #tableCategory
-         [nzTotal]="paginator.total"
-         [nzPageSize]="paginator.limit"
-         [nzPageIndex]="paginator.currentPage"
-         nzOuterBordered
-         [nzData]="listCategory"
-         nzTableLayout="fixed"
-         [nzLoading]="tableLoading"
-         nzShowSizeChanger
-         [nzFrontPagination]="false"
-      >
+      <nz-table (nzQueryParams)="tableChange($event)" [nzScroll]="{ y: 'calc(100vh - 310px)' }" #tableCategory
+         [nzTotal]="paginator.total" [nzPageSize]="paginator.limit" [nzPageIndex]="paginator.currentPage"
+         nzOuterBordered [nzData]="listCategory" nzTableLayout="fixed" [nzLoading]="tableLoading" nzShowSizeChanger
+         [nzFrontPagination]="false">
          <thead>
             <tr>
                <th [nzSortFn]="true" [nzColumnKey]="'title'">Tiêu đề danh mục</th>
@@ -56,22 +44,16 @@
                   </td>
                   <td>{{ data.createdAt }}</td>
                   <td>
-                     <a
-                           class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
-                           (click)="onEdit(data)"
-                           nz-popconfirm
-                        >
-                           Chỉnh sửa
-                        </a>
-                        <a
-                           nz-popconfirm
-                           class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
-                           [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'"
-                           nzPopconfirmPlacement="bottom"
-                           (nzOnConfirm)="onDelete(data.id)"
-                        >
-                           <span nz-icon nzType="delete"></span>
-                        </a>
+                     <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
+                        (click)="onEdit(data)" nz-popconfirm>
+                        Chỉnh sửa
+                     </a>
+                     <a nz-popconfirm
+                        class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                        [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'" nzPopconfirmPlacement="bottom"
+                        (nzOnConfirm)="onDelete(data.id)">
+                        <span nz-icon nzType="delete"></span>
+                     </a>
                   </td>
                </tr>
             </ng-container>

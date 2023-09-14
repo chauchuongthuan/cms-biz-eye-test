@@ -5,11 +5,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AntdModule } from "src/app/core/antd/ant.module";
 import { CoreModule } from "src/app/core/core.module";
-import { CreateEditPageCategoryComponent } from "./components/create-category/create-edit-page-category.component";
-import { CreateEditPageComponent } from "./components/create-edit-page/create-edit-page.component";
-import { PageComponent } from "./pages/page.component";
-import { PageHomeComponent } from "./components/page-home/page-home.component";
-import { PageAboutComponent } from "./components/page-about/page-about.component";
+import { PagesComponent } from "./pages/pages.component";
+import { CreateEditCategoryComponent } from "./components/create-edit-category/create-edit-category.component";
+import { FilterCategoryComponent } from "./components/filter-category/filter-category.component";
+import { CategoryOurWorkService } from "./services/category.service";
 
 const IMPORT = [
    ReactiveFormsModule,
@@ -22,20 +21,14 @@ const IMPORT = [
    CoreModule,
 ];
 
-const DECLARATIONS = [
-   PageComponent,
-   CreateEditPageComponent,
-   CreateEditPageCategoryComponent,
-   PageHomeComponent,
-   PageAboutComponent,
-];
+const DECLARATIONS = [PagesComponent, CreateEditCategoryComponent, FilterCategoryComponent];
 
 @NgModule({
    declarations: DECLARATIONS,
    exports: [DECLARATIONS],
-   providers: [],
+   providers: [CategoryOurWorkService],
    bootstrap: [],
    imports: IMPORT,
 })
-export class PageWebModule {}
+export class CategoryModule {}
 

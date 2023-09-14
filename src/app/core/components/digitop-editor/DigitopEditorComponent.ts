@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { AuthenticationService } from "src/app/common/services/auth.service";
+import Editor from "ckeditor5-custom-build";
 const { convert } = require("html-to-text");
 
 @Component({
@@ -15,7 +16,7 @@ export class DigitopEditorComponent implements OnInit {
    @Input() text: string = "";
    @Input() placeHolder: string;
    // public Editor = Editor;
-   public Editor = ClassicEditor as {
+   public Editor = Editor as {
       create: any;
    };
    public isReady: boolean = false;

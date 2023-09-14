@@ -1,12 +1,6 @@
 <nz-layout class="app-layout" (keydown)="handleKeyDown($event)" tabindex="0">
-   <nz-sider
-      nzTheme="light"
-      class="menu-sidebar tl-p:!hidden"
-      nzCollapsible
-      nzWidth="256px"
-      [(nzCollapsed)]="isCollapsed"
-      [nzTrigger]="null"
-   >
+   <nz-sider nzTheme="light" class="menu-sidebar tl-p:!hidden" nzCollapsible nzWidth="256px"
+      [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
       <div class="sidebar-logo">
          <a href="/admin">
             <img src="assets/logo.svg" alt="logo" />
@@ -22,14 +16,14 @@
         <span nz-icon nzType="menu"></span>
         <span>Menu</span>
       </li> -->
-         <li
-            nz-submenu
-            nzTitle="Tin tức"
-            nzIcon="highlight"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'category-work'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            <span nz-icon nzType="bell" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Category OurWork</span>
+         </li>
+         <li nz-submenu nzTitle="Tin tức" nzIcon="highlight" class="text-[12px] text-second-100 font-bold"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'tags'">
                   <a class="text-[12px] text-second-100 font-bold">Tag</a>
@@ -42,26 +36,14 @@
                </li>
             </ul>
          </li>
-         <li
-            nz-menu-item
-            nz-tooltip
-            nzTooltipPlacement="right"
-            [routerLink]="'pages'"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'pages'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
             <span nz-icon nzType="file" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Pages</span>
          </li>
-         <li
-            nz-submenu
-            nzTitle="Quản trị"
-            nzIcon="setting"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-submenu nzTitle="Quản trị" nzIcon="setting" class="text-[12px] text-second-100 font-bold"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'users'">
                   <a class="text-[12px] text-second-100 font-bold">Quản trị viên</a>
@@ -71,26 +53,14 @@
                </li>
             </ul>
          </li>
-         <li
-            nz-menu-item
-            nz-tooltip
-            nzTooltipPlacement="right"
-            [routerLink]="'subscribers'"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'subscribers'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
             <span nz-icon nzType="bell" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Người đăng ký</span>
          </li>
-         <li
-            nz-submenu
-            nzTitle="Marketing Mail"
-            nzIcon="notification"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-submenu nzTitle="Marketing Mail" nzIcon="notification" class="text-[12px] text-second-100 font-bold"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'interests'">
                   <a class="text-[12px] text-second-100 font-bold">Interests</a>
@@ -103,40 +73,21 @@
                </li>
             </ul>
          </li>
-         <li
-            nz-menu-item
-            nz-tooltip
-            nzTooltipPlacement="right"
-            [routerLink]="'history'"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'history'"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <span nz-icon nzType="history" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Lịch sử chatGPT</span>
          </li>
-         <li
-            nz-menu-item
-            nz-tooltip
-            nzTooltipPlacement="right"
-            [routerLink]="'activities'"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'activities'"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <span nz-icon nzType="check" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Activities</span>
          </li>
       </ul>
    </nz-sider>
 
-   <nz-sider
-      nzTheme="light"
-      class="menu-sidebar relative hidden tl-p:!block"
-      nzCollapsible
-      nzWidth="100%"
-      [nzCollapsedWidth]="0"
-      [(nzCollapsed)]="isCollapsed"
-      [nzTrigger]="null"
-   >
+   <nz-sider nzTheme="light" class="menu-sidebar relative hidden tl-p:!block" nzCollapsible nzWidth="100%"
+      [nzCollapsedWidth]="0" [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
       <span class="header-trigger absolute top-[25px] right-0 z-50" (click)="isCollapsed = !isCollapsed">
          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
       </span>
@@ -147,7 +98,8 @@
          </a>
       </div>
       <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'/admin'" (click)="isCollapsed = !isCollapsed">
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'/admin'"
+            (click)="isCollapsed = !isCollapsed">
             <span nz-icon nzType="pie-chart"></span>
             <span class="text-[12px] text-second-100 font-bold">Thống kê</span>
          </li>
@@ -156,14 +108,8 @@
         <span nz-icon nzType="menu"></span>
         <span>Menu</span>
       </li> -->
-         <li
-            nz-submenu
-            nzTitle="Tin tức"
-            nzIcon="highlight"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-submenu nzTitle="Tin tức" nzIcon="highlight" class="text-[12px] text-second-100 font-bold"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'tags'" (click)="isCollapsed = !isCollapsed">
                   <a class="text-[12px] text-second-100 font-bold">Tag</a>
@@ -176,14 +122,8 @@
                </li>
             </ul>
          </li>
-         <li
-            nz-submenu
-            nzTitle="Quản trị"
-            nzIcon="setting"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-submenu nzTitle="Quản trị" nzIcon="setting" class="text-[12px] text-second-100 font-bold"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'users'" (click)="isCollapsed = !isCollapsed">
                   <a class="text-[12px] text-second-100 font-bold">Quản trị viên</a>
@@ -193,27 +133,14 @@
                </li>
             </ul>
          </li>
-         <li
-            nz-menu-item
-            nz-tooltip
-            nzTooltipPlacement="right"
-            [routerLink]="'subscribers'"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-            (click)="isCollapsed = !isCollapsed"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'subscribers'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
             <span nz-icon nzType="bell" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Người đăng ký</span>
          </li>
-         <li
-            nz-submenu
-            nzTitle="Marketing Mail"
-            nzIcon="notification"
-            class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-         >
+         <li nz-submenu nzTitle="Marketing Mail" nzIcon="notification" class="text-[12px] text-second-100 font-bold"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'interests'" (click)="isCollapsed = !isCollapsed">
                   <a class="text-[12px] text-second-100 font-bold">Interests</a>
@@ -226,48 +153,28 @@
                </li>
             </ul>
          </li>
-         <li
-            nz-menu-item
-            nz-tooltip
-            nzTooltipPlacement="right"
-            [routerLink]="'history'"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-            (click)="isCollapsed = !isCollapsed"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'history'"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
             <span nz-icon nzType="history" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Lịch sử chatGPT</span>
          </li>
-         <li
-            nz-menu-item
-            nz-tooltip
-            nzTooltipPlacement="right"
-            [routerLink]="'activities'"
-            routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive"
-            (click)="isCollapsed = !isCollapsed"
-         >
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'activities'"
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
             <span nz-icon nzType="check" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Activities</span>
          </li>
       </ul>
 
       <div class="px-[20px]">
-         <nz-input-group
-            style="cursor: pointer; position: relative"
-            [nzSuffix]="suffixIconSearch"
-            style="width: 100%"
-            (click)="openModalChatGPT()"
-            class="group"
-         >
+         <nz-input-group style="cursor: pointer; position: relative" [nzSuffix]="suffixIconSearch" style="width: 100%"
+            (click)="openModalChatGPT()" class="group">
             <div class="flex items-center">
                <span nz-icon nzType="search"></span>
                <p class="ml-[10px]">ChatGPT ⌘ + K or Ctrl + K</p>
             </div>
 
             <div
-               class="px-[20px] absolute w-fit h-full top-0 right-0 bg-pink-100 flex items-center rounded-[5px] group-hover:bg-blue-100 duration-300"
-            >
+               class="px-[20px] absolute w-fit h-full top-0 right-0 bg-pink-100 flex items-center rounded-[5px] group-hover:bg-blue-100 duration-300">
                <p class="text-[12px] text-[#fff] font-semibold uppercase">Tìm kiếm</p>
             </div>
 
@@ -287,21 +194,15 @@
                <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
             </span>
             <div class="w-[50%] tl-p:hidden">
-               <nz-input-group
-                  style="cursor: pointer; position: relative"
-                  [nzSuffix]="suffixIconSearch"
-                  style="width: 100%"
-                  (click)="openModalChatGPT()"
-                  class="group"
-               >
+               <nz-input-group style="cursor: pointer; position: relative" [nzSuffix]="suffixIconSearch"
+                  style="width: 100%" (click)="openModalChatGPT()" class="group">
                   <div class="flex items-center">
                      <span nz-icon nzType="search"></span>
                      <p class="ml-[10px]">ChatGPT ⌘ + K or Ctrl + K</p>
                   </div>
 
                   <div
-                     class="px-[20px] absolute w-fit h-full top-0 right-0 bg-pink-100 flex items-center rounded-[5px] group-hover:bg-blue-100 duration-300"
-                  >
+                     class="px-[20px] absolute w-fit h-full top-0 right-0 bg-pink-100 flex items-center rounded-[5px] group-hover:bg-blue-100 duration-300">
                      <p class="text-[12px] text-[#fff] font-semibold uppercase">Tìm kiếm</p>
                   </div>
 
@@ -326,37 +227,25 @@
                <!-- <a nz-button nzType="primary" class="item" style="margin: 0" [routerLink]="'news'"> Tạo bài viết </a> -->
                <div class="chat-cms">
                   <nz-badge [nzDot]="true" [nzShowDot]="isBadge">
-                     <img
-                        src="assets/bell.gif"
-                        alt="chatcms"
-                        style="width: 42px"
-                        nz-dropdown
-                        nzTrigger="click"
-                        [nzDropdownMenu]="menuNotification"
-                     />
+                     <img src="assets/bell.gif" alt="chatcms" style="width: 42px" nz-dropdown nzTrigger="click"
+                        [nzDropdownMenu]="menuNotification" />
                   </nz-badge>
                   <!-- <img *ngIf="!isBadge" src="assets/bell.gif" alt="chatcms" style="width: 42px;" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menuNotification"> -->
                   <nz-dropdown-menu #menuNotification="nzDropdownMenu">
-                     <app-modal-notification
-                        #notification
-                        [content]="contentNotification"
-                        (isNew)="toggleBadge($event)"
-                     ></app-modal-notification>
+                     <app-modal-notification #notification [content]="contentNotification"
+                        (isNew)="toggleBadge($event)"></app-modal-notification>
                   </nz-dropdown-menu>
                </div>
                <!-- <div class="chat-cms">
             <img src="assets/chat.svg" alt="chatcms" style="width: 32px;">
           </div> -->
                <div class="profile group" nz-dropdown [nzDropdownMenu]="menu" style="cursor: pointer">
-                  <nz-avatar
-                     nzSize="large"
-                     [nzSrc]="
+                  <nz-avatar nzSize="large" [nzSrc]="
                         user.profileImage ||
                         'https://themes.themesbrand.com/velzon/angular/default/assets/images/users/avatar-1.jpg'
-                     "
-                     style="vertical-align: middle"
-                  ></nz-avatar>
-                  <div class="w-[20px] h-[20px] flex items-center justify-center bg-[#4F4F4F] rounded-[50%] ml-[5px] tl-p:hidden">
+                     " style="vertical-align: middle"></nz-avatar>
+                  <div
+                     class="w-[20px] h-[20px] flex items-center justify-center bg-[#4F4F4F] rounded-[50%] ml-[5px] tl-p:hidden">
                      <img src="assets/icons/icon-triangle.svg" alt="" />
                   </div>
                   <!-- <div class="group-user">
@@ -392,18 +281,15 @@
                   <div class="flex items-center space-x-[15px]">
                      <p class="font-medium text-white text-[12px] uppercase tracking-[2px]">Follow us</p>
                      <div
-                        class="w-[40px] h-[40px] flex items-center justify-center border border-white rounded-[50%] hover:bg-blue-100 hover:border-blue-100 duration-300 cursor-pointer"
-                     >
+                        class="w-[40px] h-[40px] flex items-center justify-center border border-white rounded-[50%] hover:bg-blue-100 hover:border-blue-100 duration-300 cursor-pointer">
                         <img src="assets/icons/icon-fb.svg" alt="" />
                      </div>
                      <div
-                        class="w-[40px] h-[40px] flex items-center justify-center border border-white rounded-[50%] hover:bg-blue-100 hover:border-blue-100 duration-300 cursor-pointer"
-                     >
+                        class="w-[40px] h-[40px] flex items-center justify-center border border-white rounded-[50%] hover:bg-blue-100 hover:border-blue-100 duration-300 cursor-pointer">
                         <img src="assets/icons/icon-yt.svg" alt="" />
                      </div>
                      <div
-                        class="w-[40px] h-[40px] flex items-center justify-center border border-white rounded-[50%] hover:bg-blue-100 hover:border-blue-100 duration-300 cursor-pointer"
-                     >
+                        class="w-[40px] h-[40px] flex items-center justify-center border border-white rounded-[50%] hover:bg-blue-100 hover:border-blue-100 duration-300 cursor-pointer">
                         <img src="assets/icons/icon-ins.svg" alt="" />
                      </div>
                   </div>
@@ -414,13 +300,8 @@
    </nz-layout>
 </nz-layout>
 
-<app-digitop-drawer
-   [title]="'Thông tin cá nhân'"
-   [visible]="visible"
-   [size]="'large'"
-   (onConfirm)="confirmDrawer()"
-   (onLeave)="visible = false"
->
+<app-digitop-drawer [title]="'Thông tin cá nhân'" [visible]="visible" [size]="'large'" (onConfirm)="confirmDrawer()"
+   (onLeave)="visible = false">
    <ng-container content>
       <nz-spin [nzSpinning]="isLoading">
          <form nz-form [nzLayout]="'inline'" [formGroup]="userForm" (ngSubmit)="confirmDrawer()">
@@ -428,12 +309,9 @@
                <div nz-col class="gutter-row" [nzSpan]="12">
                   <nz-form-item>
                      <nz-form-control>
-                        <app-digitop-upload
-                           [fileList]="profileImage"
-                           [title]="'Ảnh đại diện'"
+                        <app-digitop-upload [fileList]="profileImage" [title]="'Ảnh đại diện'"
                            (changeFile)="changeFileUpload($event, 'profileImage')"
-                           [multiple]="false"
-                        ></app-digitop-upload>
+                           [multiple]="false"></app-digitop-upload>
                      </nz-form-control>
                   </nz-form-item>
                </div>
@@ -446,7 +324,8 @@
                         <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Quyền</nz-form-label>
                         <nz-select formControlName="role">
                            <nz-option nzLabel="Chọn quyền" nzValue=""> </nz-option>
-                           <nz-option *ngFor="let item of roleList" nzLabel="{{ item.name }}" nzValue="{{ item.value }}">
+                           <nz-option *ngFor="let item of roleList" nzLabel="{{ item.name }}"
+                              nzValue="{{ item.value }}">
                            </nz-option>
                         </nz-select>
                         <div *ngIf="submitted && userForm.get('role')?.errors" class="input-text-error">
@@ -471,23 +350,17 @@
                      <nz-form-control>
                         <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Tên</nz-form-label>
                         <nz-input-group>
-                           <input
-                              formControlName="name"
+                           <input formControlName="name"
                               [ngClass]="submitted && userForm.get('name')?.errors ? 'ant-input-status-error ng-invalid' : ''"
-                              nz-input
-                              placeholder="Tên"
-                           />
+                              nz-input placeholder="Tên" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('name')?.errors?.['required']" class="input-text-error">
                            <span>Vui lòng nhập tên</span>
                         </div>
-                        <div
-                           *ngIf="
+                        <div *ngIf="
                               submitted &&
                               (userForm.get('name')?.errors?.['minlength'] || userForm.get('name')?.errors?.['maxlength'])
-                           "
-                           class="input-text-error"
-                        >
+                           " class="input-text-error">
                            <span>Tên nằm trong khoảng 5 đến 255 ký tự!</span>
                         </div>
                      </nz-form-control>
@@ -498,12 +371,9 @@
                      <nz-form-control>
                         <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Email</nz-form-label>
                         <nz-input-group>
-                           <input
-                              formControlName="email"
+                           <input formControlName="email"
                               [ngClass]="submitted && userForm.get('email')?.errors ? 'ant-input-status-error ng-invalid' : ''"
-                              nz-input
-                              placeholder="Email"
-                           />
+                              nz-input placeholder="Email" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('email')?.errors?.['required']" class="input-text-error">
                            <span>Vui lòng nhập email</span>
@@ -521,25 +391,18 @@
                      <nz-form-control>
                         <nz-form-label [nzSpan]="'vertical'">Password</nz-form-label>
                         <nz-input-group>
-                           <input
-                              type="password"
-                              formControlName="password"
-                              autocomplete="false"
+                           <input type="password" formControlName="password" autocomplete="false"
                               [ngClass]="submitted && userForm.get('password')?.errors ? 'ant-input-status-error ng-invalid' : ''"
-                              nz-input
-                              placeholder="Password"
-                           />
+                              nz-input placeholder="Password" />
                         </nz-input-group>
-                        <div *ngIf="submitted && userForm.get('password')?.errors?.['required']" class="input-text-error">
+                        <div *ngIf="submitted && userForm.get('password')?.errors?.['required']"
+                           class="input-text-error">
                            <span>Vui lòng nhập password</span>
                         </div>
-                        <div
-                           *ngIf="
+                        <div *ngIf="
                               (submitted && userForm.get('password')?.errors?.['minlength']) ||
                               userForm.get('password')?.errors?.['maxlength']
-                           "
-                           class="input-text-error"
-                        >
+                           " class="input-text-error">
                            <span>Mật khẩu nằm trong khoảng 6 đến 255 ký tự!</span>
                         </div>
                      </nz-form-control>
@@ -550,28 +413,20 @@
                      <nz-form-control>
                         <nz-form-label [nzSpan]="'vertical'">Confirm password</nz-form-label>
                         <nz-input-group>
-                           <input
-                              type="password"
-                              formControlName="confirmPassword"
-                              autocomplete="false"
-                              [ngClass]="
+                           <input type="password" formControlName="confirmPassword" autocomplete="false" [ngClass]="
                                  submitted &&
                                  (userForm.get('confirmPassword')?.errors ||
                                     userForm.controls['confirmPassword'].value !== userForm.controls['password'].value)
                                     ? 'ant-input-status-error ng-invalid'
                                     : ''
-                              "
-                              nz-input
-                              placeholder="Confirm password"
-                           />
+                              " nz-input placeholder="Confirm password" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('confirmPassword')?.errors" class="input-text-error">
                            <span>Vui lòng nhập confirm password</span>
                         </div>
                         <div
                            *ngIf="submitted && userForm.controls['confirmPassword'].value !== userForm.controls['password'].value"
-                           class="input-text-error"
-                        >
+                           class="input-text-error">
                            <span>Mật khẩu không trùng khớp</span>
                         </div>
                      </nz-form-control>
