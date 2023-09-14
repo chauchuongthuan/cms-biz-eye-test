@@ -88,7 +88,6 @@
                <th [nzColumnKey]="'image'">Hình ảnh</th>
                <th [nzSortFn]="true" [nzColumnKey]="'title'">Tiêu đề bài viết</th>
                <th [nzSortFn]="true" [nzColumnKey]="'author'">Tác giả</th>
-               <th [nzSortFn]="true" [nzColumnKey]="'postCategory'">Danh mục</th>
                <th [nzSortFn]="true" [nzColumnKey]="'statusText'">Trạng thái</th>
                <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Ngày tạo</th>
                <th>Hành động</th>
@@ -102,7 +101,6 @@
                   </td>
                   <td class="lg:w-full min-w-[300px]">{{ data.title }}</td>
                   <td>{{ data.author?.name || "" }}</td>
-                  <td>{{ data.postCategory.title }}</td>
                   <td>
                      <nz-tag [nzColor]="'default'" *ngIf="data.status == 1">NEW</nz-tag>
                      <nz-tag [nzColor]="'orange'" *ngIf="data.status == 2">IN_REVIEW</nz-tag>
@@ -210,7 +208,6 @@
                               </div>
                            </div>
                            <div class="flex">
-                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
                               <span class="px-[8px]">|</span>
                               <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
                            </div>
@@ -288,7 +285,6 @@
                               </div>
                            </div>
                            <div class="flex">
-                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
                               <span class="px-[8px]">|</span>
                               <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
                            </div>

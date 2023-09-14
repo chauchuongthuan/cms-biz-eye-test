@@ -111,16 +111,14 @@ export class PagesComponent implements OnInit {
 
    onDelete(id: string) {
       this.tableLoading = true;
-      this.categoryService.deleteCategory(id).subscribe(
+      this.categoryOurWorkService.deleteCategory(id).subscribe(
          (data) => {
             this.getCategory(this.params);
          },
          (error) => (this.tableLoading = false),
       );
    }
-   onExport() {
-      this.categoryService.exportCategory(this.params);
-   }
+
 
    get title(): string {
       return `${this.size} Drawer`;

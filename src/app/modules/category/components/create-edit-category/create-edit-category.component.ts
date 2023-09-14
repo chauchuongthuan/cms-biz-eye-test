@@ -111,7 +111,7 @@ export class CreateEditCategoryComponent implements OnInit {
 
       console.log(formData);
       if (this.isEdit)
-         this.categoryService.editCategory(formData, this.id).subscribe(
+         this.categoryOurWorkService.editCategory(formData, this.id).subscribe(
             (data) => {
                this.isLoading = false;
                this.visible = false;

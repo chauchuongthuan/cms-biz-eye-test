@@ -34,5 +34,27 @@ export class CategoryOurWorkService {
          map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
       );
    }
+
+   editCategory(data: any, id: string) {
+      return this.apiService.putFile(
+        environment.BASE_URL + 'admin/category/'+id,
+        data,
+        this.auth.getHeaderAuth({}),
+      ).pipe(
+        catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+        map((response) => this.apiService.handleSuccessObservable(response, this.notification, true))
+      );
+   }
+
+   deleteCategory(id: string) {
+      return this.apiService.delete(
+        environment.BASE_URL + `admin/category`, 
+        {ids: [id]},
+        this.auth.getHeaderAuth({'Content-Type': 'application/json'}),
+      ).pipe(
+        catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+        map((response) => this.apiService.handleSuccessObservable(response, this.notification, true))
+      );
+    }
 }
 

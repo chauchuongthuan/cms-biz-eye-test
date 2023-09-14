@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AuthenticationService } from 'src/app/common/services/auth.service';
 import { convertToFormDataV2, strToSlug } from 'src/app/shared/helper';
@@ -61,12 +61,12 @@ export class EditorComponent implements OnInit {
     private auth: AuthenticationService,
     private router: Router,
     private routerService: RouterService,
-  ) { 
+  ) {
     let user = this.auth.currentUserValue;
     this.user = user;
   }
 
-  
+
   ngOnInit(): void {
     this.postForm = this.postFormControl();
     // this.getPost();
@@ -79,11 +79,11 @@ export class EditorComponent implements OnInit {
       this.dataEditor = "";
     }, 200);
     let param = this.routerService.params;
-    if(param.id){
+    if (param.id) {
       // this.isEdit = true;
-      this.postService.getDetail(param.id).subscribe((data: any)=> {
+      this.postService.getDetail(param.id).subscribe((data: any) => {
         this.initData(data)
-      }, (error)=>{
+      }, (error) => {
         this.isEdit = false;
       })
     }
@@ -99,16 +99,16 @@ export class EditorComponent implements OnInit {
     this.createTag.open();
   }
 
-  getCategories(){
+  getCategories() {
     this.postService.getCategory().subscribe((data) => {
       this.categories = data;
     });
   }
 
-  onCreateCategory(){
+  onCreateCategory() {
     this.createCategory.open();
   }
-  onChangeText(data: any){
+  onChangeText(data: any) {
     this.contentText = data;
   }
   postFormControl() {
@@ -116,10 +116,10 @@ export class EditorComponent implements OnInit {
       image: new FormControl({ value: '', preview: null }, []),
       imageMb: new FormControl({ value: '', preview: null }, []),
       feature: new FormControl(true, []),
-      postCategory: new FormControl("", [Validators.required]),
+      // postCategory: new FormControl("", [Validators.required]),
       status: new FormControl("1", [Validators.required]),
-      tags: new FormControl([], []),
-      readTime: new FormControl("", [Validators.required]),
+      // tags: new FormControl([], []),
+      // readTime: new FormControl("", [Validators.required]),
       assigned: new FormControl([], []),
       content: new FormControl("", []),
       publishedAt: new FormControl("", []),
@@ -131,8 +131,29 @@ export class EditorComponent implements OnInit {
       metaDescription: new FormControl("", []),
       metaKeyword: new FormControl("", []),
       metaImage: new FormControl({ value: '', preview: null }, []),
+      gallery: this.fb.array([]),
     });
   }
+
+  get galleries(): FormArray {
+    return this.postForm.get("gallery") as FormArray;
+  }
+
+  addLine() {
+    this.galleries.push(
+      new FormControl({ value: null, preview: null }, [Validators.required])
+    );
+  }
+
+  // Remove item in gallery
+  removeLine(index: number) {
+    this.galleries.removeAt(index);
+  }
+
+  changeFileUploadForm(data: any, index: number) {
+    this.galleries.controls[index]?.setValue(data);
+  }
+
 
   initData(data: any) {
     console.log('data---->', data);
@@ -144,17 +165,17 @@ export class EditorComponent implements OnInit {
     this.postForm = this.fb.group({
       feature: new FormControl(data.feature, []),
       status: new FormControl(data.status + "", []),
-      readTime: new FormControl(data?.readTime, [Validators.required]),
+      // readTime: new FormControl(data?.readTime, [Validators.required]),
       image: new FormControl({ value: '', preview: data.image }, []),
       imageMb: new FormControl({ value: '', preview: data.imageMb }, []),
       sortOrder: new FormControl(data.sortOrder, [Validators.required]),
-      postCategory: new FormControl(data.postCategory, [
-        Validators.required,
-      ]),
-      tags: new FormControl(
-        data.tags.map((item: any) => item.name),
-        []
-      ),
+      // postCategory: new FormControl(data.postCategory, [
+      //   Validators.required,
+      // ]),
+      // tags: new FormControl(
+      //   data.tags.map((item: any) => item.name),
+      //   []
+      // ),
       assigned: new FormControl(
         data?.assigned.map((item: any) => item.id),
         []
@@ -234,35 +255,35 @@ export class EditorComponent implements OnInit {
 
   onSEO() {
     this.submitted = true;
-    if(!this.postForm.value.content) {
+    if (!this.postForm.value.content) {
       this.msg.create('error', 'Vui lòng nhập nội dung');
       return
     }
     let message = `"${this.contentText}"`;
     let formData = new FormData();
 
-      formData.append('message', message);
-      formData.append('dataTypes', '50');
-      this.isLoadingSEO = true;
-      this.postService.chatGPT(formData).subscribe((data: any) => {
-        this.isLoadingSEO = false;
-        this.resultModal.showModal();
-        this.content = data?.data.content;
-      }, (error)=> {
-        console.log('error---->', error);
-        this.isLoadingSEO = false;
-      })
+    formData.append('message', message);
+    formData.append('dataTypes', '50');
+    this.isLoadingSEO = true;
+    this.postService.chatGPT(formData).subscribe((data: any) => {
+      this.isLoadingSEO = false;
+      this.resultModal.showModal();
+      this.content = data?.data.content;
+    }, (error) => {
+      console.log('error---->', error);
+      this.isLoadingSEO = false;
+    })
   }
-  toggleResultModal(){
+  toggleResultModal() {
     this.resultModal.toggle();
 
   }
   onSave(type: string) {
     this.submitted = true;
-    if (this.postForm.invalid && type!=='view') {
+    if (this.postForm.invalid && type !== 'view') {
       Object.keys(this.postForm.controls).map(key => {
-        if(this.postForm.controls[key]?.status==="INVALID"){
-          this.msg.create('error', 'Vui lòng nhập '+key)
+        if (this.postForm.controls[key]?.status === "INVALID") {
+          this.msg.create('error', 'Vui lòng nhập ' + key)
         }
       })
       return;
@@ -275,15 +296,17 @@ export class EditorComponent implements OnInit {
     //   status="4"
     // }  
     let data = {
-      ...this.postForm.value,      
+      ...this.postForm.value,
       publishedAt,
       // status
     }
+
     console.log("data submit::", data)
     let formData = convertToFormDataV2(data, [
       "metaImage",
       "image",
       "imageMb",
+      "gallery"
     ]);
 
     if (this.isEdit)
@@ -293,9 +316,9 @@ export class EditorComponent implements OnInit {
           this.visible = false;
           // this.onSuccess.emit();
           // this.resetForm();
-          if(type==='view') window.open(window.location.origin+'/view-post?id='+data.id, '_blank');
+          if (type === 'view') window.open(window.location.origin + '/view-post?id=' + data.id, '_blank');
           else
-          this.router.navigateByUrl('/admin/posts');
+            this.router.navigateByUrl('/admin/posts');
         },
         (error) => {
           this.isLoading = false;
@@ -308,9 +331,9 @@ export class EditorComponent implements OnInit {
           this.visible = false;
           // this.onSuccess.emit();
           // this.resetForm();
-          if(type==='view') window.open(window.location.origin+'/view-post?id='+data.id, '_blank');
+          if (type === 'view') window.open(window.location.origin + '/view-post?id=' + data.id, '_blank');
           else
-          this.router.navigateByUrl('/admin/posts');
+            this.router.navigateByUrl('/admin/posts');
         },
         (error) => {
           this.isLoading = false;

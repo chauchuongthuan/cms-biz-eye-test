@@ -91,48 +91,6 @@
                         </nz-form-item>
                     </div>
                 </div>
-                <nz-divider nzText="SEO Website"></nz-divider>
-                <div class="pt-1">
-                    <div nz-row [nzGutter]="[hGutter, vGutter]" class="content-seo">
-                        <div nz-col class="gutter-row" [nzSpan]="5">
-                            <nz-form-item>
-                                <nz-form-control>
-                                    <app-digitop-upload [fileList]="metaImage" [title]="'Hình ảnh'"
-                                        (changeFile)="changeFileUpload($event, 'metaImage')"
-                                        [multiple]="false"></app-digitop-upload>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div nz-col class="gutter-row" [nzSpan]="19">
-                            <nz-form-item>
-                                <nz-form-control>
-                                    <nz-form-label [nzSpan]="'vertical'">Meta title</nz-form-label>
-                                    <nz-input-group>
-                                        <input formControlName="metaTitle" nz-input placeholder="Meta tile" />
-                                    </nz-input-group>
-                                </nz-form-control>
-                            </nz-form-item>
-                            <nz-form-item>
-                                <nz-form-control>
-                                    <nz-form-label [nzSpan]="'vertical'">Meta keywork</nz-form-label>
-                                    <nz-input-group>
-                                        <input formControlName="metaKeyword" nz-input placeholder="Tên danh mục" />
-                                    </nz-input-group>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div nz-col class="gutter-row" [nzSpan]="24">
-                            <nz-form-item>
-                                <nz-form-control>
-                                    <nz-form-label [nzSpan]="'vertical'">Meta description</nz-form-label>
-                                    <nz-textarea-count [nzMaxCharacterCount]="100">
-                                        <textarea rows="4" formControlName="metaDescription" nz-input></textarea>
-                                    </nz-textarea-count>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                    </div>
-                </div>
             </form>
         </nz-spin>
     </ng-container>
