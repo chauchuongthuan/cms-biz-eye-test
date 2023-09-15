@@ -75,8 +75,6 @@ export class PageHomeComponent implements OnInit {
                }),
             );
          });
-
-         console.log(this.form.value);
       });
    }
 

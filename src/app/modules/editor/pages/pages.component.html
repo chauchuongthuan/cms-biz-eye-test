@@ -11,15 +11,15 @@
                 <div class="p-[16px]">
                     <div class="flex">
                         <div class="w-1/12 px-[8px] mb-[16px] tl-p:w-1/2">
-                            <app-digitop-upload [fileList]="image" [title]="'Hình ảnh'" CENSORSHIP
-                                (changeFile)="changeFileUpload($event, 'image')" class="w-full"
-                                [multiple]="false"></app-digitop-upload>
+                            <app-digitop-upload [fileList]="[postForm.get('image')?.value]" [title]="'Hình ảnh'"
+                                CENSORSHIP (changeFile)="changeFileUpload($event, 'image')" class="w-full"
+                                [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                         </div>
 
                         <div class="w-1/12 px-[8px] mb-[16px] tl-p:w-1/2">
-                            <app-digitop-upload [fileList]="imageMb" [title]="'Hình mobile'" CENSORSHIP class="w-full"
-                                (changeFile)="changeFileUpload($event, 'image')"
-                                [multiple]="false"></app-digitop-upload>
+                            <app-digitop-upload [fileList]="[postForm.get('imageMb')?.value]" [title]="'Hình mobile'"
+                                CENSORSHIP class="w-full" (changeFile)="changeFileUpload($event, 'imageMb')"
+                                [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                         </div>
                     </div>
                     <div class="flex flex-wrap mx-[-8px]">
@@ -86,12 +86,12 @@
                         Gallery</a>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-4">
-                    <div formArrayName="gallery" *ngFor="let gallery of galleries.controls; let i = index"
+                    <div formArrayName="gallery" *ngFor="let gallery of galleries?.controls; let i = index"
                         class="relative">
                         <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
                             <div class="w-full">
-                                <app-digitop-upload [fileList]="[gallery?.value]"
-                                    [title]="'Desktop Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
+                                <app-digitop-upload [fileList]="[gallery?.value]" [title]="'Desktop Image'" CENSORSHIP
+                                    class="w-full" [isUsingFormArray]="true"
                                     (changeFile)="changeFileUploadForm($event,i)"
                                     [multiple]="false"></app-digitop-upload>
                                 <!-- <div *ngIf="submitted && gallery.get('galleryImage')?.errors" class="input-text-error">
@@ -113,9 +113,9 @@
                 <div class="p-[16px]">
                     <div class="flex flex-wrap mx-[-8px]">
                         <div class="w-1/12 px-[8px] mb-[16px] tl-p:w-full">
-                            <app-digitop-upload [fileList]="metaImage" [title]="'Hình ảnh'" CENSORSHIP
-                                (changeFile)="changeFileUpload($event, 'image')" class="w-full"
-                                [multiple]="false"></app-digitop-upload>
+                            <app-digitop-upload [fileList]="[postForm.get('metaImage')?.value]" [title]="'Hình ảnh'"
+                                CENSORSHIP (changeFile)="changeFileUpload($event, 'metaImage')" class="w-full"
+                                [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                         </div>
 
                         <div class="w-11/12 px-[8px] mb-[16px] tl-p:w-full">
