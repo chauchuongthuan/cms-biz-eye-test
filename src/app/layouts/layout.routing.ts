@@ -25,6 +25,7 @@ import { InterestComponent } from "../modules/interest/pages/interest.component"
 import { PageHomeComponent } from "../modules/pages/components/page-home/page-home.component";
 import { PageAboutComponent } from "../modules/pages/components/page-about/page-about.component";
 import { PagesComponent } from "../modules/category/pages/pages.component";
+import { PagesExpertiseComponent } from "../modules/expertise/pages/pages.component";
 
 const routes: Routes = [
    {
@@ -102,6 +103,10 @@ const routes: Routes = [
          {
             path: "category-work",
             component: PagesComponent,
+         },
+         {
+            path: "expertise",
+            component: PagesExpertiseComponent,
          },
          {
             path: "customers",

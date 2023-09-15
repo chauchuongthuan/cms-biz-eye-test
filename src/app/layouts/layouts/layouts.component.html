@@ -22,20 +22,19 @@
             <span nz-icon nzType="bell" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Category OurWork</span>
          </li>
-         <li nz-submenu nzTitle="Tin tức" nzIcon="highlight" class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
-            <ul>
-               <li nz-menu-item [routerLink]="'tags'">
-                  <a class="text-[12px] text-second-100 font-bold">Tag</a>
-               </li>
-               <li nz-menu-item [routerLink]="'post-category'">
-                  <a class="text-[12px] text-second-100 font-bold">Danh mục</a>
-               </li>
-               <li nz-menu-item [routerLink]="'posts'">
-                  <a class="text-[12px] text-second-100 font-bold">Bài viết</a>
-               </li>
-            </ul>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'expertise'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            <span nz-icon nzType="bell" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Expertise</span>
          </li>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'posts'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            <span nz-icon nzType="highlight" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">News</span>
+         </li>
+
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'pages'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
             #rla="routerLinkActive">

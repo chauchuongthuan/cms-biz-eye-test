@@ -40,6 +40,7 @@ import { HistoryChatGPTModule } from "./modules/history/history.module";
 import { ViewPostModule } from "./modules/view-post/view-post.module";
 import { MenuDNDModule } from "./modules/menu/menudnd.module";
 import { CategoryModule } from "./modules/category/category.module";
+import { ExpertiseModule } from "./modules/expertise/expertise.module";
 registerLocaleData(vi);
 
 @NgModule({
@@ -110,6 +111,9 @@ registerLocaleData(vi);
 
       // Our work category
       CategoryModule,
+
+      //
+      ExpertiseModule,
    ],
    providers: [
       { provide: NZ_I18N, useValue: vi_VN },
