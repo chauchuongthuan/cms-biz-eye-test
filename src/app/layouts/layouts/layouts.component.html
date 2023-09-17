@@ -28,6 +28,12 @@
             <span nz-icon nzType="bell" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Expertise</span>
          </li>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'award'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            <span nz-icon nzType="bell" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Award</span>
+         </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'posts'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
             #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">

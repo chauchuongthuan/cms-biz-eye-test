@@ -41,6 +41,7 @@ import { ViewPostModule } from "./modules/view-post/view-post.module";
 import { MenuDNDModule } from "./modules/menu/menudnd.module";
 import { CategoryModule } from "./modules/category/category.module";
 import { ExpertiseModule } from "./modules/expertise/expertise.module";
+import { AwardModule } from "./modules/award/award.module";
 registerLocaleData(vi);
 
 @NgModule({
@@ -114,6 +115,9 @@ registerLocaleData(vi);
 
       //
       ExpertiseModule,
+
+      // Award
+      AwardModule
    ],
    providers: [
       { provide: NZ_I18N, useValue: vi_VN },

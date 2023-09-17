@@ -26,6 +26,7 @@ import { PageHomeComponent } from "../modules/pages/components/page-home/page-ho
 import { PageAboutComponent } from "../modules/pages/components/page-about/page-about.component";
 import { PagesComponent } from "../modules/category/pages/pages.component";
 import { PagesExpertiseComponent } from "../modules/expertise/pages/pages.component";
+import { AwardPagesComponent } from "../modules/award/pages/pages.component";
 
 const routes: Routes = [
    {
@@ -107,6 +108,10 @@ const routes: Routes = [
          {
             path: "expertise",
             component: PagesExpertiseComponent,
+         },
+         {
+            path: "award",
+            component: AwardPagesComponent,
          },
          {
             path: "customers",
