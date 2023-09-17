@@ -40,7 +40,12 @@
             <span nz-icon nzType="highlight" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">News</span>
          </li>
-
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'post-award'"
+         class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+         #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+         <span nz-icon nzType="highlight" nzTheme="outline"></span>
+         <span class="text-[12px] text-second-100 font-bold">Post Award</span>
+      </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'pages'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
             #rla="routerLinkActive">

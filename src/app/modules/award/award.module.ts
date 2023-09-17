@@ -9,6 +9,7 @@ import { AwardPagesComponent } from "./pages/pages.component";
 import { CreateEditAwardComponent } from "./create-edit-award/create-edit-award.component";
 import { FilterAwardComponent } from "./filter-award/filter-award.component";
 import { AwardService } from "./services/award.service";
+import { PostAwardComponent } from "./post-award/post-award.component";
 
 
 const IMPORT = [
@@ -22,7 +23,7 @@ const IMPORT = [
    CoreModule,
 ];
 
-const DECLARATIONS = [AwardPagesComponent, CreateEditAwardComponent, FilterAwardComponent];
+const DECLARATIONS = [AwardPagesComponent, CreateEditAwardComponent, FilterAwardComponent, PostAwardComponent];
 
 @NgModule({
    declarations: DECLARATIONS,

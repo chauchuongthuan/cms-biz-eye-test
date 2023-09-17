@@ -28,8 +28,29 @@ export class AwardService {
       );
    }
 
+   getAwardAll() {
+      return this.apiService.get(environment.BASE_URL + "admin/award?get=true", this.auth.getHeaderAuth()).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification)),
+      );
+   }
+
+   getCategoryAll() {
+      return this.apiService.get(environment.BASE_URL + "admin/category?get=true", this.auth.getHeaderAuth()).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification)),
+      );
+   }
+
    createAward(data: any) {
       return this.apiService.postUpload(environment.BASE_URL + "admin/award", data, this.auth.getHeaderAuth({})).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
+      );
+   }
+
+   createPostAward(data: any) {
+      return this.apiService.postUpload(environment.BASE_URL + "admin/post-award", data, this.auth.getHeaderAuth({})).pipe(
          catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
          map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
       );
