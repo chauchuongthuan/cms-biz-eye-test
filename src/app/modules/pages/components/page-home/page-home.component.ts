@@ -16,6 +16,7 @@ export class PageHomeComponent implements OnInit {
    public bannerImage: any = [];
    public bannerClient: any = [];
    public submitted: boolean = false;
+   public dataType: string = "images";
    public id: any = "";
    constructor(
       private fb: FormBuilder,
@@ -47,24 +48,27 @@ export class PageHomeComponent implements OnInit {
       this.pageService.getPageById(this.id).subscribe((data) => {
          console.log(data);
          // Push data in server hero banner
-         data?.content?.heroBanner?.forEach((item: { bannerImage: any; bannerImageMobile: any; link: any; video: any }) => {
-            if (item.bannerImage === "") {
-               item.bannerImage = null;
-            }
-            if (item.bannerImageMobile === "") {
-               item.bannerImageMobile = null;
-            }
-            this.lines.push(
-               this.fb.group({
-                  bannerImage: [{ value: null, preview: item.bannerImage }],
-                  bannerImageMobile: [{ value: null, preview: item.bannerImageMobile }],
-                  link: item.link,
-                  video: item.video,
-               }),
-            );
-            this.bannerImage.push(item.bannerImage);
-            this.bannerImageMobile.push(item.bannerImageMobile);
-         });
+         data?.content?.heroBanner?.forEach(
+            (item: { bannerImage: any; bannerImageMobile: any; link: any; video: any; type: any }) => {
+               if (item.bannerImage === "") {
+                  item.bannerImage = null;
+               }
+               if (item.bannerImageMobile === "") {
+                  item.bannerImageMobile = null;
+               }
+               this.lines.push(
+                  this.fb.group({
+                     bannerImage: [{ value: null, preview: item.bannerImage }],
+                     bannerImageMobile: [{ value: null, preview: item.bannerImageMobile }],
+                     link: item.link,
+                     video: item.video,
+                     type: item.type,
+                  }),
+               );
+               this.bannerImage.push(item.bannerImage);
+               this.bannerImageMobile.push(item.bannerImageMobile);
+            },
+         );
          // Push data in server our clients
          data?.content?.clients?.forEach((item: { bannerImage: any; link: any; order: any }) => {
             this.clients.push(
@@ -102,6 +106,7 @@ export class PageHomeComponent implements OnInit {
             bannerImageMobile: new FormControl({ value: null, preview: null }, [Validators.required]),
             link: "",
             video: "",
+            type: "",
          }),
       );
    }
