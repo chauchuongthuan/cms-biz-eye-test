@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    BASE_URL: 'https://api-blog.tose.shop/api/v1/',
-    BASE_URL_GRAPHQL: 'https://api-blog.tose.shop/graphql',
-    BASE_URL_WS: 'wss://api-blog.tose.shop/graphql',
+    BASE_URL: 'https://bizeyes-apibizeyes.dev.diginext.site/api/v1/',
+    BASE_URL_GRAPHQL: 'https://bizeyes-apibizeyes.dev.diginext.site/graphql',
+    BASE_URL_WS: 'wss://bizeyes-apibizeyes.dev.diginext.site/graphql',
   };
