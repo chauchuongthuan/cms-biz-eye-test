@@ -11,6 +11,7 @@ import { FilterAwardComponent } from "./filter-award/filter-award.component";
 import { AwardService } from "./services/award.service";
 import { PostAwardComponent } from "./post-award/post-award.component";
 import { PostAwardListComponent } from "./post-award-list/post-award-list.component";
+import { FilterPostAwardComponent } from "./filter-post-award/filter-post-award.component";
 
 const IMPORT = [
    ReactiveFormsModule,
@@ -27,6 +28,7 @@ const DECLARATIONS = [
    AwardPagesComponent,
    CreateEditAwardComponent,
    FilterAwardComponent,
+   FilterPostAwardComponent,
    PostAwardComponent,
    PostAwardListComponent,
 ];

@@ -1,6 +1,6 @@
 <div class="block w-full">
   <div class="w-full mb-[30px]">
-      <h3 class="titlePage">Create new post award</h3>
+      <h3 class="titlePage">Create new post award 111</h3>
   </div>
 
   <div class="bg-[white] py-[16px] rounded-[10px]">
@@ -157,6 +157,39 @@
                 </nz-form-control>
             </nz-form-item>
             </div>
+            <div class="w-6/12">
+                <nz-form-item>
+                  <nz-form-control>
+                      <nz-form-label [nzSpan]="'vertical'"
+                          >Expertise
+                          <span class="required"
+                              >(*)</span
+                          ></nz-form-label
+                      >
+                      <nz-select
+                          
+                          ngDefaultControl
+                          formControlName="expertise"
+                      >
+                          <ng-container
+                              *ngIf="
+                              expertise &&
+                              expertise.length
+                              "
+                          >
+                              <nz-option
+                                  [nzValue]="item.id"
+                                  [nzLabel]="item.title"
+                                  *ngFor="
+                                      let item of expertise
+                                  "
+                              ></nz-option>
+                          </ng-container>
+                      </nz-select>
+                      
+                  </nz-form-control>
+              </nz-form-item>
+              </div>
           </div>
         </div>
       </div>

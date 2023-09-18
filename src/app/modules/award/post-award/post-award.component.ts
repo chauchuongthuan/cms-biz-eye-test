@@ -2,6 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup, UntypedFormGroup, Validators } from "@angular/forms";
 import { convertToFormDataV2, strToSlug } from "src/app/shared/helper";
 import { AwardService } from "../services/award.service";
+import { NzMessageService } from "ng-zorro-antd/message";
+import { AuthenticationService } from "src/app/common/services/auth.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { RouterService } from "src/app/common/services/router.service";
 
 @Component({
   selector: "app-post-award",
@@ -14,12 +18,34 @@ export class PostAwardComponent implements OnInit {
   contentText: string = "";
   categories: any;
   award: any;
-  constructor(private fb: FormBuilder, private awardService: AwardService) { }
+  expertise: any;
+  isEdit: boolean = false;
+  state: string = "Tạo mới";
+  shortDescriptionEditor: string = "";
+  challengeEditor: string = "";
+  solutionEditor: string = "";
+  public id: any;
+  constructor(
+    private fb: FormBuilder,
+    private awardService: AwardService,
+    private msg: NzMessageService,
+    private auth: AuthenticationService,
+    private router: Router,
+    private routerService: RouterService,
+    routes: ActivatedRoute,
+  ) {
+    const id = routes.snapshot.queryParamMap.get("id");
+      this.id = id;
+      if (id) {
+         this.getPostAwardDetail();
+      }
+   }
 
   ngOnInit(): void {
     this.formAward = this.postAwardFormControl();
     this.getCategories();
     this.getAward();
+    this.getExpertise();
   }
 
   postAwardFormControl() {
@@ -41,6 +67,7 @@ export class PostAwardComponent implements OnInit {
       slug: new FormControl("", [Validators.required]),
       award: new FormControl("", [Validators.required]),
       category: new FormControl("", [Validators.required]),
+      expertise: new FormControl("", [Validators.required]),
       active: new FormControl(true, [Validators.required]),
       sortOrder: new FormControl("", [Validators.required]),
       metaTitle: new FormControl("", []),
@@ -50,7 +77,53 @@ export class PostAwardComponent implements OnInit {
     });
   }
 
-
+  getPostAwardDetail() {
+    this.awardService.getDetailPostAward(this.id).subscribe((data) => {
+       data.gallery?.forEach((item: any, index: number) => {
+          this.galleries?.push(
+             this.fb.group({
+                value: "",
+                preview: item,
+             }),
+          );
+       });
+       data.social?.forEach((item: any, index: number) => {
+        this.social?.push(
+           this.fb.group({
+              value: "",
+              preview: item,
+           }),
+        );
+     });
+       this.formAward.patchValue({
+          title: data.title,
+          image: { value: "", preview: data.image },
+          detailImage: { value: "", preview: data.detailImage },
+          sortOrder: data.sortOrder,
+          shortDescription: data.shortDescription,
+          challenge: data.challenge,
+          solution: data.solution,
+          shareOfVoice: data.shareOfVoice,
+          impressions: data.impressions,
+          client: data.client,
+          engagementRate: data.engagementRate,
+          video: data.video,
+          award: data.awardImage[0]?.id || data.awardImage[0]?._id,
+          category: data.category[0]?.id || data.category[0]?._id,
+          expertise: data.expertise[0]?.id || data.expertise[0]?._id,
+          followers: data.followers,
+          metaTitle: data.metaTitle,
+          metaDescription: data.metaDescription,
+          metaKeyword: data.metaKeyword,
+          metaImage: { value: "", preview: data.metaImage },
+       });
+      //  setTimeout(() => {
+      //     this.shortDescriptionEditor = data.shortDescription;
+      //     this.challengeEditor = data.challenge;
+      //     this.solutionEditor = data.solution;
+      //  }, 350);
+    });
+ }
 
   changeFileUpload(data: any, field: string) {
     this.formAward.controls[field].setValue(data);
@@ -82,6 +155,12 @@ export class PostAwardComponent implements OnInit {
     });
   }
 
+  getExpertise() {
+    this.awardService.getExpertiseAll().subscribe((data) => {
+      this.expertise = data;
+    });
+  }
+
   get galleries(): FormArray {
     return this.formAward.get("gallery") as FormArray;
   }
@@ -109,15 +188,21 @@ export class PostAwardComponent implements OnInit {
   removeLineSocial(index: number) {
     this.social.removeAt(index);
   }
-
   onSave() {
     const data = this.formAward.value;
 
    console.log("data submit::", data);
-   let formData = convertToFormDataV2(data, ["metaImage", "image", "imageMb", "gallery"]);
-    this.awardService.createPostAward(formData).subscribe(data => {
-      console.log(data);
+   let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social"]);
+   if(this.id){
+    this.awardService.editPostAward(formData, this.id).subscribe(data => {
+      this.router.navigateByUrl('/admin/list-award')
     })
+   }
+   else {
+     this.awardService.createPostAward(formData).subscribe(data => {
+      this.router.navigateByUrl('/admin/list-award')
+     })
+   }
   }
 }
 

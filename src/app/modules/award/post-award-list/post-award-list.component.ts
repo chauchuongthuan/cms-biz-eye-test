@@ -6,6 +6,8 @@ import { params, Ipaginator, option, sort } from "src/app/common/constant/list.m
 import { RouterService } from "src/app/common/services/router.service";
 import { CreateEditCategoryComponent } from "../../category/components/create-edit-category/create-edit-category.component";
 import { AwardService } from "../services/award.service";
+import { PostAwardComponent } from "../post-award/post-award.component";
+import { Router } from "@angular/router";
 
 @Component({
    selector: "app-post-award-list",
@@ -19,6 +21,9 @@ export class PostAwardListComponent implements OnInit {
    public filterForm!: UntypedFormGroup;
    public listCategory: any;
    public visible = false;
+   public categories: any;
+   public award: any;
+   public expertise: any;
    public size: "large" | "default" = "default";
    public params: HttpParams = params;
    public checkOptionsOne = [
@@ -37,13 +42,14 @@ export class PostAwardListComponent implements OnInit {
       orderBy: "createdAt",
    };
    // public listOfData = [];
-   @ViewChild("editForm") editForm: CreateEditCategoryComponent;
+   @ViewChild("editForm") editForm: PostAwardComponent;
 
    constructor(
       private fb: UntypedFormBuilder,
       private awardService: AwardService,
       private msg: NzMessageService,
       private routerService: RouterService,
+      private router: Router,
    ) {}
 
    ngOnInit(): void {
@@ -54,6 +60,9 @@ export class PostAwardListComponent implements OnInit {
          date: new FormControl("", []),
       });
       this.getPostAward(this.params);
+      this.getCategories();
+      this.getAward();
+      this.getExpertise();
    }
 
    initParams() {
@@ -66,6 +75,24 @@ export class PostAwardListComponent implements OnInit {
          this.params = this.params.set(key, urlParams[key]);
       });
    }
+
+   getCategories() {
+      this.awardService.getCategoryAll().subscribe((data) => {
+        this.categories = data;
+      });
+    }
+  
+    getAward() {
+      this.awardService.getAwardAll().subscribe((data) => {
+        this.award = data;
+      });
+    }
+  
+    getExpertise() {
+      this.awardService.getExpertiseAll().subscribe((data) => {
+        this.expertise = data;
+      });
+    }
 
    onExpandChange(id: number, checked: boolean): void {
       if (checked) {
@@ -102,14 +129,17 @@ export class PostAwardListComponent implements OnInit {
       }
       this.getPostAward(this.params);
    }
-   onEdit(data: any) {
-      this.editForm.visible = true;
-      this.editForm.initData(data);
-   }
+   // onEdit(data: any) {
+   //    this.editForm.visible = true;
+   //    this.editForm.initData(data);
+   // }
 
+   goToDetail(id: string){
+      this.router.navigateByUrl(`/admin/post-award?id=${id}`)
+   }
    onDelete(id: string) {
       this.tableLoading = true;
-      this.awardService.deleteAward(id).subscribe(
+      this.awardService.deletePostAward(id).subscribe(
          (data) => {
             this.getPostAward(this.params);
          },
