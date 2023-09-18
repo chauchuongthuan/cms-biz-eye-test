@@ -28,6 +28,7 @@ import { PagesComponent } from "../modules/category/pages/pages.component";
 import { PagesExpertiseComponent } from "../modules/expertise/pages/pages.component";
 import { AwardPagesComponent } from "../modules/award/pages/pages.component";
 import { PostAwardComponent } from "../modules/award/post-award/post-award.component";
+import { PostAwardListComponent } from "../modules/award/post-award-list/post-award-list.component";
 
 const routes: Routes = [
    {
@@ -113,6 +114,10 @@ const routes: Routes = [
          {
             path: "award",
             component: AwardPagesComponent,
+         },
+         {
+            path: "list-award",
+            component: PostAwardListComponent,
          },
          {
             path: "post-award",

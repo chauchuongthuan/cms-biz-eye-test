@@ -10,7 +10,7 @@ import { CreateEditAwardComponent } from "./create-edit-award/create-edit-award.
 import { FilterAwardComponent } from "./filter-award/filter-award.component";
 import { AwardService } from "./services/award.service";
 import { PostAwardComponent } from "./post-award/post-award.component";
-
+import { PostAwardListComponent } from "./post-award-list/post-award-list.component";
 
 const IMPORT = [
    ReactiveFormsModule,
@@ -23,7 +23,13 @@ const IMPORT = [
    CoreModule,
 ];
 
-const DECLARATIONS = [AwardPagesComponent, CreateEditAwardComponent, FilterAwardComponent, PostAwardComponent];
+const DECLARATIONS = [
+   AwardPagesComponent,
+   CreateEditAwardComponent,
+   FilterAwardComponent,
+   PostAwardComponent,
+   PostAwardListComponent,
+];
 
 @NgModule({
    declarations: DECLARATIONS,

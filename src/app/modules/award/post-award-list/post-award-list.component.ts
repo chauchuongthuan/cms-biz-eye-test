@@ -5,16 +5,14 @@ import { NzMessageService } from "ng-zorro-antd/message";
 import { params, Ipaginator, option, sort } from "src/app/common/constant/list.model";
 import { RouterService } from "src/app/common/services/router.service";
 import { CreateEditCategoryComponent } from "../../category/components/create-edit-category/create-edit-category.component";
-import { CategoryOurWorkService } from "../../category/services/category.service";
-import { CategoryService } from "../../post-category/services/postCategory.service";
 import { AwardService } from "../services/award.service";
 
 @Component({
-   selector: "app-pages",
-   templateUrl: "./pages.component.html",
-   styleUrls: ["./pages.component.scss"],
+   selector: "app-post-award-list",
+   templateUrl: "./post-award-list.component.html",
+   styleUrls: ["./post-award-list.component.scss"],
 })
-export class AwardPagesComponent implements OnInit {
+export class PostAwardListComponent implements OnInit {
    public tableLoading: boolean = false;
    public checked: boolean = true;
    public expandSet = new Set<number>();
@@ -55,7 +53,7 @@ export class AwardPagesComponent implements OnInit {
          active: new FormControl("", []),
          date: new FormControl("", []),
       });
-      this.getCategory(this.params);
+      this.getPostAward(this.params);
    }
 
    initParams() {
@@ -77,10 +75,10 @@ export class AwardPagesComponent implements OnInit {
       }
    }
 
-   getCategory(params: HttpParams) {
+   getPostAward(params: HttpParams) {
       this.tableLoading = true;
       console.log(params);
-      this.awardService.getAward(params).subscribe((data) => {
+      this.awardService.getPostAward(params).subscribe((data) => {
          this.listCategory = data.list;
          this.paginator = {
             ...data.paginator,
@@ -102,7 +100,7 @@ export class AwardPagesComponent implements OnInit {
             }
          });
       }
-      this.getCategory(this.params);
+      this.getPostAward(this.params);
    }
    onEdit(data: any) {
       this.editForm.visible = true;
@@ -113,7 +111,7 @@ export class AwardPagesComponent implements OnInit {
       this.tableLoading = true;
       this.awardService.deleteAward(id).subscribe(
          (data) => {
-            this.getCategory(this.params);
+            this.getPostAward(this.params);
          },
          (error) => (this.tableLoading = false),
       );
@@ -141,10 +139,10 @@ export class AwardPagesComponent implements OnInit {
       this.params = this.params.set("limit", limit);
       this.params = this.params.set("orderBy", sort.orderBy);
       this.params = this.params.set("order", sort.order);
-      this.getCategory(this.params);
+      this.getPostAward(this.params);
    }
    onSuccess() {
-      this.getCategory(this.params);
+      this.getPostAward(this.params);
    }
 }
 

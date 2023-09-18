@@ -56,26 +56,31 @@ export class AwardService {
       );
    }
 
+   getPostAward(params: HttpParams) {
+      return this.apiService.get(environment.BASE_URL + "admin/post-award", this.auth.getHeaderAuth(), params).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification)),
+      );
+   }
+
    editAward(data: any, id: string) {
-      return this.apiService.putFile(
-        environment.BASE_URL + 'admin/award/'+id,
-        data,
-        this.auth.getHeaderAuth({}),
-      ).pipe(
-        catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
-        map((response) => this.apiService.handleSuccessObservable(response, this.notification, true))
+      return this.apiService.putFile(environment.BASE_URL + "admin/award/" + id, data, this.auth.getHeaderAuth({})).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
       );
    }
 
    deleteAward(id: string) {
-      return this.apiService.delete(
-        environment.BASE_URL + `admin/award`, 
-        {ids: [id]},
-        this.auth.getHeaderAuth({'Content-Type': 'application/json'}),
-      ).pipe(
-        catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
-        map((response) => this.apiService.handleSuccessObservable(response, this.notification, true))
-      );
-    }
+      return this.apiService
+         .delete(
+            environment.BASE_URL + `admin/award`,
+            { ids: [id] },
+            this.auth.getHeaderAuth({ "Content-Type": "application/json" }),
+         )
+         .pipe(
+            catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+            map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
+         );
+   }
 }
 

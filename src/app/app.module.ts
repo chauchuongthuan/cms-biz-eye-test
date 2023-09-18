@@ -117,7 +117,7 @@ registerLocaleData(vi);
       ExpertiseModule,
 
       // Award
-      AwardModule
+      AwardModule,
    ],
    providers: [
       { provide: NZ_I18N, useValue: vi_VN },
