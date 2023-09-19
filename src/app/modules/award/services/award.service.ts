@@ -28,6 +28,13 @@ export class AwardService {
       );
    }
 
+   getPostAward(params: HttpParams) {
+      return this.apiService.get(environment.BASE_URL + "admin/post-award", this.auth.getHeaderAuth(), params).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification)),
+      );
+   }
+
    getAwardAll() {
       return this.apiService.get(environment.BASE_URL + "admin/award?get=true", this.auth.getHeaderAuth()).pipe(
          catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
@@ -42,24 +49,17 @@ export class AwardService {
       );
    }
 
+   getExpertiseAll() {
+      return this.apiService.get(environment.BASE_URL + "admin/expertise?get=true", this.auth.getHeaderAuth()).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification)),
+      );
+   }
+
    createAward(data: any) {
       return this.apiService.postUpload(environment.BASE_URL + "admin/award", data, this.auth.getHeaderAuth({})).pipe(
          catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
          map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
-      );
-   }
-
-   createPostAward(data: any) {
-      return this.apiService.postUpload(environment.BASE_URL + "admin/post-award", data, this.auth.getHeaderAuth({})).pipe(
-         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
-         map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
-      );
-   }
-
-   getPostAward(params: HttpParams) {
-      return this.apiService.get(environment.BASE_URL + "admin/post-award", this.auth.getHeaderAuth(), params).pipe(
-         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
-         map((response) => this.apiService.handleSuccessObservable(response, this.notification)),
       );
    }
 
@@ -74,6 +74,42 @@ export class AwardService {
       return this.apiService
          .delete(
             environment.BASE_URL + `admin/award`,
+            { ids: [id] },
+            this.auth.getHeaderAuth({ "Content-Type": "application/json" }),
+         )
+         .pipe(
+            catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+            map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
+         );
+   }
+
+   createPostAward(data: any) {
+      return this.apiService.postUpload(environment.BASE_URL + "admin/post-award", data, this.auth.getHeaderAuth({})).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
+      );
+   }
+
+   editPostAward(data: any, id: string) {
+      return this.apiService.putFile(environment.BASE_URL + "admin/post-award/" + id, data, this.auth.getHeaderAuth({})).pipe(
+         catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+         map((response) => this.apiService.handleSuccessObservable(response, this.notification, true)),
+      );
+   }
+
+   getDetailPostAward(id: string) {
+      return this.apiService
+        .get(environment.BASE_URL + 'admin/post-award/'+id, this.auth.getHeaderAuth())
+        .pipe(
+          catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+          map((response) => this.apiService.handleSuccessObservable(response, this.notification))
+        );
+   }
+
+   deletePostAward(id: string) {
+      return this.apiService
+         .delete(
+            environment.BASE_URL + `admin/post-award`,
             { ids: [id] },
             this.auth.getHeaderAuth({ "Content-Type": "application/json" }),
          )

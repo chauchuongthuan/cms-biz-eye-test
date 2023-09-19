@@ -1,6 +1,6 @@
 <div class="block w-full">
   <div class="w-full mb-[30px]">
-      <h3 class="titlePage">Create new post award</h3>
+      <h3 class="titlePage">{{state}} post award</h3>
   </div>
 
   <div class="bg-[white] py-[16px] rounded-[10px]">
@@ -24,7 +24,7 @@
               <input formControlName="title"
                   [ngClass]="submitted && formAward.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                   class="input-title w-full" nz-input nzSize="large" nzBorderless
-                  placeholder="Tiêu đề" (ngModelChange)="onChangeTitle('vi')" />
+                  placeholder="Title" (ngModelChange)="onChangeTitle('vi')" />
           </div>
           <div class="w-12/12 pt-[16px]">
             <label class="labelForm">Description <span class="text-[#ff0000]">*</span></label>
@@ -36,13 +36,13 @@
             <label class="labelForm">Challenge <span class="text-[#ff0000]">*</span></label>
             <app-digitop-editor class="textEditor w-full" nzSize="large" [initData]="formAward.get('challenge')?.value"
               (onChangeData)="onChangeEditor($event, 'challenge')" (onChangeText)="onChangeText($event)"
-              placeHolder="challenge"></app-digitop-editor>
+              placeHolder="Challenge"></app-digitop-editor>
           </div>
           <div class="w-12/12 pt-[16px]">
             <label class="labelForm">Solutions <span class="text-[#ff0000]">*</span></label>
             <app-digitop-editor class="textEditor w-full" nzSize="large" [initData]="formAward.get('solution')?.value"
               (onChangeData)="onChangeEditor($event, 'solution')" (onChangeText)="onChangeText($event)"
-              placeHolder="Description"></app-digitop-editor>
+              placeHolder="Solutions"></app-digitop-editor>
           </div>
         </div>
         <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
@@ -50,29 +50,29 @@
             <label class="labelForm">Shared of Voice <span class="text-[#ff0000]">*</span></label>
             <input formControlName="shareOfVoice"
                 [ngClass]="submitted && formAward.get('shareOfVoice')?.errors ? 'ant-input-status-error ng-invalid' : ''"
-                class="input-title w-full" nz-input nzSize="large" nzBorderless
-                placeholder="Tiêu đề" />
+                class="w-full input-title" nz-input nzSize="large" nzBorderless
+                placeholder="Share Of Voice" />
           </div>
           <div class="w-12/12 pt-[16px]">
             <label class="labelForm">Followers <span class="text-[#ff0000]">*</span></label>
             <input formControlName="followers"
                 [ngClass]="submitted && formAward.get('followers')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                 class="input-title w-full" nz-input nzSize="large" nzBorderless
-                placeholder="Tiêu đề" />
+                placeholder="Followers" />
           </div>
           <div class="w-12/12 pt-[16px]">
             <label class="labelForm">Engagement Rate <span class="text-[#ff0000]">*</span></label>
             <input formControlName="engagementRate"
                 [ngClass]="submitted && formAward.get('engagementRate')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                 class="input-title w-full" nz-input nzSize="large" nzBorderless
-                placeholder="Tiêu đề" />
+                placeholder="Engagement Rate" />
           </div>
           <div class="w-12/12 pt-[16px]">
             <label class="labelForm">Impressions <span class="text-[#ff0000]">*</span></label>
             <input formControlName="impressions"
                 [ngClass]="submitted && formAward.get('impressions')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                 class="input-title w-full" nz-input nzSize="large" nzBorderless
-                placeholder="Tiêu đề" />
+                placeholder="Impressions" />
           </div>
           <div class="w-12/12 pt-[16px] flex gap-4">
             <div class="w-6/12">
@@ -80,14 +80,14 @@
               <input formControlName="video"
                   [ngClass]="submitted && formAward.get('video')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                   class="input-title w-full" nz-input nzSize="large" nzBorderless
-                  placeholder="Tiêu đề" />
+                  placeholder="Video" />
             </div>
             <div class="w-6/12">
               <label class="labelForm">Client <span class="text-[#ff0000]">*</span></label>
               <input formControlName="client"
                   [ngClass]="submitted && formAward.get('client')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                   class="input-title w-full" nz-input nzSize="large" nzBorderless
-                  placeholder="client" />
+                  placeholder="Client" />
             </div>
           </div>
           <div class="flex gap-4">
@@ -157,6 +157,39 @@
                 </nz-form-control>
             </nz-form-item>
             </div>
+            <div class="w-6/12">
+                <nz-form-item>
+                  <nz-form-control>
+                      <nz-form-label [nzSpan]="'vertical'"
+                          >Expertise
+                          <span class="required"
+                              >(*)</span
+                          ></nz-form-label
+                      >
+                      <nz-select
+                          
+                          ngDefaultControl
+                          formControlName="expertise"
+                      >
+                          <ng-container
+                              *ngIf="
+                              expertise &&
+                              expertise.length
+                              "
+                          >
+                              <nz-option
+                                  [nzValue]="item.id"
+                                  [nzLabel]="item.title"
+                                  *ngFor="
+                                      let item of expertise
+                                  "
+                              ></nz-option>
+                          </ng-container>
+                      </nz-select>
+                      
+                  </nz-form-control>
+              </nz-form-item>
+              </div>
           </div>
         </div>
       </div>

@@ -1,0 +1,61 @@
+<div class="bg-[white] p-[16px] mt-[16px] rounded-t-lg">
+    <div class="flex w-full">
+        <form [formGroup]="filterForm" class="lg:flex w-full">
+            <div class="w-12/12 lg:w-11/12 lg:flex gap-4">
+                <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
+                    <input nzSize="large" class="w-full" formControlName="title" nz-input type="text"
+                        placeholder="Title"/>
+                </div>
+                <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
+                    <nz-select nzSize="large" class="w-full" formControlName="award" style="width: 100%;">
+                        <nz-option [nzValue]="''" [nzLabel]="'Select award'"></nz-option>
+                        <ng-container *ngIf="
+                                  award &&
+                                  award.length
+                                  ">
+                            <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="
+                                          let item of award
+                                      "></nz-option>
+                        </ng-container>
+                    </nz-select>
+                </div>
+                <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
+                    <nz-select nzSize="large" class="w-full" formControlName="category" style="width: 100%;">
+                        <nz-option [nzValue]="''" [nzLabel]="'Select category'"></nz-option>
+                        <ng-container *ngIf="
+                                  categories &&
+                                  categories.length
+                                  ">
+                            <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="
+                                          let item of categories
+                                      "></nz-option>
+                        </ng-container>
+                    </nz-select>
+                </div>
+                <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
+                    <nz-select nzSize="large" class="w-full" formControlName="expertise" style="width: 100%;">
+                        <nz-option class="w-full" [nzValue]="''" [nzLabel]="'Select expertise'"></nz-option>
+                        <ng-container *ngIf="
+                                  expertise &&
+                                  expertise.length
+                                  ">
+                            <nz-option [nzValue]="item.id" [nzLabel]="item.title" *ngFor="
+                                          let item of expertise
+                                      "></nz-option>
+                        </ng-container>
+                    </nz-select>
+                </div>
+                <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
+                    <nz-date-picker nzSize="large" class="w-full" nzFormat="yyyy-MM-dd" formControlName="createdFrom"
+                        style="width: 100%" nzPlaceHolder="Ngày tạo"></nz-date-picker>
+                </div>
+            </div>
+            <div class="w-12/12 lg:w-1/12 ml-[8px] flex justify-center pt-[16px] lg:pt-0">
+                <a class="text-[white] text-[12px] items-center flex justify-center rounded-lg uppercase w-full py-[8px] px-[16px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                    (click)="onApply()">
+                    Tìm kiếm
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

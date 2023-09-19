@@ -17,6 +17,7 @@ export class PageHomeComponent implements OnInit {
    public metaImage: any = [];
    public bannerClient: any = [];
    public submitted: boolean = false;
+   public dataType: string = "images";
    public id: any = "";
    constructor(
       private fb: FormBuilder,
@@ -57,7 +58,7 @@ export class PageHomeComponent implements OnInit {
          this.form.controls['metaKeyword'].setValue(data.metaKeyword)
          this.form.controls['metaDescription'].setValue(data.metaDescription)
          this.metaImage = [{ value: null, preview: data.metaImage }]
-         data?.content?.heroBanner?.forEach((item: { bannerImage: any; bannerImageMobile: any; link: any; video: any }) => {
+         data?.content?.heroBanner?.forEach((item: { bannerImage: any; bannerImageMobile: any; link: any; video: any; type: any }) => {
             if (item.bannerImage === "") {
                item.bannerImage = null;
             }
@@ -70,6 +71,7 @@ export class PageHomeComponent implements OnInit {
                   bannerImageMobile: [{ value: null, preview: item.bannerImageMobile }],
                   link: item.link,
                   video: item.video,
+                  type: item.type,
                }),
             );
             this.bannerImage.push(item.bannerImage);
@@ -112,6 +114,7 @@ export class PageHomeComponent implements OnInit {
             bannerImageMobile: new FormControl({ value: null, preview: null }, [Validators.required]),
             link: "",
             video: "",
+            type: "",
          }),
       );
    }
