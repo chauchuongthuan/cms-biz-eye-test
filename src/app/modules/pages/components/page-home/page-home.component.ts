@@ -14,6 +14,7 @@ export class PageHomeComponent implements OnInit {
 
    public bannerImageMobile: any = [];
    public bannerImage: any = [];
+   public metaImage: any = [];
    public bannerClient: any = [];
    public submitted: boolean = false;
    public dataType: string = "images";
@@ -32,6 +33,10 @@ export class PageHomeComponent implements OnInit {
       this.form = this.fb.group({
          heroBanner: this.fb.array([]),
          clients: this.fb.array([]),
+         metaImage:  new FormControl({ value: null, preview: null }, [Validators.required]),
+         metaTitle:  new FormControl('', [Validators.required]),
+         metaKeyword:  new FormControl('', [Validators.required]),
+         metaDescription:  new FormControl('', [Validators.required]),
       });
    }
 
@@ -48,27 +53,30 @@ export class PageHomeComponent implements OnInit {
       this.pageService.getPageById(this.id).subscribe((data) => {
          console.log(data);
          // Push data in server hero banner
-         data?.content?.heroBanner?.forEach(
-            (item: { bannerImage: any; bannerImageMobile: any; link: any; video: any; type: any }) => {
-               if (item.bannerImage === "") {
-                  item.bannerImage = null;
-               }
-               if (item.bannerImageMobile === "") {
-                  item.bannerImageMobile = null;
-               }
-               this.lines.push(
-                  this.fb.group({
-                     bannerImage: [{ value: null, preview: item.bannerImage }],
-                     bannerImageMobile: [{ value: null, preview: item.bannerImageMobile }],
-                     link: item.link,
-                     video: item.video,
-                     type: item.type,
-                  }),
-               );
-               this.bannerImage.push(item.bannerImage);
-               this.bannerImageMobile.push(item.bannerImageMobile);
-            },
-         );
+         this.form.controls['metaImage'].setValue({ value: null, preview: data.metaImage })
+         this.form.controls['metaTitle'].setValue(data.metaTitle)
+         this.form.controls['metaKeyword'].setValue(data.metaKeyword)
+         this.form.controls['metaDescription'].setValue(data.metaDescription)
+         this.metaImage = [{ value: null, preview: data.metaImage }]
+         data?.content?.heroBanner?.forEach((item: { bannerImage: any; bannerImageMobile: any; link: any; video: any; type: any }) => {
+            if (item.bannerImage === "") {
+               item.bannerImage = null;
+            }
+            if (item.bannerImageMobile === "") {
+               item.bannerImageMobile = null;
+            }
+            this.lines.push(
+               this.fb.group({
+                  bannerImage: [{ value: null, preview: item.bannerImage }],
+                  bannerImageMobile: [{ value: null, preview: item.bannerImageMobile }],
+                  link: item.link,
+                  video: item.video,
+                  type: item.type,
+               }),
+            );
+            this.bannerImage.push(item.bannerImage);
+            this.bannerImageMobile.push(item.bannerImageMobile);
+         });
          // Push data in server our clients
          data?.content?.clients?.forEach((item: { bannerImage: any; link: any; order: any }) => {
             this.clients.push(
@@ -119,7 +127,10 @@ export class PageHomeComponent implements OnInit {
    changeFileUpload(data: any, index: number, field: string, types: string) {
       if (types === "lines") {
          this.lines.controls[index].get(field)?.setValue(data);
-      } else {
+      } else if(types==='form'){
+         this.form.controls[field].setValue(data)
+      }
+      else {
          this.clients.controls[index].get(field)?.setValue(data);
       }
    }
@@ -131,8 +142,16 @@ export class PageHomeComponent implements OnInit {
       }
       console.log(this.form.value);
       const data = {
-         content: this.form.value,
+         content: {
+            heroBanner: this.form.value.heroBanner,
+            clients: this.form.value.clients,
+         },
+         metaImage: this.form.value.metaImage,
+         metaDescription: this.form.value.metaDescription,
+         metaKeyword: this.form.value.metaKeyword,
+         metaTitle: this.form.value.metaTitle,
       };
+      console.log(`🚀data----->`, data);
       let formData = convertToFormDataV2(data, []);
 
       this.pageService.editorPage(formData, this.id).subscribe((data) => {
