@@ -15,6 +15,8 @@ export class PageAboutComponent implements OnInit {
    public submitted: boolean = false;
    public imageBanner: any = [];
    public imageBannerMobile: any = [];
+   public metaImage: any = [];
+
    constructor(
       private fb: FormBuilder,
       private pageService: PageService,
@@ -31,6 +33,10 @@ export class PageAboutComponent implements OnInit {
          imageBannerMobile: new FormControl({ value: null, preview: null }),
          content: new FormControl("", [Validators.required]),
          about: this.fb.array([]),
+         metaImage:  new FormControl({ value: null, preview: null }, [Validators.required]),
+         metaTitle:  new FormControl('', [Validators.required]),
+         metaKeyword:  new FormControl('', [Validators.required]),
+         metaDescription:  new FormControl('', [Validators.required]),
       });
    }
 
@@ -44,6 +50,11 @@ export class PageAboutComponent implements OnInit {
          this.form.controls["content"].setValue(data?.content?.content);
          this.form.controls["imageBanner"].setValue({ value: null, preview: data?.content?.imageBanner });
          this.form.controls["imageBannerMobile"].setValue({ value: null, preview: data?.content?.imageBannerMobile });
+         this.form.controls['metaImage'].setValue({ value: null, preview: data.metaImage })
+         this.form.controls['metaTitle'].setValue(data.metaTitle)
+         this.form.controls['metaKeyword'].setValue(data.metaKeyword)
+         this.form.controls['metaDescription'].setValue(data.metaDescription)
+         this.metaImage = [{ value: null, preview: data.metaImage }]
          data?.content?.about?.forEach((item: { bannerImage: any; bannerImageMobile: any; name: any; role: any }) => {
             this.abouts.push(
                this.fb.group({
@@ -97,7 +108,16 @@ export class PageAboutComponent implements OnInit {
       }
       console.log(this.form.value);
       const data = {
-         content: this.form.value,
+         content: {
+            imageBanner: this.form.value.imageBanner,
+            imageBannerMobile: this.form.value.imageBannerMobile,
+            content: this.form.value.content,
+            about: this.form.value.about,
+         },
+         metaImage: this.form.value.metaImage,
+         metaDescription: this.form.value.metaDescription,
+         metaKeyword: this.form.value.metaKeyword,
+         metaTitle: this.form.value.metaTitle,
       };
       let formData = convertToFormDataV2(data, []);
 
