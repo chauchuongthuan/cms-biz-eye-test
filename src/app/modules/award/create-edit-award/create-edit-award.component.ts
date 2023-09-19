@@ -58,7 +58,6 @@ export class CreateEditAwardComponent implements OnInit {
      });
   }
   initData(data: any) {
-   console.log("init data::", data)
      this.state = "Câp nhật";
      this.id = data.id;
      this.isEdit = true;
@@ -74,7 +73,6 @@ export class CreateEditAwardComponent implements OnInit {
         subTitle: new FormControl(data.subTitle, [Validators.required]),
         title: new FormControl(data.title, [Validators.required]),
         slug: new FormControl(data.slug, [Validators.required]),
-        shortDescription: new FormControl(data.shortDescription, [Validators.required]),
         metaTitle: new FormControl(data.metaTitle ? data.metaTitle : "", []),
         metaDescription: new FormControl(data.metaDescription ? data.metaDescription : "", []),
         metaKeyword: new FormControl(data.metaKeyword ? data.metaKeyword : "", []),
@@ -113,13 +111,11 @@ export class CreateEditAwardComponent implements OnInit {
   }
 
   confirmDrawer() {
-   console.log("this.cate::", this.categoryForm.value)
      this.submitted = true;
      if (this.categoryForm.invalid) return;
      this.isLoading = true;
-     let formData = convertToFormDataV2(this.categoryForm.value, ["metaImage"]);
+     let formData = convertToFormDataV2(this.categoryForm.value, ["image", "metaImage"]);
 
-     console.log(formData);
      if (this.isEdit)
         this.awardService.editAward(formData, this.id).subscribe(
            (data) => {

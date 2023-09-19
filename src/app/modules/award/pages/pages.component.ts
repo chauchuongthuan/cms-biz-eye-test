@@ -8,6 +8,7 @@ import { CreateEditCategoryComponent } from "../../category/components/create-ed
 import { CategoryOurWorkService } from "../../category/services/category.service";
 import { CategoryService } from "../../post-category/services/postCategory.service";
 import { AwardService } from "../services/award.service";
+import { CreateEditAwardComponent } from "../create-edit-award/create-edit-award.component";
 
 @Component({
    selector: "app-pages",
@@ -39,7 +40,7 @@ export class AwardPagesComponent implements OnInit {
       orderBy: "createdAt",
    };
    // public listOfData = [];
-   @ViewChild("editForm") editForm: CreateEditCategoryComponent;
+   @ViewChild("editForm") editForm: CreateEditAwardComponent;
 
    constructor(
       private fb: UntypedFormBuilder,
