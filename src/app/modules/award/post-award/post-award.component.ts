@@ -20,7 +20,7 @@ export class PostAwardComponent implements OnInit {
   award: any;
   expertise: any;
   isEdit: boolean = false;
-  state: string = "Tạo mới";
+  state: string = "Create";
   shortDescriptionEditor: string = "";
   challengeEditor: string = "";
   solutionEditor: string = "";
@@ -69,7 +69,7 @@ export class PostAwardComponent implements OnInit {
       category: new FormControl("", [Validators.required]),
       expertise: new FormControl("", [Validators.required]),
       active: new FormControl(true, [Validators.required]),
-      sortOrder: new FormControl("", [Validators.required]),
+      sortOrder: new FormControl("", []),
       metaTitle: new FormControl("", []),
       metaDescription: new FormControl("", []),
       metaKeyword: new FormControl("", []),
@@ -78,6 +78,7 @@ export class PostAwardComponent implements OnInit {
   }
 
   getPostAwardDetail() {
+    this.state = "Edit";
     this.awardService.getDetailPostAward(this.id).subscribe((data) => {
        data.gallery?.forEach((item: any, index: number) => {
           this.galleries?.push(
@@ -130,10 +131,8 @@ export class PostAwardComponent implements OnInit {
   }
 
   onChangeTitle(locale: string) {
-    if (this.formAward.controls[`title`].value) {
-      let slug = strToSlug(this.formAward.controls[`title`].value);
-      this.formAward.controls[`slug`].setValue(slug);
-    }
+    let slug = strToSlug(this.formAward.controls[`title`].value);
+    this.formAward.controls[`slug`].setValue(slug);
   }
 
   onChangeEditor(data: any, field: string) {
@@ -189,20 +188,30 @@ export class PostAwardComponent implements OnInit {
     this.social.removeAt(index);
   }
   onSave() {
+    this.submitted = true
+    if (this.formAward.invalid) {
+      Object.keys(this.formAward.controls).map((key) => {
+         if (this.formAward.controls[key]?.status === "INVALID") {
+            this.msg.create("error", "Vui lòng nhập " + key);
+         }
+      });
+      return;
+   }
     const data = this.formAward.value;
-
-   console.log("data submit::", data);
-   let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social"]);
-   if(this.id){
-    this.awardService.editPostAward(formData, this.id).subscribe(data => {
-      this.router.navigateByUrl('/admin/list-award')
-    })
-   }
-   else {
-     this.awardService.createPostAward(formData).subscribe(data => {
-      this.router.navigateByUrl('/admin/list-award')
-     })
-   }
-  }
+    console.log("data submit::", data);
+    let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social"]);
+    if(this.id){
+      this.awardService.editPostAward(formData, this.id).subscribe(data => {
+        this.router.navigateByUrl('/admin/list-award')
+        this.submitted = false
+      })
+    }
+    else {
+      this.awardService.createPostAward(formData).subscribe(data => {
+        this.router.navigateByUrl('/admin/list-award')
+        this.submitted = false
+      })
+    }
+    }
 }
 

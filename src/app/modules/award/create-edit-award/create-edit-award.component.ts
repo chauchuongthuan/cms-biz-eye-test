@@ -58,6 +58,7 @@ export class CreateEditAwardComponent implements OnInit {
      });
   }
   initData(data: any) {
+   console.log("init data::", data)
      this.state = "Câp nhật";
      this.id = data.id;
      this.isEdit = true;
@@ -112,6 +113,7 @@ export class CreateEditAwardComponent implements OnInit {
   }
 
   confirmDrawer() {
+   console.log("this.cate::", this.categoryForm.value)
      this.submitted = true;
      if (this.categoryForm.invalid) return;
      this.isLoading = true;

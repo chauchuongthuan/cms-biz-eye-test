@@ -4,7 +4,7 @@
             <div class="w-12/12 lg:w-11/12 lg:flex gap-4">
                 <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
                     <input nzSize="large" class="w-full" formControlName="title" nz-input type="text"
-                        placeholder="Tiêu đề danh mục" />
+                        placeholder="Title"/>
                 </div>
                 <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
                     <nz-select nzSize="large" class="w-full" formControlName="award" style="width: 100%;">
@@ -34,7 +34,7 @@
                 </div>
                 <div class="w-12/12 lg:w-1/5 pt-[16px] lg:pt-0">
                     <nz-select nzSize="large" class="w-full" formControlName="expertise" style="width: 100%;">
-                        <nz-option [nzValue]="''" [nzLabel]="'Select expertise'"></nz-option>
+                        <nz-option class="w-full" [nzValue]="''" [nzLabel]="'Select expertise'"></nz-option>
                         <ng-container *ngIf="
                                   expertise &&
                                   expertise.length
