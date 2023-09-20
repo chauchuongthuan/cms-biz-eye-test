@@ -32,7 +32,7 @@ export class PageContactComponent implements OnInit {
    ngOnInit() {
       this.form = this.fb.group({
          // heroBanner: this.fb.array([]),
-         // clients: this.fb.array([]),
+         clients: this.fb.array([]),
          metaImage:  new FormControl({ value: null, preview: null }, [Validators.required]),
          metaTitle:  new FormControl('', [Validators.required]),
          metaKeyword:  new FormControl('', [Validators.required]),
@@ -44,9 +44,9 @@ export class PageContactComponent implements OnInit {
    //    return this.form.get("heroBanner") as FormArray;
    // }
 
-   // get clients(): FormArray {
-   //    return this.form.get("clients") as FormArray;
-   // }
+   get clients(): FormArray {
+      return this.form.get("clients") as FormArray;
+   }
 
    // Call API get detail page fields to content
    getDetailPages() {
@@ -58,25 +58,35 @@ export class PageContactComponent implements OnInit {
          this.form.controls['metaKeyword'].setValue(data.metaKeyword)
          this.form.controls['metaDescription'].setValue(data.metaDescription)
          this.metaImage = [{ value: null, preview: data.metaImage }]
+
+         data?.content?.clients?.forEach((item: { title: any; link: any; address: any }) => {
+            this.clients.push(
+               this.fb.group({
+                  link: item.link,
+                  title: item.title,
+                  address: item.address,
+               }),
+            );
+         });
          
       });
    }
 
-   // // Add item in our clients in home page
-   // addClient() {
-   //    this.clients.push(
-   //       this.fb.group({
-   //          bannerImage: new FormControl({ value: null, preview: null }, [Validators.required]),
-   //          link: "",
-   //          order: "",
-   //       }),
-   //    );
-   // }
+   // Add item in our clients in home page
+   addClient() {
+      this.clients.push(
+         this.fb.group({
+            link: "",
+            address: "",
+            title: "",
+         }),
+      );
+   }
 
-   // // Remove item in our clients in home page
-   // removeClient(index: number) {
-   //    this.clients.removeAt(index);
-   // }
+   // Remove item in our clients in home page
+   removeClient(index: number) {
+      this.clients.removeAt(index);
+   }
 
    // // Add item in banner in home page
    // addLine() {
@@ -110,7 +120,6 @@ export class PageContactComponent implements OnInit {
       console.log(this.form.value);
       const data = {
          content: {
-            heroBanner: this.form.value.heroBanner,
             clients: this.form.value.clients,
          },
          metaImage: this.form.value.metaImage,
