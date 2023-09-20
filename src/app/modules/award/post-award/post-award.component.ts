@@ -59,6 +59,7 @@ export class PostAwardComponent implements OnInit {
          solution: new FormControl("", [Validators.required]),
          image: new FormControl({ value: "", preview: null }, []),
          detailImage: new FormControl({ value: "", preview: null }, []),
+         thumbnailVideo: new FormControl({ value: "", preview: null }, []),
          shareOfVoice: this.fb.array([], [Validators.required]),
          // followers: new FormControl("", [Validators.required]),
          // engagementRate: new FormControl("", [Validators.required]),
@@ -110,6 +111,7 @@ export class PostAwardComponent implements OnInit {
             title: data.title,
             image: { value: "", preview: data.image },
             detailImage: { value: "", preview: data.detailImage },
+            thumbnailVideo: { value: "", preview: data.thumbnailVideo },
             sortOrder: data.sortOrder,
             shortDescription: data.shortDescription,
             challenge: data.challenge,
@@ -240,7 +242,7 @@ export class PostAwardComponent implements OnInit {
         }
       }
       this.isLoading = true;
-      let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social"]);
+      let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social", "thumbnailVideo"]);
       if (this.id) {
          this.awardService.editPostAward(formData, this.id).subscribe((data) => {
            this.router.navigateByUrl("/admin/list-award");

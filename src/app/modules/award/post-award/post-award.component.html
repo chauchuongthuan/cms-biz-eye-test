@@ -17,6 +17,11 @@
                             CENSORSHIP (changeFile)="changeFileUpload($event, 'detailImage')" class="w-full"
                             [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                     </div>
+                    <div class="w-2/12 px-[8px] mb-[16px] tl-p:w-1/2 flex">
+                        <app-digitop-upload [fileList]="[formAward.get('thumbnailVideo')?.value]" [title]="'Thumbnail Video'"
+                            CENSORSHIP (changeFile)="changeFileUpload($event, 'thumbnailVideo')" class="w-full"
+                            [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
+                    </div>
                 </div>
                 <div class="flex gap-4 w-full">
                     <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
