@@ -51,6 +51,7 @@ export class PostAwardComponent implements OnInit {
 
    postAwardFormControl() {
       return this.fb.group({
+         isHost: new FormControl(false, [Validators.required]),
          client: new FormControl("", [Validators.required]),
          title: new FormControl("", [Validators.required]),
          shortDescription: new FormControl("", [Validators.required]),
@@ -58,7 +59,7 @@ export class PostAwardComponent implements OnInit {
          solution: new FormControl("", [Validators.required]),
          image: new FormControl({ value: "", preview: null }, []),
          detailImage: new FormControl({ value: "", preview: null }, []),
-         shareOfVoice: new FormControl("", [Validators.required]),
+         shareOfVoice: this.fb.array([], [Validators.required]),
          followers: new FormControl("", [Validators.required]),
          engagementRate: new FormControl("", [Validators.required]),
          impressions: new FormControl("", [Validators.required]),
@@ -97,7 +98,15 @@ export class PostAwardComponent implements OnInit {
                }),
             );
          });
+         data.shareOfVoice.forEach((item: any, index: number) => {
+            const shareOfVoice = this.fb.group({
+               name: item.name,
+               number: item.number
+             });
+            this.shareOfVoice?.push(shareOfVoice)
+         }) 
          this.formAward.patchValue({
+            isHost: data?.isHost ? data?.isHost : false,
             title: data.title,
             image: { value: "", preview: data.image },
             detailImage: { value: "", preview: data.detailImage },
@@ -105,7 +114,7 @@ export class PostAwardComponent implements OnInit {
             shortDescription: data.shortDescription,
             challenge: data.challenge,
             solution: data.solution,
-            shareOfVoice: data.shareOfVoice,
+            // shareOfVoice: data.shareOfVoice,
             impressions: data.impressions,
             client: data.client,
             engagementRate: data.engagementRate,
@@ -187,6 +196,20 @@ export class PostAwardComponent implements OnInit {
    }
    removeLineSocial(index: number) {
       this.social.removeAt(index);
+   }
+
+   get shareOfVoice(): FormArray {
+      return this.formAward.get("shareOfVoice") as FormArray;
+   }
+   addLineShareOfVoice() {
+      const shareOfVoice = this.fb.group({
+         name: '',
+         number: ''
+       });
+      this.shareOfVoice.push(shareOfVoice);
+   }
+   removeLineShareOfVoice(index: number) {
+      this.shareOfVoice.removeAt(index);
    }
    onSave() {
       this.submitted = true;
