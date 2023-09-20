@@ -51,7 +51,7 @@ export class PostAwardComponent implements OnInit {
 
    postAwardFormControl() {
       return this.fb.group({
-         isHost: new FormControl(false, [Validators.required]),
+         isHot: new FormControl(false, [Validators.required]),
          client: new FormControl("", [Validators.required]),
          title: new FormControl("", [Validators.required]),
          shortDescription: new FormControl("", [Validators.required]),
@@ -107,7 +107,7 @@ export class PostAwardComponent implements OnInit {
             this.shareOfVoice?.push(shareOfVoice)
          }) 
          this.formAward.patchValue({
-            isHost: data?.isHost ? data?.isHost : false,
+            isHot: data?.isHot ? data?.isHot : false,
             title: data.title,
             image: { value: "", preview: data.image },
             detailImage: { value: "", preview: data.detailImage },
