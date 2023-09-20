@@ -17,6 +17,11 @@
                             CENSORSHIP (changeFile)="changeFileUpload($event, 'detailImage')" class="w-full"
                             [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                     </div>
+                    <div class="w-2/12 px-[8px] mb-[16px] tl-p:w-1/2 flex">
+                        <app-digitop-upload [fileList]="[formAward.get('thumbnailVideo')?.value]" [title]="'Thumbnail Video'"
+                            CENSORSHIP (changeFile)="changeFileUpload($event, 'thumbnailVideo')" class="w-full"
+                            [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
+                    </div>
                 </div>
                 <div class="flex gap-4 w-full">
                     <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
@@ -54,7 +59,7 @@
                             <label class="labelForm">Is Host <span class="text-[#ff0000]">*</span></label>
                             <nz-switch formControlName="isHost"> </nz-switch>
                         </div>
-                        <div class="w-12/12 pt-[16px]">
+                        <!-- <div class="w-12/12 pt-[16px]">
                             <label class="labelForm">Followers <span class="text-[#ff0000]">*</span></label>
                             <input formControlName="followers"
                                 [ngClass]="submitted && formAward.get('followers')?.errors ? 'ant-input-status-error ng-invalid' : ''"
@@ -74,7 +79,7 @@
                                 [ngClass]="submitted && formAward.get('impressions')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                                 class="input-title w-full" nz-input nzSize="large" nzBorderless
                                 placeholder="Impressions" />
-                        </div>
+                        </div> -->
                         <div class="w-12/12 pt-[16px] flex gap-4">
                             <div class="w-6/12">
                                 <label class="labelForm">Video <span class="text-[#ff0000]">*</span></label>
@@ -161,7 +166,7 @@
                             class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
                             SoV</a>
                     </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-[16px]">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-[16px]">
                         <div formArrayName="shareOfVoice" *ngFor="let shareOfVoice of shareOfVoice?.controls; let i = index"
                             class="relative">
                             <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
@@ -172,7 +177,7 @@
                                     placeholder="Name" />
                                     <label class="labelForm">Number <span class="text-[#ff0000]">*</span></label>
                                     <input formControlName="number"
-                                    class="input-title w-full" nz-input nzSize="large" type="number" nzBorderless
+                                    class="input-title w-full" nz-input nzSize="large" nzBorderless
                                     placeholder="Number" />
                                     <!-- <div *ngIf="submitted && gallery.get('galleryImage')?.errors" class="input-text-error">
                                 <span>Image not blank</span>

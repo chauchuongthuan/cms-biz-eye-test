@@ -59,10 +59,11 @@ export class PostAwardComponent implements OnInit {
          solution: new FormControl("", [Validators.required]),
          image: new FormControl({ value: "", preview: null }, []),
          detailImage: new FormControl({ value: "", preview: null }, []),
+         thumbnailVideo: new FormControl({ value: "", preview: null }, []),
          shareOfVoice: this.fb.array([], [Validators.required]),
-         followers: new FormControl("", [Validators.required]),
-         engagementRate: new FormControl("", [Validators.required]),
-         impressions: new FormControl("", [Validators.required]),
+         // followers: new FormControl("", [Validators.required]),
+         // engagementRate: new FormControl("", [Validators.required]),
+         // impressions: new FormControl("", [Validators.required]),
          social: this.fb.array([], [Validators.required]),
          gallery: this.fb.array([], [Validators.required]),
          video: new FormControl("", [Validators.required]),
@@ -110,19 +111,20 @@ export class PostAwardComponent implements OnInit {
             title: data.title,
             image: { value: "", preview: data.image },
             detailImage: { value: "", preview: data.detailImage },
+            thumbnailVideo: { value: "", preview: data.thumbnailVideo },
             sortOrder: data.sortOrder,
             shortDescription: data.shortDescription,
             challenge: data.challenge,
             solution: data.solution,
             // shareOfVoice: data.shareOfVoice,
-            impressions: data.impressions,
+            // impressions: data.impressions,
             client: data.client,
-            engagementRate: data.engagementRate,
+            // engagementRate: data.engagementRate,
             video: data.video,
             award: data.awardImage[0]?.id || data.awardImage[0]?._id,
             category: data.category[0]?.id || data.category[0]?._id,
             expertise: data.expertise[0]?.id || data.expertise[0]?._id,
-            followers: data.followers,
+            // followers: data.followers,
             metaTitle: data.metaTitle,
             metaDescription: data.metaDescription,
             metaKeyword: data.metaKeyword,
@@ -240,7 +242,7 @@ export class PostAwardComponent implements OnInit {
         }
       }
       this.isLoading = true;
-      let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social"]);
+      let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social", "thumbnailVideo"]);
       if (this.id) {
          this.awardService.editPostAward(formData, this.id).subscribe((data) => {
            this.router.navigateByUrl("/admin/list-award");
