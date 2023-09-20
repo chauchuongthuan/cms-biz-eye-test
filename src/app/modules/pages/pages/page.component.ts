@@ -107,13 +107,24 @@ export class PageComponent implements OnInit {
    }
    onEdit(data: any) {
       // this.editForm.visible = true;
-      console.log(">>>>>>>", data);
       switch (data.code) {
          case "HOME":
             this.router.navigate([`admin/page-home`], { queryParams: { id: data.id } });
             break;
          case "ABOUT":
             this.router.navigate([`admin/page-about`], { queryParams: { id: data.id } });
+            break;
+         case "AWARD":
+            this.router.navigate([`admin/page-award`], { queryParams: { id: data.id } });
+            break;
+         case "WORK":
+            this.router.navigate([`admin/page-work`], { queryParams: { id: data.id } });
+            break;
+         case "NEWS":
+            this.router.navigate([`admin/page-news`], { queryParams: { id: data.id } });
+            break;
+         case "CONTACT":
+            this.router.navigate([`admin/page-contact`], { queryParams: { id: data.id } });
             break;
          default:
             break;
