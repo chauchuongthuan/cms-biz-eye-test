@@ -10,6 +10,10 @@ import { CreateEditPageComponent } from "./components/create-edit-page/create-ed
 import { PageComponent } from "./pages/page.component";
 import { PageHomeComponent } from "./components/page-home/page-home.component";
 import { PageAboutComponent } from "./components/page-about/page-about.component";
+import { PageAwardComponent } from "./components/page-award/page-award.component";
+import { PageWorkComponent } from "./components/page-work/page-work.component";
+import { PageNewsComponent } from "./components/page-news/page-news.component";
+import { PageContactComponent } from "./components/page-contact/page-contact.component";
 
 const IMPORT = [
    ReactiveFormsModule,
@@ -28,6 +32,10 @@ const DECLARATIONS = [
    CreateEditPageCategoryComponent,
    PageHomeComponent,
    PageAboutComponent,
+   PageAwardComponent,
+   PageWorkComponent,
+   PageNewsComponent,
+   PageContactComponent
 ];
 
 @NgModule({
