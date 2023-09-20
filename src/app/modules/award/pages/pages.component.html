@@ -21,9 +21,17 @@
       <app-filter-award (onFilter)="onFilter($event)"></app-filter-award>
   </div>
   <div class="w-full rounded-b-lg overflow-hidden">
-      <nz-table (nzQueryParams)="tableChange($event)" #tableCategory
-          [nzTotal]="paginator.total" [nzPageSize]="paginator.limit" [nzPageIndex]="paginator.currentPage"
-          nzOuterBordered [nzData]="listCategory" nzTableLayout="fixed" [nzLoading]="tableLoading" nzShowSizeChanger
+      <nz-table 
+          (nzQueryParams)="tableChange($event)"
+          #tableCategory
+          [nzTotal]="paginator.total" 
+          [nzPageSize]="paginator.limit" 
+          [nzPageIndex]="paginator.currentPage"
+          nzOuterBordered 
+          [nzData]="listCategory" 
+          nzTableLayout="fixed" 
+          [nzLoading]="tableLoading" 
+          nzShowSizeChanger
           [nzFrontPagination]="false">
           <thead>
               <tr class="hidden lg:contents">
@@ -51,8 +59,8 @@
                       <td>
                         <div nz-row class="lg:flex items-center py-[16px] min-w-[230px]">
                             <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
-                            (click)="onEdit(data)" nz-popconfirm>
-                            Chỉnh sửa
+                                (click)="onEdit(data)" nz-popconfirm>
+                                Chỉnh sửa
                             </a>
                             <a nz-popconfirm
                                 class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
@@ -60,7 +68,7 @@
                                 nzPopconfirmPlacement="bottom" (nzOnConfirm)="onDelete(data.id)">
                                 <span nz-icon nzType="delete"></span>
                             </a>
-                        </div>              
+                        </div>
                       </td>
                   </tr>
               </ng-container>

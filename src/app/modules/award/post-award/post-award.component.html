@@ -51,11 +51,8 @@
                     </div>
                     <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
                         <div class="w-12/12">
-                            <label class="labelForm">Shared of Voice <span class="text-[#ff0000]">*</span></label>
-                            <input formControlName="shareOfVoice"
-                                [ngClass]="submitted && formAward.get('shareOfVoice')?.errors ? 'ant-input-status-error ng-invalid' : ''"
-                                class="w-full input-title" nz-input nzSize="large" nzBorderless
-                                placeholder="Share Of Voice" />
+                            <label class="labelForm">Is Host <span class="text-[#ff0000]">*</span></label>
+                            <nz-switch formControlName="isHost"> </nz-switch>
                         </div>
                         <div class="w-12/12 pt-[16px]">
                             <label class="labelForm">Followers <span class="text-[#ff0000]">*</span></label>
@@ -159,6 +156,40 @@
                 <div class="SeoContent">
                     <div
                         class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+                        <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Share Of Voice</div>
+                        <a (click)="addLineShareOfVoice()"
+                            class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
+                            SoV</a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-[16px]">
+                        <div formArrayName="shareOfVoice" *ngFor="let shareOfVoice of shareOfVoice?.controls; let i = index"
+                            class="relative">
+                            <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
+                                <div class="w-full">
+                                    <label class="labelForm">Name <span class="text-[#ff0000]">*</span></label>
+                                    <input formControlName="name"
+                                    class="input-title w-full" nz-input nzSize="large" nzBorderless
+                                    placeholder="Name" />
+                                    <label class="labelForm">Number <span class="text-[#ff0000]">*</span></label>
+                                    <input formControlName="number"
+                                    class="input-title w-full" nz-input nzSize="large" type="number" nzBorderless
+                                    placeholder="Number" />
+                                    <!-- <div *ngIf="submitted && gallery.get('galleryImage')?.errors" class="input-text-error">
+                                <span>Image not blank</span>
+                            </div> -->
+                                </div>
+                                <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                                    (click)="removeLineShareOfVoice(i)">
+                                    <span nz-icon nzType="delete"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="SeoContent">
+                    <div
+                        class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
                         <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Gallery</div>
                         <a (click)="addLine()"
                             class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
@@ -230,21 +261,21 @@
                             <div class="w-11/12 px-[8px] mb-[16px] tl-p:w-full">
                                 <div class="flex flex-wrap mx-[-8px]">
                                     <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
-                                        <label class="labelForm">Tiêu đề <span class="text-[#ff0000]">*</span></label>
+                                        <label class="labelForm">Tiêu đề </label>
                                         <input formControlName="metaTitle" [ngClass]="
                              submitted && formAward.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
                           " nz-input class="w-full" nzSize="large" placeholder="Nhập thông tin" type="text" />
                                     </div>
 
                                     <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
-                                        <label class="labelForm">Từ khóa <span class="text-[#ff0000]">*</span></label>
+                                        <label class="labelForm">Từ khóa </label>
                                         <input formControlName="metaKeyword" [ngClass]="
                              submitted && formAward.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
                           " nz-input class="w-full" nzSize="large" placeholder="Nhập thông tin" type="text" />
                                     </div>
 
                                     <div class="w-full px-[8px] mb-[16px]">
-                                        <label class="labelForm">Mô tả <span class="text-[#ff0000]">*</span></label>
+                                        <label class="labelForm">Mô tả </label>
                                         <textarea class="w-full" nzSize="large" rows="4"
                                             formControlName="metaDescription" nz-input
                                             placeholder="Nhập thông tin"></textarea>

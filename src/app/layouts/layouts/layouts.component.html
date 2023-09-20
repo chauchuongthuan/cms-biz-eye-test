@@ -19,19 +19,30 @@
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'category-work'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
             #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
-            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+            <span nz-icon>
+               <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#000000" d="m12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5s4.5-2.01 4.5-4.5s-2.01-4.5-4.5-4.5zm0 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/>
+              </svg>
+            </span>
             <span class="text-[12px] text-second-100 font-bold">Category OurWork</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'expertise'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
             #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
-            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>           
             <span class="text-[12px] text-second-100 font-bold">Expertise</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'award'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
             #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
-            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+            <span nz-icon>
+               <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                      <path d="M6 9a6 6 0 1 0 12 0A6 6 0 1 0 6 9"/>
+                      <path d="m12 15l3.4 5.89l1.598-3.233l3.598.232l-3.4-5.889M6.802 12l-3.4 5.89L7 17.657l1.598 3.232l3.4-5.889"/>
+                  </g>
+              </svg>
+            </span>
             <span class="text-[12px] text-second-100 font-bold">Award</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'posts'"
