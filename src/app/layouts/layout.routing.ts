@@ -29,6 +29,10 @@ import { PagesExpertiseComponent } from "../modules/expertise/pages/pages.compon
 import { AwardPagesComponent } from "../modules/award/pages/pages.component";
 import { PostAwardComponent } from "../modules/award/post-award/post-award.component";
 import { PostAwardListComponent } from "../modules/award/post-award-list/post-award-list.component";
+import { PageAwardComponent } from "../modules/pages/components/page-award/page-award.component";
+import { PageWorkComponent } from "../modules/pages/components/page-work/page-work.component";
+import { PageNewsComponent } from "../modules/pages/components/page-news/page-news.component";
+import { PageContactComponent } from "../modules/pages/components/page-contact/page-contact.component";
 
 const routes: Routes = [
    {
@@ -102,6 +106,22 @@ const routes: Routes = [
          {
             path: "page-about",
             component: PageAboutComponent,
+         },
+         {
+            path: "page-award",
+            component: PageAwardComponent,
+         },
+         {
+            path: "page-work",
+            component: PageWorkComponent,
+         },
+         {
+            path: "page-news",
+            component: PageNewsComponent,
+         },
+         {
+            path: "page-contact",
+            component: PageContactComponent,
          },
          {
             path: "category-work",

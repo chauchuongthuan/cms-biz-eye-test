@@ -33,13 +33,14 @@ export const removeSignVietnamese = (str = "") => {
 
 export const getFileNameFromPath = (path: string) => {
    if (path == null) {
-      return path;
+       return path;
    }
-   let ext = path.substring(path.lastIndexOf("."));
-   let originalName = path.substring(path.lastIndexOf("/") + 1, path.lastIndexOf(ext));
-   originalName = originalName.substring(0, path.lastIndexOf("_") != -1 ? path.lastIndexOf("_") : path.lastIndexOf("."));
+   let ext = path.substring(path.lastIndexOf('.'));
+   let originalName = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf(ext));
+   originalName = originalName.substring(0, originalName.lastIndexOf('_') != -1 ? originalName.lastIndexOf('_') : originalName.length);
    return `${originalName}${ext}`;
-};
+}
+
 
 export const isFile = (object: any) => {
    if (object && typeof object.type != "undefined" && typeof object.size != "undefined") {
