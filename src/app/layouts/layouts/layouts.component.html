@@ -72,6 +72,9 @@
                <li nz-menu-item [routerLink]="'roles'">
                   <a class="text-[12px] text-second-100 font-bold">Roles</a>
                </li>
+               <li nz-menu-item [routerLink]="'setting'">
+                  <a class="text-[12px] text-second-100 font-bold">Setting</a>
+               </li>
             </ul>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'subscribers'"
@@ -280,10 +283,10 @@
                   <nz-dropdown-menu #menu="nzDropdownMenu">
                      <ul nz-menu>
                         <li nz-menu-item (click)="visible = true">
-                           <a style="color: black">Thông tin cá nhân</a>
+                           <a style="color: black">Personal Information</a>
                         </li>
                         <li nz-menu-item>
-                           <a href="/" style="color: black">Đăng xuất</a>
+                           <a href="/" style="color: black">Log Out</a>
                         </li>
                      </ul>
                   </nz-dropdown-menu>
@@ -321,7 +324,7 @@
    </nz-layout>
 </nz-layout>
 
-<app-digitop-drawer [title]="'Thông tin cá nhân'" [visible]="visible" [size]="'large'" (onConfirm)="confirmDrawer()"
+<app-digitop-drawer [title]="'Personal Information'" [visible]="visible" [size]="'large'" (onConfirm)="confirmDrawer()"
    (onLeave)="visible = false">
    <ng-container content>
       <nz-spin [nzSpinning]="isLoading">
@@ -330,7 +333,7 @@
                <div nz-col class="gutter-row" [nzSpan]="12">
                   <nz-form-item>
                      <nz-form-control>
-                        <app-digitop-upload [fileList]="profileImage" [title]="'Ảnh đại diện'"
+                        <app-digitop-upload [fileList]="profileImage" [title]="'Profile Image'"
                            (changeFile)="changeFileUpload($event, 'profileImage')"
                            [multiple]="false"></app-digitop-upload>
                      </nz-form-control>
@@ -342,15 +345,15 @@
                <div nz-col class="gutter-row" [nzSpan]="12">
                   <nz-form-item>
                      <nz-form-control>
-                        <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Quyền</nz-form-label>
+                        <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Role</nz-form-label>
                         <nz-select formControlName="role">
-                           <nz-option nzLabel="Chọn quyền" nzValue=""> </nz-option>
+                           <nz-option nzLabel="Chọn role" nzValue=""> </nz-option>
                            <nz-option *ngFor="let item of roleList" nzLabel="{{ item.name }}"
                               nzValue="{{ item.value }}">
                            </nz-option>
                         </nz-select>
                         <div *ngIf="submitted && userForm.get('role')?.errors" class="input-text-error">
-                           <span>Please select quyền</span>
+                           <span>Please select role</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -369,20 +372,20 @@
                <div nz-col class="gutter-row" [nzSpan]="12">
                   <nz-form-item>
                      <nz-form-control>
-                        <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Tên</nz-form-label>
+                        <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Name</nz-form-label>
                         <nz-input-group>
                            <input formControlName="name"
                               [ngClass]="submitted && userForm.get('name')?.errors ? 'ant-input-status-error ng-invalid' : ''"
-                              nz-input placeholder="Tên" />
+                              nz-input placeholder="Name" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('name')?.errors?.['required']" class="input-text-error">
-                           <span>Please enter tên</span>
+                           <span>Please enter name</span>
                         </div>
                         <div *ngIf="
                               submitted &&
                               (userForm.get('name')?.errors?.['minlength'] || userForm.get('name')?.errors?.['maxlength'])
                            " class="input-text-error">
-                           <span>Tên nằm trong khoảng 5 đến 255 ký tự!</span>
+                           <span>Name range from 5 to 255 characters!</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -400,7 +403,7 @@
                            <span>Please enter email</span>
                         </div>
                         <div *ngIf="submitted && userForm.get('email')?.errors?.['pattern']" class="input-text-error">
-                           <span>Please enter định dạng email</span>
+                           <span>Please enter email format</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -424,7 +427,7 @@
                               (submitted && userForm.get('password')?.errors?.['minlength']) ||
                               userForm.get('password')?.errors?.['maxlength']
                            " class="input-text-error">
-                           <span>Mật khẩu nằm trong khoảng 6 đến 255 ký tự!</span>
+                           <span>Password range from 6 to 255 characters!</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -448,7 +451,7 @@
                         <div
                            *ngIf="submitted && userForm.controls['confirmPassword'].value !== userForm.controls['password'].value"
                            class="input-text-error">
-                           <span>Mật khẩu không trùng khớp</span>
+                           <span>Password does not match</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>

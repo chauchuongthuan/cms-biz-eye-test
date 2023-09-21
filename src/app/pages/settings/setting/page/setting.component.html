@@ -1,1 +1,162 @@
-hahaha
+<ng-container content>
+    <nz-spin [nzSpinning]="isLoading">
+        <form nz-form [nzLayout]="'inline'" [formGroup]="form" (ngSubmit)="onSave()">
+            <nz-tabset>
+                <nz-tab nzTitle="Website Information" (nzSelect)="tabNum = 1">
+                    <div nz-row [nzGutter]="[hGutter, vGutter]">
+                        <div nz-col class="gutter-row" *ngIf="!isLoading" [nzSpan]="12">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <app-digitop-upload [fileList]="logo" [title]="'Logo'"
+                                        (changeFile)="changeFileUpload($event, 'logo')"
+                                        [multiple]="false"></app-digitop-upload>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-row [nzGutter]="[hGutter, vGutter]">
+                        <div nz-col class="w-full" [nzSpan]="12">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'"> Website Name </nz-form-label>
+                                    <nz-input-group>
+                                        <input formControlName="name" nz-input placeholder="Website Name" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="12">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'"> Phone </nz-form-label>
+                                    <nz-input-group>
+                                        <input formControlName="phone" nz-input placeholder="Phone" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="12">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'"> Link website </nz-form-label>
+                                    <nz-input-group>
+                                        <input formControlName="address" nz-input placeholder="linkWebsite" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="12">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'"> Link facebook </nz-form-label>
+                                    <nz-input-group>
+                                        <input formControlName="phone" nz-input placeholder="linkFacebook" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'"> Address </nz-form-label>
+                                    <nz-input-group>
+                                        <textarea formControlName="address" nz-input class="w-full" nzSize="large"
+                                            placeholder="Address" type="text" rows="3"></textarea>
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </nz-tab>
+                <nz-tab nzTitle="SEO" (nzSelect)="tabNum = 2">
+                    <div nz-row [nzGutter]="[hGutter, vGutter]">
+                        <div nz-col class="w-full" *ngIf="!isLoading" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <app-digitop-upload [fileList]="metaImage" [title]="'Meta Image'"
+                                        (changeFile)="changeFileUpload($event, 'metaImage')"
+                                        [multiple]="false"></app-digitop-upload>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+
+                        <div nz-col class="w-full" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'">Meta title</nz-form-label>
+                                    <nz-input-group>
+                                        <input formControlName="metaTitle" nz-input placeholder="Meta Title" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+
+                        <div nz-col class="w-full" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'">Meta keyword</nz-form-label>
+                                    <nz-input-group>
+                                        <input formControlName="metaKeyword" nz-input placeholder="Meta Keyword" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+
+                        <div nz-col class="gutter-row" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'">Meta description</nz-form-label>
+                                    <nz-textarea-count [nzMaxCharacterCount]="100">
+                                        <textarea rows="4" formControlName="metaDescription" nz-input
+                                            placeholder="Meta Description"></textarea>
+                                    </nz-textarea-count>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </nz-tab>
+
+                <!-- <nz-tab nzTitle="HTML trang web" (nzSelect)="tabNum = 4">
+                    <div nz-row [nzGutter]="[hGutter, vGutter]" class="content-seo">
+                        <div nz-col class="gutter-row" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'">HEAD HTML CODE</nz-form-label>
+                                    <nz-textarea-count [nzMaxCharacterCount]="100">
+                                        <textarea rows="4" formControlName="headHtmlCode" nz-input></textarea>
+                                    </nz-textarea-count>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'">BODY HTML CODE</nz-form-label>
+                                    <nz-textarea-count [nzMaxCharacterCount]="100">
+                                        <textarea rows="4" formControlName="bodyHtmlCode" nz-input></textarea>
+                                    </nz-textarea-count>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col class="gutter-row" [nzSpan]="24">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'">FOOTER HTML CODE</nz-form-label>
+                                    <nz-textarea-count [nzMaxCharacterCount]="100">
+                                        <textarea rows="4" formControlName="footerHtmlCode" nz-input></textarea>
+                                    </nz-textarea-count>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </nz-tab> -->
+            </nz-tabset>
+        </form>
+        <nz-divider nzText=""></nz-divider>
+        <nz-space>
+            <button nz-button nzType="primary" (click)="onSave()">
+                <span>Update</span>
+            </button>
+        </nz-space>
+    </nz-spin>
+</ng-container>
