@@ -1,5 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ApiService } from 'src/app/common/services/api.service';
@@ -12,29 +13,29 @@ export class SettingService {
   constructor(
     private authService: AuthenticationService, 
     private apiService: ApiService,
-    private toastService: ToastService, 
+    // private toastService: ToastService, 
+    private notification: NzNotificationService,
     ) 
   {
 
   }
 
-  getSettingList(params: HttpParams) {
+  getSettingList() {
     return this.apiService.get(
-      environment.BASE_URL + 'shop/setting',
-      this.authService.getHeaderAuth(),
-      params
+      environment.BASE_URL + 'admin/setting', 
+      this.authService.getHeaderAuth()
     ).pipe(
-      catchError((error) => this.apiService.handleErrorObservable(error, this.toastService)),
-      map((response) => this.apiService.handleSuccessObservable(response, this.toastService))
+      catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+      map((response) => this.apiService.handleSuccessObservable(response, this.notification))
     );
   }
-
-  editSetting(data: any, id: string): Observable<any> {
+  
+  editSetting(data: FormData): Observable<any> {
     return this.apiService
-      .putFile<any>(environment.BASE_URL + `shop/settings`, data, this.authService.getHeaderAuth({}))
+      .putFile<any>(environment.BASE_URL + `admin/setting`, data, this.authService.getHeaderAuth({}))
       .pipe(
-        catchError((error) => this.apiService.handleErrorObservable(error, this.toastService)),
-        map((response) => this.apiService.handleSuccessObservable(response, this.toastService, true))
+        catchError((error) => this.apiService.handleErrorObservable(error, this.notification)),
+        map((response) => this.apiService.handleSuccessObservable(response, this.notification, true))
       );
   }
 }
