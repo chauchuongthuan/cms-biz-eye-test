@@ -1,6 +1,6 @@
 <button nz-button nzType="primary" (click)="showLarge()">
     <span nz-icon nzType="plus"></span>
-    Tạo mới
+    Create
   </button>
   <app-digitop-drawer [title]="state + ' mã số'" [visible]="visible" [size]="size" (onConfirm)="confirmDrawer()"
     (onLeave)="close()">
@@ -18,7 +18,7 @@
                       nz-input placeholder="Tên" />
                   </nz-input-group>
                   <div *ngIf="submitted && tokenDrawForm.get('name')?.errors" class="input-text-error">
-                    <span>Vui lòng nhập tên người dùng</span>
+                    <span>Please enter tên người dùng</span>
                   </div>
                 </nz-form-control>
               </nz-form-item>
@@ -33,7 +33,7 @@
                       nz-input placeholder="token" />
                   </nz-input-group>
                   <div *ngIf="submitted && tokenDrawForm.get('token')?.errors?.['required']" class="input-text-error">
-                    <span>Vui lòng nhập mã số</span>
+                    <span>Please enter mã số</span>
                   </div>
                 </nz-form-control>
               </nz-form-item>

@@ -22,7 +22,7 @@ export class ActionTokenDrawComponent implements OnInit {
   idEdit: string = "";
   profileImage: any = [];
   public tokenDrawForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
 
@@ -116,7 +116,7 @@ export class ActionTokenDrawComponent implements OnInit {
   resetForm() {
     this.tokenDrawForm = this.formControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false;
     this.profileImage = [];
   }

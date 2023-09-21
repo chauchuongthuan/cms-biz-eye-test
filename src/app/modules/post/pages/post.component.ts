@@ -131,6 +131,7 @@ export class PostComponent implements OnInit {
     this.getPost(this.params)
   }
   onEdit(data: IPost){
+    console.log("data onedit::", data)
     // this.editForm.visible = true;
     this.editForm.initData(data);
   }

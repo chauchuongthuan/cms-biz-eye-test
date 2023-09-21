@@ -1,4 +1,4 @@
-<!-- <nz-collapse>
+<nz-collapse>
    <nz-collapse-panel [nzHeader]="header" [nzExtra]="extraTpl">
       <div *ngFor="let key of keys; let i = index">
          <label nz-checkbox (ngModelChange)="onChange($event, key)" [ngModel]="checkedList.includes(key)">
@@ -21,9 +21,9 @@
 </ng-template>
 <ng-template #extraTpl>
    <label nz-checkbox [ngModel]="isCheckedAll()" (ngModelChange)="onChangeAll($event)"></label>
-</ng-template> -->
+</ng-template>
 
-<div class="flex w-full justify-between mb-[30px]">
+<!-- <div class="flex w-full justify-between mb-[30px]">
    <div class="titleGroup mr-[20px]">
       <label nz-checkbox>
          <p class="text-[16px] font-bold text-pink-100">
@@ -38,4 +38,4 @@
          </label>
       </div>
    </div>
-</div>
+</div> -->

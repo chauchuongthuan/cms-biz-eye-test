@@ -1,12 +1,12 @@
 <!-- <button nz-button nzType="primary" (click)="open()">
   <span nz-icon nzType="plus"></span>
-  Tạo mới
+  Create
 </button> -->
 <a
    class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
    (click)="open()"
 >
-   Tạo mới
+   Create
 </a>
 <app-digitop-drawer
    [title]="state + ' bài viết'"
@@ -123,7 +123,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && postForm.get('sortOrder')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập số thứ tự</span>
+                           <span>Please enter số thứ tự</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -144,7 +144,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && postForm.get('title')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập tên tiêu đề</span>
+                           <span>Please enter tên tiêu đề</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -154,7 +154,7 @@
                      <nz-form-control>
                         <nz-form-label [nzSpan]="'vertical'">Slug <span class="required">(*)</span></nz-form-label>
                         <nz-input-group>
-                           <input class="disabled-ip" formControlName="slug" nz-input placeholder="Tên slug" readonly />
+                           <input class="disabled-ip" formControlName="slug" nz-input placeholder="Slug" readonly />
                         </nz-input-group>
                      </nz-form-control>
                   </nz-form-item>
@@ -193,7 +193,7 @@
                            (onChangeData)="onChangeEditor($event)"
                         ></app-digitop-editor>
                         <!-- <div *ngIf="submitted && postForm.get('content')?.errors" class="input-text-error">
-                <span>Vui lòng nhập mô tả</span>
+                <span>Please enter mô tả</span>
               </div> -->
                      </nz-form-control>
                   </nz-form-item>
@@ -213,7 +213,7 @@
                            ></textarea>
                         </nz-textarea-count>
                         <!-- <div *ngIf="submitted && postForm.get('shortDescription')?.errors" class="input-text-error">
-                <span>Vui lòng nhập mô tả</span>
+                <span>Please enter mô tả</span>
               </div> -->
                      </nz-form-control>
                   </nz-form-item>

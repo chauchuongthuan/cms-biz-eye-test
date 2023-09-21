@@ -55,10 +55,6 @@
                         </div>
                     </div>
                     <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
-                        <div class="w-12/12">
-                            <label class="labelForm">Is Host <span class="text-[#ff0000]">*</span></label>
-                            <nz-switch formControlName="isHot"> </nz-switch>
-                        </div>
                         <!-- <div class="w-12/12 pt-[16px]">
                             <label class="labelForm">Followers <span class="text-[#ff0000]">*</span></label>
                             <input formControlName="followers"
@@ -80,7 +76,7 @@
                                 class="input-title w-full" nz-input nzSize="large" nzBorderless
                                 placeholder="Impressions" />
                         </div> -->
-                        <div class="w-12/12 pt-[16px] flex gap-4">
+                        <div class="w-12/12 pt-[16px] flex gap-4 mb-6">
                             <div class="w-6/12">
                                 <label class="labelForm">Video <span class="text-[#ff0000]">*</span></label>
                                 <input formControlName="video"
@@ -100,8 +96,7 @@
                             <div class="w-6/12">
                                 <nz-form-item>
                                     <nz-form-control>
-                                        <nz-form-label [nzSpan]="'vertical'">Award
-                                            <span class="required">(*)</span></nz-form-label>
+                                        <label class="labelForm">Award <span class="text-[#ff0000]">*</span></label>
                                         <nz-select ngDefaultControl formControlName="award">
                                             <ng-container *ngIf="
                                 award &&
@@ -119,8 +114,7 @@
                             <div class="w-6/12">
                                 <nz-form-item>
                                     <nz-form-control>
-                                        <nz-form-label [nzSpan]="'vertical'">Category
-                                            <span class="required">(*)</span></nz-form-label>
+                                        <label class="labelForm">Category <span class="text-[#ff0000]">*</span></label>
                                         <nz-select ngDefaultControl formControlName="category">
                                             <ng-container *ngIf="
                                     categories &&
@@ -134,12 +128,13 @@
 
                                     </nz-form-control>
                                 </nz-form-item>
-                            </div>
+                            </div>                           
+                        </div>
+                        <div class="flex gap-4">
                             <div class="w-6/12">
                                 <nz-form-item>
                                     <nz-form-control>
-                                        <nz-form-label [nzSpan]="'vertical'">Expertise
-                                            <span class="required">(*)</span></nz-form-label>
+                                        <label class="labelForm">Expertise <span class="text-[#ff0000]">*</span></label>
                                         <nz-select ngDefaultControl formControlName="expertise">
                                             <ng-container *ngIf="
                                   expertise &&
@@ -154,6 +149,7 @@
                                     </nz-form-control>
                                 </nz-form-item>
                             </div>
+                            <div class="w-6/12"></div>
                         </div>
                     </div>
                 </div>
@@ -259,31 +255,31 @@
                         <div class="flex flex-wrap mx-[-8px]">
                             <div class="w-1/12 px-[8px] mb-[16px] tl-p:w-full">
                                 <app-digitop-upload [fileList]="[formAward.get('metaImage')?.value]"
-                                    [title]="'Hình ảnh'" CENSORSHIP (changeFile)="changeFileUpload($event, 'metaImage')"
+                                    [title]="'Meta Image'" CENSORSHIP (changeFile)="changeFileUpload($event, 'metaImage')"
                                     class="w-full" [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                             </div>
 
                             <div class="w-11/12 px-[8px] mb-[16px] tl-p:w-full">
                                 <div class="flex flex-wrap mx-[-8px]">
                                     <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
-                                        <label class="labelForm">Tiêu đề </label>
+                                        <label class="labelForm">Meta Title </label>
                                         <input formControlName="metaTitle" [ngClass]="
                              submitted && formAward.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                          " nz-input class="w-full" nzSize="large" placeholder="Nhập thông tin" type="text" />
+                          " nz-input class="w-full" nzSize="large" placeholder="Meta Title" type="text" />
                                     </div>
 
                                     <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
-                                        <label class="labelForm">Từ khóa </label>
+                                        <label class="labelForm">Meta Keyword </label>
                                         <input formControlName="metaKeyword" [ngClass]="
                              submitted && formAward.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                          " nz-input class="w-full" nzSize="large" placeholder="Nhập thông tin" type="text" />
+                          " nz-input class="w-full" nzSize="large" placeholder="Meta Keyword" type="text" />
                                     </div>
 
                                     <div class="w-full px-[8px] mb-[16px]">
-                                        <label class="labelForm">Mô tả </label>
+                                        <label class="labelForm">Meta Description </label>
                                         <textarea class="w-full" nzSize="large" rows="4"
                                             formControlName="metaDescription" nz-input
-                                            placeholder="Nhập thông tin"></textarea>
+                                            placeholder="Meta Description"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +289,7 @@
                 <div class="listBtn pt-[16px] px-[20px] border-t border-[#f2f2f2]">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-[8px]">
-                            <button (click)="onSave()" class="item btnPink">hoàn thành</button>
+                            <button (click)="onSave()" class="item btnPink">Save</button>
                         </div>
                     </div>
                 </div>

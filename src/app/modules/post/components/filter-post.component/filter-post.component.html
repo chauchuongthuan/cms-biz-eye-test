@@ -2,7 +2,7 @@
   <form [formGroup]="filterForm" style="margin-top: 20px;">
     <div class="flex w-full">
       <form [formGroup]="filterForm" class="lg:flex w-full">
-        <div class="w-12/12 lg:w-11/12 lg:flex gap-4">
+        <div class="w-12/12 lg:w-11/12 lg:flex gap-4 h-[38.1px] overflow-y-hidden">
           <div class="w-12/12 lg:w-3/12 pt-[16px] lg:pt-0"><input nzSize="large" class="w-full" formControlName="title" nz-input type="text" placeholder="Title" /></div>
 
           <div class="w-12/12 lg:w-3/12 pt-[16px] lg:pt-0">
@@ -19,6 +19,7 @@
                   nzFormat="yyyy-MM-dd"
                   formControlName="createdFrom"
                   style="width: 100%;"
+                  nzPlaceHolder="Created From"
               ></nz-date-picker>
             </nz-input-group>
           </div>
@@ -28,13 +29,14 @@
                   nzFormat="yyyy-MM-dd"
                   formControlName="createdTo"
                   style="width: 100%;"
+                  nzPlaceHolder="Created To"
               ></nz-date-picker>
             </nz-input-group>
           </div>
         </div>
         <div class="w-12/12 lg:w-1/12 ml-[8px] flex justify-center pt-[16px] lg:pt-0">
           <a class="text-[white] text-[12px] items-center flex justify-center rounded-lg uppercase w-full py-[8px] px-[16px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]" (click)="onApply()">
-            Tìm kiếm
+            Search
           </a>
         </div>
     </form>

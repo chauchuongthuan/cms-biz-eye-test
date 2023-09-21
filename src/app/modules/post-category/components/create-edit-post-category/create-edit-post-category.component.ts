@@ -17,7 +17,7 @@ export class CreateEditPostCategoryComponent implements OnInit {
   submitted: boolean = false;
   isEdit: boolean = false;
   dataActive: boolean = true;
-  state: string = 'Tạo mới';
+  state: string = 'Create';
   id: string = '';
   hGutter = 16;
   vGutter = 8;
@@ -135,7 +135,7 @@ export class CreateEditPostCategoryComponent implements OnInit {
   resetForm() {
     this.categoryForm = this.categoryFormControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false
   }
 

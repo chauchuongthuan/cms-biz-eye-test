@@ -49,16 +49,16 @@ export class SubscriberComponent implements OnInit {
       },
       {
         dataIndex: "status",
-        name: "Trạng thái",
+        name: "Status",
         isActive: true,
       },
       {
         dataIndex: "createdAt",
-        name: "Ngày tạo",
+        name: "Created At",
       },
       {
         dataIndex: "action",
-        name: "Hành động",
+        name: "Action",
         listButton: true,
       },
     ],

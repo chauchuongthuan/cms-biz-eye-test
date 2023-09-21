@@ -9,7 +9,7 @@
       <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'/admin'">
             <span nz-icon nzType="pie-chart"></span>
-            <span class="text-[12px] text-second-100 font-bold">Thống kê</span>
+            <span class="text-[12px] text-second-100 font-bold">Dashboard</span>
          </li>
          <!-- <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'menus'"
         >
@@ -63,14 +63,14 @@
             <span nz-icon nzType="pic-left" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Pages</span>
          </li>
-         <li nz-submenu nzTitle="Quản trị" nzIcon="setting" class="text-[12px] text-second-100 font-bold"
+         <li nz-submenu nzTitle="Administration" nzIcon="setting" class="text-[12px] text-second-100 font-bold"
             routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'users'">
-                  <a class="text-[12px] text-second-100 font-bold">Quản trị viên</a>
+                  <a class="text-[12px] text-second-100 font-bold">Administrators</a>
                </li>
                <li nz-menu-item [routerLink]="'roles'">
-                  <a class="text-[12px] text-second-100 font-bold">Quyền quản trị</a>
+                  <a class="text-[12px] text-second-100 font-bold">Roles</a>
                </li>
             </ul>
          </li>
@@ -78,9 +78,9 @@
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
             #rla="routerLinkActive">
             <span nz-icon nzType="bell" nzTheme="outline"></span>
-            <span class="text-[12px] text-second-100 font-bold">Người đăng ký</span>
+            <span class="text-[12px] text-second-100 font-bold">Subscribers</span>
          </li>
-         <li nz-submenu nzTitle="Marketing Mail" nzIcon="notification" class="text-[12px] text-second-100 font-bold"
+         <!-- <li nz-submenu nzTitle="Marketing Mail" nzIcon="notification" class="text-[12px] text-second-100 font-bold"
             routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'interests'">
@@ -93,11 +93,11 @@
                   <a class="text-[12px] text-second-100 font-bold">Mail Schedule</a>
                </li>
             </ul>
-         </li>
+         </li> -->
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'history'"
             routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <span nz-icon nzType="history" nzTheme="outline"></span>
-            <span class="text-[12px] text-second-100 font-bold">Lịch sử chatGPT</span>
+            <span class="text-[12px] text-second-100 font-bold">ChatGPT History</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'activities'"
             routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
@@ -196,7 +196,7 @@
 
             <div
                class="px-[20px] absolute w-fit h-full top-0 right-0 bg-pink-100 flex items-center rounded-[5px] group-hover:bg-blue-100 duration-300">
-               <p class="text-[12px] text-[#fff] font-semibold uppercase">Tìm kiếm</p>
+               <p class="text-[12px] text-[#fff] font-semibold uppercase">Search</p>
             </div>
 
             <!-- <input type="text" nz-input placeholder="ChatGPT ⌘ + K or Ctrl + K" disabled="true" style="cursor: pointer" /> -->
@@ -224,7 +224,7 @@
 
                   <div
                      class="px-[20px] absolute w-fit h-full top-0 right-0 bg-pink-100 flex items-center rounded-[5px] group-hover:bg-blue-100 duration-300">
-                     <p class="text-[12px] text-[#fff] font-semibold uppercase">Tìm kiếm</p>
+                     <p class="text-[12px] text-[#fff] font-semibold uppercase">Search</p>
                   </div>
 
                   <!-- <input type="text" nz-input placeholder="ChatGPT ⌘ + K or Ctrl + K" disabled="true" style="cursor: pointer" /> -->
@@ -350,7 +350,7 @@
                            </nz-option>
                         </nz-select>
                         <div *ngIf="submitted && userForm.get('role')?.errors" class="input-text-error">
-                           <span>Vui lòng chọn quyền</span>
+                           <span>Please select quyền</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -376,7 +376,7 @@
                               nz-input placeholder="Tên" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('name')?.errors?.['required']" class="input-text-error">
-                           <span>Vui lòng nhập tên</span>
+                           <span>Please enter tên</span>
                         </div>
                         <div *ngIf="
                               submitted &&
@@ -397,10 +397,10 @@
                               nz-input placeholder="Email" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('email')?.errors?.['required']" class="input-text-error">
-                           <span>Vui lòng nhập email</span>
+                           <span>Please enter email</span>
                         </div>
                         <div *ngIf="submitted && userForm.get('email')?.errors?.['pattern']" class="input-text-error">
-                           <span>Vui lòng nhập định dạng email</span>
+                           <span>Please enter định dạng email</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -418,7 +418,7 @@
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('password')?.errors?.['required']"
                            class="input-text-error">
-                           <span>Vui lòng nhập password</span>
+                           <span>Please enter password</span>
                         </div>
                         <div *ngIf="
                               (submitted && userForm.get('password')?.errors?.['minlength']) ||
@@ -443,7 +443,7 @@
                               " nz-input placeholder="Confirm password" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('confirmPassword')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập confirm password</span>
+                           <span>Please enter confirm password</span>
                         </div>
                         <div
                            *ngIf="submitted && userForm.controls['confirmPassword'].value !== userForm.controls['password'].value"

@@ -46,20 +46,20 @@ export class RoleComponent implements OnInit {
     column: [
       {
         dataIndex: "name",
-        name: "Tên",
+        name: "Role name",
       },
       {
         dataIndex: "isAdmin",
-        name: "Quyền admin",
+        name: "Is Admin",
         isHTML: true,
       },
       {
         dataIndex: "createdAt",
-        name: "Ngày tạo",
+        name: "Created At",
       },
       {
         dataIndex: "action",
-        name: "Hành động",
+        name: "Action",
         listButton: true,
       },
     ],

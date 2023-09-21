@@ -20,7 +20,7 @@ export class CreateEditSubscriberComponent implements OnInit {
   idEdit: string = "";
   messageFile: any = [];
   public subscriberForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
  
@@ -44,7 +44,7 @@ export class CreateEditSubscriberComponent implements OnInit {
 
   dataInit(data: ISubscriber, action: boolean){
     this.isEdit = action;
-    this.state = 'Chỉnh sửa';
+    this.state = 'Edit';
     this.subscriberForm = this.fb.group({
       email: new FormControl(data.email, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
    });
@@ -108,7 +108,7 @@ export class CreateEditSubscriberComponent implements OnInit {
   resetForm() {
     this.subscriberForm = this.formControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false
   }
 

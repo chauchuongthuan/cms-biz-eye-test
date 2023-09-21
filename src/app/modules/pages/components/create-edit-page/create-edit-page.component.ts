@@ -35,7 +35,7 @@ export class CreateEditPageComponent implements OnInit {
   isEdit: boolean = false;
   openeEditComment: string = "";
   dataEditor: string = "";
-  state: string = "Tạo mới";
+  state: string = "Create";
   idPost: string = "";
   hGutter = 16;
   vGutter = 8;
@@ -258,7 +258,7 @@ export class CreateEditPageComponent implements OnInit {
   resetForm() {
     this.postForm = this.postFormControl();
     this.submitted = false;
-    this.state = "Tạo mới";
+    this.state = "Create";
     this.isEdit = false;
     this.image = [];
     this.imageMb = [];

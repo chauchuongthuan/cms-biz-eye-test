@@ -1,7 +1,7 @@
 <div class="role" #mainScreen>
    <nz-row [nzGutter]="16" class="head-table">
       <div nz-col class="gutter-row pl-0" [nzSpan]="12">
-         <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">QUYỀN QUẢN TRỊ ({{ paginator.total }})</h3>
+         <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">ROLES ({{ paginator.total }})</h3>
       </div>
       <div nz-col class="gutter-row filter-group" [nzSpan]="12">
          <app-create-edit-role #actionComponent [permissions]="permissions" (onSuccess)="onSuccess()"></app-create-edit-role>
@@ -14,7 +14,7 @@
             (click)="exportRole()"
          >
             <span nz-icon nzType="download"></span>
-            Xuất excel
+            Export excel
          </a>
       </div>
    </nz-row>
@@ -73,12 +73,12 @@
                            <div *ngFor="let btn of renderData[temp.dataIndex]">
                               <a *ngIf="!btn.isComfirm" class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
                               (click)="btn.fn()" nz-popconfirm>
-                              Chỉnh sửa
+                              Edit
                            </a>
                            <a nz-popconfirm
                            *ngIf="btn.isComfirm"
                               class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
-                              [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'" nzPopconfirmPlacement="bottom"
+                              [nzPopconfirmTitle]="'Are you sure you want to delete?'" nzPopconfirmPlacement="bottom"
                               (nzOnConfirm)="btn.fn()">
                               <span nz-icon nzType="delete"></span>
                            </a>

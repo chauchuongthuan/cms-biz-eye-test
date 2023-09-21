@@ -1,12 +1,12 @@
 <!-- <button nz-button nzType="primary" (click)="open()">
   <span nz-icon nzType="plus"></span>
-  Tạo mới
+  Create
 </button> -->
 <a class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
     (click)="open()">
-    Tạo mới
+    Create
 </a>
-<app-digitop-drawer [title]="state + ' danh mục bài viết'" [visible]="visible" [size]="size"
+<app-digitop-drawer [title]="state + ' Category'" [visible]="visible" [size]="size"
     (onConfirm)="confirmDrawer()" (onLeave)="close()">
     <ng-container content>
         <nz-spin [nzSpinning]="isLoading">
@@ -15,11 +15,11 @@
                     <div nz-col class="gutter-row" [nzSpan]="12">
                         <nz-form-item>
                             <nz-form-control>
-                                <nz-form-label [nzSpan]="'vertical'">Trạng thái <span
+                                <nz-form-label [nzSpan]="'vertical'">Status <span
                                         class="required">(*)</span></nz-form-label>
                                 <nz-select ngDefaultControl formControlName="active" [(ngModel)]="this.dataActive">
-                                    <nz-option [nzValue]="false" nzLabel="Tạm khoá"></nz-option>
-                                    <nz-option [nzValue]="true" nzLabel="Hoạt động"></nz-option>
+                                    <nz-option [nzValue]="false" nzLabel="Locked"></nz-option>
+                                    <nz-option [nzValue]="true" nzLabel="Active"></nz-option>
                                 </nz-select>
                             </nz-form-control>
                         </nz-form-item>
@@ -27,16 +27,16 @@
                     <div nz-col class="gutter-row" [nzSpan]="12">
                         <nz-form-item>
                             <nz-form-control>
-                                <nz-form-label [nzSpan]="'vertical'">Thứ tự <span
+                                <nz-form-label [nzSpan]="'vertical'">Sort Order <span
                                         class="required">(*)</span></nz-form-label>
                                 <nz-input-group>
                                     <input formControlName="sortOrder" [ngClass]="
                                  submitted && categoryForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="Thứ tự" type="number" min="1" step="1" />
+                              " nz-input placeholder="Sort Order" type="number" min="1" step="1" />
                                 </nz-input-group>
                                 <div *ngIf="submitted && categoryForm.get('sortOrder')?.errors"
                                     class="input-text-error">
-                                    <span>Vui lòng nhập số thứ tự</span>
+                                    <span>Please enter sort order</span>
                                 </div>
                             </nz-form-control>
                         </nz-form-item>
@@ -46,15 +46,15 @@
                     <div nz-col class="gutter-row" [nzSpan]="12">
                         <nz-form-item>
                             <nz-form-control>
-                                <nz-form-label [nzSpan]="'vertical'">Tiêu đề danh mục <span
+                                <nz-form-label [nzSpan]="'vertical'">Title <span
                                         class="required">(*)</span></nz-form-label>
                                 <nz-input-group>
                                     <input formControlName="title" [ngClass]="
                                  submitted && categoryForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="Tiêu đề" (ngModelChange)="onChangeTitle('vi')" />
+                              " nz-input placeholder="Title" (ngModelChange)="onChangeTitle('vi')" />
                                 </nz-input-group>
                                 <div *ngIf="submitted && categoryForm.get('title')?.errors" class="input-text-error">
-                                    <span>Vui lòng nhập tên tiêu đề</span>
+                                    <span>Please enter title</span>
                                 </div>
                             </nz-form-control>
                         </nz-form-item>
@@ -65,7 +65,7 @@
                                 <nz-form-label [nzSpan]="'vertical'">Slug <span
                                         class="required">(*)</span></nz-form-label>
                                 <nz-input-group>
-                                    <input class="disabled-ip" formControlName="slug" nz-input placeholder="Tên slug"
+                                    <input class="disabled-ip" formControlName="slug" nz-input placeholder="Slug"
                                         readonly />
                                 </nz-input-group>
                             </nz-form-control>
@@ -74,7 +74,7 @@
                     <div nz-col class="gutter-row" [nzSpan]="24">
                         <nz-form-item>
                             <nz-form-control>
-                                <nz-form-label [nzSpan]="'vertical'">Mô tả danh mục <span
+                                <nz-form-label [nzSpan]="'vertical'">Short description <span
                                         class="required">(*)</span></nz-form-label>
                                 <nz-textarea-count [nzMaxCharacterCount]="100">
                                     <textarea [ngClass]="
@@ -85,7 +85,7 @@
                                 </nz-textarea-count>
                                 <div *ngIf="submitted && categoryForm.get('shortDescription')?.errors"
                                     class="input-text-error">
-                                    <span>Vui lòng nhập mô tả</span>
+                                    <span>Please enter short description</span>
                                 </div>
                             </nz-form-control>
                         </nz-form-item>

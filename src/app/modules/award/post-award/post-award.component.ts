@@ -51,7 +51,6 @@ export class PostAwardComponent implements OnInit {
 
    postAwardFormControl() {
       return this.fb.group({
-         isHot: new FormControl(false, [Validators.required]),
          client: new FormControl("", [Validators.required]),
          title: new FormControl("", [Validators.required]),
          shortDescription: new FormControl("", [Validators.required]),
@@ -107,7 +106,6 @@ export class PostAwardComponent implements OnInit {
             this.shareOfVoice?.push(shareOfVoice)
          }) 
          this.formAward.patchValue({
-            isHot: data?.isHot ? data?.isHot : false,
             title: data.title,
             image: { value: "", preview: data.image },
             detailImage: { value: "", preview: data.detailImage },
@@ -224,20 +222,20 @@ export class PostAwardComponent implements OnInit {
       if (this.formAward.invalid) {
          Object.keys(this.formAward.controls).map((key) => {
             if (this.formAward.controls[key]?.status === "INVALID") {
-               this.msg.create("error", "Vui lòng nhập " + key);
+               this.msg.create("error", "Please enter " + key);
             }
          });
          return;
       }
       for(let [index, item] of galleries.entries()){
         if(!item.value && !item.preview){
-          this.msg.create("error", "Vui lòng nhập hình ảnh gallery " + (index + 1));
+          this.msg.create("error", "Please enter gallery " + (index + 1));
           return;
         }
       }
       for(let [index, item] of socials.entries()){
         if(!item.value && !item.preview){
-          this.msg.create("error", "Vui lòng nhập hình ảnh social " + (index + 1));
+          this.msg.create("error", "Please enter social " + (index + 1));
           return;
         }
       }

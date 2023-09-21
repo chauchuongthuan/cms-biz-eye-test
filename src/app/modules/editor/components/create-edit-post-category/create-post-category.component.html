@@ -9,8 +9,8 @@
             <nz-form-control>
               <nz-form-label [nzSpan]="'vertical'">Trạng thái <span class="required">(*)</span></nz-form-label>
               <nz-select ngDefaultControl formControlName="active" [(ngModel)]="this.dataActive">
-                <nz-option [nzValue]="false" nzLabel="Tạm khoá"></nz-option>
-                <nz-option [nzValue]="true" nzLabel="Hoạt động"></nz-option>
+                <nz-option [nzValue]="false" nzLabel="Locked"></nz-option>
+                <nz-option [nzValue]="true" nzLabel="Active"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>
@@ -23,7 +23,7 @@
                 <input formControlName="sortOrder" [ngClass]="submitted && categoryForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''" nz-input placeholder="Thứ tự" type="number" min="1" step="1"/>
               </nz-input-group>
               <div *ngIf="submitted && categoryForm.get('sortOrder')?.errors" class="input-text-error">
-                <span>Vui lòng nhập số thứ tự</span>
+                <span>Please enter số thứ tự</span>
               </div>
             </nz-form-control>
           </nz-form-item>
@@ -38,7 +38,7 @@
                 <input formControlName="title" [ngClass]="submitted && categoryForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''" nz-input placeholder="Tiêu đề" (ngModelChange)="onChangeTitle('vi')"/>
               </nz-input-group>
               <div *ngIf="submitted && categoryForm.get('title')?.errors" class="input-text-error">
-                <span>Vui lòng nhập tên tiêu đề</span>
+                <span>Please enter tên tiêu đề</span>
               </div>
             </nz-form-control>
           </nz-form-item>
@@ -48,7 +48,7 @@
             <nz-form-control>
               <nz-form-label [nzSpan]="'vertical'">Slug <span class="required">(*)</span></nz-form-label>
               <nz-input-group>
-                <input class="disabled-ip" formControlName="slug" nz-input placeholder="Tên slug" readonly/>
+                <input class="disabled-ip" formControlName="slug" nz-input placeholder="Slug" readonly/>
               </nz-input-group>
             </nz-form-control>
           </nz-form-item>
@@ -61,7 +61,7 @@
                 <textarea [ngClass]="submitted && categoryForm.get('shortDescription')?.errors ? 'ant-input-status-error ng-invalid' : ''" rows="4" formControlName="shortDescription" nz-input></textarea>
               </nz-textarea-count>
               <div *ngIf="submitted && categoryForm.get('shortDescription')?.errors" class="input-text-error">
-                <span>Vui lòng nhập mô tả</span>
+                <span>Please enter mô tả</span>
               </div>
             </nz-form-control>
           </nz-form-item>

@@ -9,9 +9,9 @@
       nzTableLayout="fixed" [nzLoading]="tableLoading" nzShowSizeChanger [nzFrontPagination]="false">
       <thead>
          <tr>
-            <th [nzSortFn]="true" [nzColumnKey]="'name'">Tên</th>
-            <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Ngày tạo</th>
-            <th>Hành động</th>
+            <th [nzSortFn]="true" [nzColumnKey]="'name'">Page Name</th>
+            <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
+            <th>Action</th>
          </tr>
       </thead>
       <tbody *ngIf="listPage?.length > 0">
@@ -22,12 +22,12 @@
                <td>
                   <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[8px]"
                      (click)="onEdit(data)" nz-popconfirm>
-                     Chỉnh sửa
+                     Edit
                   </a>
-                  <a class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                  <!-- <a class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
                      (click)="onEdit(data)" nz-popconfirm>
                      Xóa
-                  </a>
+                  </a> -->
                </td>
             </tr>
          </ng-container>

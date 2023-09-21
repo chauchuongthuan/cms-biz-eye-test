@@ -31,27 +31,27 @@
                     <th [nzSortFn]="true" [nzColumnKey]="'description'">Short Description</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'active'">Status</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
-                    <th>Hành động</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody *ngIf="listCategory?.length > 0">
                 <ng-container *ngFor="let data of tableCategory.data">
                     <tr>
                         <td>{{ data.title }}</td>
-                        <td>{{ data.description }}</td>
+                        <td>{{ data.shortDescription }}</td>
                         <td>
-                            <nz-tag [nzColor]="'red'" *ngIf="!data.active">Tạm khoá</nz-tag>
-                            <nz-tag [nzColor]="'green'" *ngIf="data.active">Hoạt động</nz-tag>
+                            <nz-tag [nzColor]="'red'" *ngIf="!data.active">Locked</nz-tag>
+                            <nz-tag [nzColor]="'green'" *ngIf="data.active">Active</nz-tag>
                         </td>
                         <td>{{ data.createdAt }}</td>
                         <td>
                             <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
                                 (click)="onEdit(data)" nz-popconfirm>
-                                Chỉnh sửa
+                                Edit
                             </a>
                             <a nz-popconfirm
                                 class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
-                                [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'"
+                                [nzPopconfirmTitle]="'Are you sure you want to delete?'"
                                 nzPopconfirmPlacement="bottom" (nzOnConfirm)="onDelete(data.id)">
                                 <span nz-icon nzType="delete"></span>
                             </a>

@@ -1,9 +1,9 @@
 <!-- <button nz-button nzType="primary" (click)="showLarge()">
   <span nz-icon nzType="plus"></span>
-  Tạo mới
+  Create
 </button> -->
 <a class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]" (click)="showLarge()">
-  Tạo mới
+  Create
 </a>
 <app-digitop-drawer [title]="state + ' khách hàng'" [visible]="visible" [size]="size" (onConfirm)="confirmDrawer()"
   (onLeave)="close()">
@@ -42,10 +42,10 @@
                     nz-input placeholder="SĐT" />
                 </nz-input-group>
                 <div *ngIf="submitted && customerForm.get('phone')?.errors?.['required']" class="input-text-error">
-                  <span>Vui lòng nhập SĐT</span>
+                  <span>Please enter SĐT</span>
                 </div>
                 <div *ngIf="submitted && (customerForm.get('phone')?.errors?.['pattern'] || customerForm.get('phone')?.errors?.['minlength'] || customerForm.get('phone')?.errors?.['maxlength'])" class="input-text-error">
-                  <span>Vui lòng nhập định dạng SĐT</span>
+                  <span>Please enter định dạng SĐT</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -60,7 +60,7 @@
                     nzLabel="{{gender.name}}"></nz-option>
                 </nz-select>
                 <div *ngIf="submitted && customerForm.get('gender')?.errors" class="input-text-error">
-                  <span>Vui lòng chọn danh xưng</span>
+                  <span>Please select danh xưng</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -77,7 +77,7 @@
                     nz-input placeholder="Tên" />
                 </nz-input-group>
                 <div *ngIf="submitted && customerForm.get('name')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập tên</span>
+                  <span>Please enter tên</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -92,10 +92,10 @@
                     nz-input placeholder="Email" />
                 </nz-input-group>
                 <div *ngIf="submitted && customerForm.get('email')?.errors?.['required']" class="input-text-error">
-                  <span>Vui lòng nhập email</span>
+                  <span>Please enter email</span>
                 </div>
                 <div *ngIf="submitted && customerForm.get('email')?.errors?.['pattern']" class="input-text-error">
-                  <span>Vui lòng nhập định dạng email</span>
+                  <span>Please enter định dạng email</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -112,7 +112,7 @@
                     nz-input placeholder="Password" type="password" />
                 </nz-input-group>
                 <div *ngIf="submitted && customerForm.get('password')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập password</span>
+                  <span>Please enter password</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -127,7 +127,7 @@
                     nz-input placeholder="Confirm password" />
                 </nz-input-group>
                 <div *ngIf="submitted && customerForm.get('confirmPassword')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập confirm password</span>
+                  <span>Please enter confirm password</span>
                 </div>
                 <div *ngIf="submitted && (customerForm.controls['confirmPassword'].value !== customerForm.controls['password'].value)" class="input-text-error">
                   <span>Mật khẩu không trùng khớp</span>

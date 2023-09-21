@@ -67,7 +67,7 @@ export class EditorChatGptComponent implements OnInit {
   }
   chat(){
       if(!this.postForm.value.message){
-        this.notification.error("Error", "Vui lòng nhập câu hỏi", {nzDuration: 2000})
+        this.notification.error("Error", "Please enter câu hỏi", {nzDuration: 2000})
         return;
       }
       let formData = new FormData();
@@ -82,7 +82,7 @@ export class EditorChatGptComponent implements OnInit {
       })
     // else {
     //   if(!this.postForm.value.message_en){
-    //     this.toastService.show("Thất bại!",'Vui lòng nhập lời nhắn!', 'error');
+    //     this.toastService.show("Thất bại!",'Please enter lời nhắn!', 'error');
     //     return;
     //   }
     //   let formData = new FormData();

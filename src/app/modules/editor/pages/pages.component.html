@@ -11,13 +11,13 @@
                 <div class="p-[16px]">
                     <div class="flex">
                         <div class="w-1/12 px-[8px] mb-[16px] tl-p:w-1/2">
-                            <app-digitop-upload [fileList]="[postForm.get('image')?.value]" [title]="'Hình ảnh'"
+                            <app-digitop-upload [fileList]="[postForm.get('image')?.value]" [title]="'Image'"
                                 CENSORSHIP (changeFile)="changeFileUpload($event, 'image')" class="w-full"
                                 [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                         </div>
 
                         <div class="w-1/12 px-[8px] mb-[16px] tl-p:w-1/2">
-                            <app-digitop-upload [fileList]="[postForm.get('imageMb')?.value]" [title]="'Hình mobile'"
+                            <app-digitop-upload [fileList]="[postForm.get('imageMb')?.value]" [title]="'Image Mobile'"
                                 CENSORSHIP class="w-full" (changeFile)="changeFileUpload($event, 'imageMb')"
                                 [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                         </div>
@@ -25,20 +25,20 @@
                     <div class="flex flex-wrap mx-[-8px]">
                         <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
                             <div class="w-12/12">
-                                <label class="labelForm">Tiêu đề bài viết <span class="text-[#ff0000]">*</span></label>
+                                <label class="labelForm">Title <span class="text-[#ff0000]">*</span></label>
                                 <input formControlName="title"
                                     [ngClass]="submitted && postForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                                     class="input-title w-full" nz-input nzSize="large" nzBorderless
-                                    placeholder="Tiêu đề" (ngModelChange)="onChangeTitle('vi')" />
+                                    placeholder="Title" (ngModelChange)="onChangeTitle('vi')" />
                             </div>
                             <div class="w-12/12 pt-[16px] mb-[16px] tl-p:w-full">
-                                <label class="labelForm">Ngày xuất bản <span class="text-[#ff0000]">*</span></label>
+                                <label class="labelForm">Published At <span class="text-[#ff0000]">*</span></label>
                                 <nz-date-picker class="w-full" nzSize="large" ngDefaultControl
                                     formControlName="publishedAt" style="width: 100%"></nz-date-picker>
                             </div>
                         </div>
                         <div class="w-5/12 px-[8px] mb-[16px] tl-p:w-full">
-                            <label class="labelForm">Trạng thái <span class="text-[#ff0000]">*</span></label>
+                            <label class="labelForm">Status <span class="text-[#ff0000]">*</span></label>
                             <nz-select formControlName="status" name="status" [ngModel]="'1'" class="w-full"
                                 nzSize="large">
                                 <nz-option nzValue="1" nzLabel="NEW"></nz-option>
@@ -47,30 +47,30 @@
                                 <nz-option nzValue="4" nzLabel="PUBLISHED"></nz-option>
                             </nz-select>
                             <div class="mt-[16px]">
-                                <label class="labelForm">Thứ tự <span class="text-[#ff0000]">*</span></label>
+                                <label class="labelForm">Sort Order <span class="text-[#ff0000]">*</span></label>
                                 <input formControlName="sortOrder"
                                     [ngClass]="submitted && postForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''"
-                                    nz-input class="w-full" nzSize="large" placeholder="Thứ tự" type="number" min="1"
+                                    nz-input class="w-full" nzSize="large" placeholder="Sort Order" type="number" min="1"
                                     step="1" />
                             </div>
                         </div>
 
                         <div class="w-full px-[8px] mb-[16px]">
-                            <label class="labelForm">Nội dung bài viết <span class="text-[#ff0000]">*</span></label>
+                            <label class="labelForm">Content <span class="text-[#ff0000]">*</span></label>
 
                             <app-digitop-editor class="textEditor w-full" nzSize="large" [initData]="this.dataEditor"
                                 (onChangeData)="onChangeEditor($event)" (onChangeText)="onChangeText($event)"
-                                placeHolder="Nội dung"></app-digitop-editor>
+                                placeHolder="Content"></app-digitop-editor>
                         </div>
 
                         <div class="w-full px-[8px]">
-                            <label class="labelForm">Mô tả bài viết <span class="text-[#ff0000]">*</span></label>
+                            <label class="labelForm">Short Description <span class="text-[#ff0000]">*</span></label>
 
                             <nz-textarea-count>
                                 <textarea class="w-full" nzSize="large" [ngClass]="
                               submitted && postForm.get('shortDescription')?.errors ? 'ant-input-status-error ng-invalid' : ''
                            " rows="4" formControlName="shortDescription" nz-input
-                                    placeholder="Nhập thông tin"></textarea>
+                                    placeholder="Short Description"></textarea>
                             </nz-textarea-count>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                 <div class="p-[16px]">
                     <div class="flex flex-wrap mx-[-8px]">
                         <div class="w-1/12 px-[8px] mb-[16px] tl-p:w-full">
-                            <app-digitop-upload [fileList]="[postForm.get('metaImage')?.value]" [title]="'Hình ảnh'"
+                            <app-digitop-upload [fileList]="[postForm.get('metaImage')?.value]" [title]="'Meta Image'"
                                 CENSORSHIP (changeFile)="changeFileUpload($event, 'metaImage')" class="w-full"
                                 [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
                         </div>
@@ -121,40 +121,42 @@
                         <div class="w-11/12 px-[8px] mb-[16px] tl-p:w-full">
                             <div class="flex flex-wrap mx-[-8px]">
                                 <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
-                                    <label class="labelForm">Tiêu đề <span class="text-[#ff0000]">*</span></label>
+                                    <label class="labelForm">Meta Title <span class="text-[#ff0000]">*</span></label>
                                     <input formControlName="metaTitle" [ngClass]="
                                  submitted && postForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input class="w-full" nzSize="large" placeholder="Nhập thông tin" type="text" />
+                              " nz-input class="w-full" nzSize="large" placeholder="Meta Title" type="text" />
                                 </div>
 
                                 <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
-                                    <label class="labelForm">Từ khóa <span class="text-[#ff0000]">*</span></label>
+                                    <label class="labelForm">Meta Keyword <span class="text-[#ff0000]">*</span></label>
                                     <input formControlName="metaKeyword" [ngClass]="
                                  submitted && postForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input class="w-full" nzSize="large" placeholder="Nhập thông tin" type="text" />
+                              " nz-input class="w-full" nzSize="large" placeholder="Meta Keyword" type="text" />
                                 </div>
 
                                 <div class="w-full px-[8px] mb-[16px]">
-                                    <label class="labelForm">Mô tả <span class="text-[#ff0000]">*</span></label>
+                                    <label class="labelForm">Meta Description <span class="text-[#ff0000]">*</span></label>
                                     <textarea class="w-full" nzSize="large" rows="4" formControlName="metaDescription"
-                                        nz-input placeholder="Nhập thông tin"></textarea>
+                                        nz-input placeholder="Meta Description"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button (click)="onSEO()" class="item btnBlue">Để xuất SEO</button>
+                    <button (click)="onSEO()" class="item btnBlue">SEO Recommendations</button>
                 </div>
             </div>
 
             <div class="listBtn pt-[16px] px-[20px] border-t border-[#f2f2f2]">
                 <div class="flex items-center justify-between">
-                    <button class="item btnGrey">hủy</button>
+                    <button class="item btnGrey" (click)="onCancel()">Cancel</button>
 
                     <div class="flex items-center space-x-[8px]">
-                        <label class="labelForm !mb-0">Bài viết nổi bật</label>
+                        <label class="labelForm !mb-0">Is Feature</label>
                         <nz-switch formControlName="feature"> </nz-switch>
-                        <button (click)="onSave('view')" class="item btnBlue">xem trước</button>
-                        <button (click)="onSave('published')" class="item btnPink">hoàn thành</button>
+                        <label class="labelForm !mb-0">Is Hot</label>
+                        <nz-switch formControlName="isHot"> </nz-switch>
+                        <button (click)="onSave('view')" class="item btnBlue">Review</button>
+                        <button (click)="onSave('published')" class="item btnPink">Save</button>
                     </div>
                 </div>
             </div>
@@ -169,10 +171,10 @@
     <div class="wrap-loading" *ngIf="isLoadingSEO">
         <div class="card">
             <img src="assets/chat.svg" alt="chatcms" style="width: 42px" />
-            <p><b>CHATGPT</b> đang soạn văn bản</p>
+            <p><b>CHATGPT</b> is composing text</p>
             <p>
-                Tips: có thể bạn chưa biết, soạn thảo 1 văn bản bằng ChatGPT sẽ mất
-                khoảng 15s - 30s
+                Tips: You may not know, drafting a document using ChatGPT
+                will take about 15s - 30s.
             </p>
             <div class="loader">
                 <div class="spin"></div>

@@ -1,12 +1,12 @@
 <!-- <button nz-button nzType="primary" (click)="showLarge()">
   <span nz-icon nzType="plus"></span>
-  Tạo mới
+  Create
 </button> -->
 <a
    class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
    (click)="showLarge()"
 >
-   Tạo mới
+   Create
 </a>
 <app-digitop-drawer
    [title]="state + ' liên hệ'"
@@ -34,7 +34,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && contactForm.get('name')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập tên</span>
+                           <span>Please enter tên</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -68,10 +68,10 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && contactForm.get('email')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập email</span>
+                           <span>Please enter email</span>
                         </div>
                         <div *ngIf="submitted && contactForm.get('email')?.errors?.['pattern']" class="input-text-error">
-                           <span>Vui lòng nhập định dạng email</span>
+                           <span>Please enter định dạng email</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -91,7 +91,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && contactForm.get('phone')?.errors?.['required']" class="input-text-error">
-                           <span>Vui lòng nhập số điện thoại</span>
+                           <span>Please enter số điện thoại</span>
                         </div>
                         <div
                            *ngIf="
@@ -102,7 +102,7 @@
                            "
                            class="input-text-error"
                         >
-                           <span>Vui lòng nhập định dạng SĐT</span>
+                           <span>Please enter định dạng SĐT</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>

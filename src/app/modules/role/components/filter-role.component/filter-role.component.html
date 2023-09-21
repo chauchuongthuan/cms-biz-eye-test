@@ -3,12 +3,12 @@
       <form [formGroup]="filterForm" class="lg:flex w-full">
          <div class="w-12/12 lg:w-11/12 lg:flex gap-4">
             <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
-               <input nzSize="large" class="w-full" formControlName="name" nz-input type="text" placeholder="Tên Quyền" />
+               <input nzSize="large" class="w-full" formControlName="name" nz-input type="text" placeholder="Role name" />
             </div>
             <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
-               <nz-select nzSize="large" class="w-full" formControlName="active" style="width: 100%" nzPlaceHolder="Trạng thái">
-                  <nz-option nzLabel="Hoạt động" nzValue="true"> </nz-option>
-                  <nz-option nzLabel="Tạm khoá" nzValue="false"> </nz-option>
+               <nz-select nzSize="large" class="w-full" formControlName="active" style="width: 100%" nzPlaceHolder="Status">
+                  <nz-option nzLabel="Active" nzValue="true"> </nz-option>
+                  <nz-option nzLabel="Locked" nzValue="false"> </nz-option>
                </nz-select>
             </div>
             <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
@@ -18,7 +18,7 @@
                   nzFormat="yyyy-MM-dd"
                   formControlName="createdFrom"
                   style="width: 100%"
-                  nzPlaceHolder="Ngày tạo"
+                  nzPlaceHolder="Created At"
                ></nz-date-picker>
             </div>
          </div>
@@ -27,7 +27,7 @@
                class="text-[white] text-[12px] items-center flex justify-center rounded-lg uppercase w-full py-[8px] px-[16px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
                (click)="onApply()"
             >
-               Tìm kiếm
+               Search
             </a>
          </div>
       </form>
@@ -35,7 +35,7 @@
 </div>
 
 <!-- <form [formGroup]="filterForm" style="margin-top: 20px">
-   <h4>Bộ lọc tìm kiếm</h4>
+   <h4>Bộ lọc Search</h4>
    <div nz-row [nzGutter]="16">
       <div nz-col class="gutter-row" [nzSpan]="8">
          <nz-form-item>

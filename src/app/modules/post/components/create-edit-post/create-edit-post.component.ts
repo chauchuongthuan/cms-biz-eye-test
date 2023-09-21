@@ -35,7 +35,7 @@ export class CreateEditPostComponent implements OnInit {
   isEdit: boolean = false;
   openeEditComment: string = "";
   dataEditor: string = "";
-  state: string = "Tạo mới";
+  state: string = "Create";
   idPost: string = "";
   hGutter = 16;
   vGutter = 8;
@@ -79,6 +79,7 @@ export class CreateEditPostComponent implements OnInit {
 
   postFormControl() {
     return this.fb.group({
+      isHot: new FormControl(false, []),
       image: new FormControl({ value: '', preview: null }, []),
       imageMb: new FormControl({ value: '', preview: null }, []),
       feature: new FormControl(true, []),
@@ -107,6 +108,7 @@ export class CreateEditPostComponent implements OnInit {
     this.visible = true;
     this.getComment();
     this.postForm = this.fb.group({
+      isHot: new FormControl(data?.isHot, []),
       feature: new FormControl(data.feature, []),
       status: new FormControl(data.status + "", []),
       image: new FormControl({ value: '', preview: data.image }, []),
@@ -244,7 +246,7 @@ export class CreateEditPostComponent implements OnInit {
   resetForm() {
     this.postForm = this.postFormControl();
     this.submitted = false;
-    this.state = "Tạo mới";
+    this.state = "Create";
     this.isEdit = false;
     this.image = [];
     this.imageMb = [];

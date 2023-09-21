@@ -7,7 +7,7 @@
             href="/admin/post-award"
             class="text-[white] flex w-12/12 h-[44px] lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
          >
-            Tạo mới
+            Create
          </a>
         </div>
     </div>
@@ -35,7 +35,7 @@
                     <th [nzSortFn]="true" [nzColumnKey]="'category'">Category</th>
                     <!-- <th [nzSortFn]="true" [nzColumnKey]="'active'">Status</th> -->
                     <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
-                    <th>Hành động</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody *ngIf="listCategory?.length > 0">
@@ -49,19 +49,19 @@
                         <td>{{ data.client }}</td>
                         <td>{{ data?.category[0]?.title }}</td>
                         <!-- <td>
-                            <nz-tag [nzColor]="'red'" *ngIf="!data.active">Tạm khoá</nz-tag>
-                            <nz-tag [nzColor]="'green'" *ngIf="data.active">Hoạt động</nz-tag>
+                            <nz-tag [nzColor]="'red'" *ngIf="!data.active">Locked</nz-tag>
+                            <nz-tag [nzColor]="'green'" *ngIf="data.active">Active</nz-tag>
                         </td> -->
                         <td>{{ data.createdAt }}</td>
                         <td>
                             <div nz-row class="lg:flex items-center py-[16px] min-w-[230px]">
                                 <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
                                     (click)="goToDetail(data.id)" nz-popconfirm>
-                                    Chỉnh sửa
+                                    Edit
                                 </a>
                                 <a nz-popconfirm
                                     class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
-                                    [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'"
+                                    [nzPopconfirmTitle]="'Are you sure you want to delete?'"
                                     nzPopconfirmPlacement="bottom" (nzOnConfirm)="onDelete(data.id)">
                                     <span nz-icon nzType="delete"></span>
                                 </a>

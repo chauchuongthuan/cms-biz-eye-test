@@ -1,12 +1,12 @@
 <!-- <button nz-button nzType="primary" (click)="showLarge()">
   <span nz-icon nzType="plus"></span>
-  Tạo mới
+  Create
 </button> -->
 <a
    class="text-[white] lg:w-[150px] w-full flex justify-center py-[16px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
    (click)="showLarge()"
 >
-   Tạo mới
+   Create
 </a>
 <app-digitop-drawer [title]="state + ' FAQs'" [visible]="visible" [size]="size" (onConfirm)="confirmDrawer()" (onLeave)="close()">
    <ng-container content>
@@ -42,7 +42,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && customerCareListForm.get('name')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập tên</span>
+                           <span>Please enter tên</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -55,7 +55,7 @@
                            <nz-option *ngFor="let type of typeSelectData" [nzValue]="type.id" [nzLabel]="type.name"></nz-option>
                         </nz-select>
                         <div *ngIf="submitted && customerCareListForm.get('type')?.errors" class="input-text-error">
-                           <span>Vui lòng chọn danh mục</span>
+                           <span>Please select danh mục</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
