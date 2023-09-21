@@ -33,6 +33,7 @@ export class PageAboutComponent implements OnInit {
          imageBannerMobile: new FormControl({ value: null, preview: null }),
          content: new FormControl("", [Validators.required]),
          about: this.fb.array([]),
+         expertise: this.fb.array([]),
          metaImage:  new FormControl({ value: null, preview: null }, [Validators.required]),
          metaTitle:  new FormControl('', [Validators.required]),
          metaKeyword:  new FormControl('', [Validators.required]),
@@ -42,6 +43,10 @@ export class PageAboutComponent implements OnInit {
 
    get abouts(): FormArray {
       return this.form.get("about") as FormArray;
+   }
+
+   get expertise(): FormArray {
+      return this.form.get("expertise") as FormArray;
    }
 
    // Call API get detail page fields to content
@@ -65,6 +70,14 @@ export class PageAboutComponent implements OnInit {
                }),
             );
          });
+         data?.content?.expertise?.forEach((item: { title: any; description: any }) => {
+            this.expertise.push(
+               this.fb.group({                 
+                  title: item.title,
+                  description: item.description,
+               }),
+            );
+         });
       });
    }
 
@@ -83,6 +96,20 @@ export class PageAboutComponent implements OnInit {
    // Remove item in banner in home page
    removeLine(index: number) {
       this.abouts.removeAt(index);
+   }
+
+   addLineExpertise() {
+      this.expertise.push(
+         this.fb.group({
+            title: new FormControl("", [Validators.required]),
+            description: new FormControl("", [Validators.required]),
+         }),
+      );
+   }
+
+   // Remove item in banner in home page
+   removeLineExpertise(index: number) {
+      this.expertise.removeAt(index);
    }
 
    changeFileUpload(data: any, field: string) {
@@ -113,6 +140,7 @@ export class PageAboutComponent implements OnInit {
             imageBannerMobile: this.form.value.imageBannerMobile,
             content: this.form.value.content,
             about: this.form.value.about,
+            expertise: this.form.value.expertise,
          },
          metaImage: this.form.value.metaImage,
          metaDescription: this.form.value.metaDescription,

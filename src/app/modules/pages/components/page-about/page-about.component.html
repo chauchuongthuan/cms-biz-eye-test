@@ -75,13 +75,13 @@
                                 <div class="w-12/12 gap-4">
                                     <div class="w-12/12">
                                         <label class="labelForm">Name</label>
-                                        <input formControlName="name" nz-input class="w-full" nzSize="large"
-                                            placeholder="Name" type="text" />
+                                        <textarea formControlName="name" nz-input class="w-full" nzSize="large"
+                                            placeholder="Name" type="text" class="w-full" nzSize="large" rows="2"></textarea>
                                     </div>
                                     <div class="w-12/12 pt-[8px]">
                                         <label class="labelForm">Role</label>
-                                        <input formControlName="role" nz-input class="w-full" nzSize="large"
-                                            placeholder="role" type="text" />
+                                        <textarea formControlName="role" nz-input class="w-full" nzSize="large"
+                                            placeholder="role" type="text" class="w-full" nzSize="large" rows="2"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -91,16 +91,45 @@
                             </a>
                         </div>
                     </div>
-                </div>
-
+                </div>               
                 <!-- <button (click)="submit()">Submit</button> -->
             </form>
         </div>
+        
         <div
             class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
-            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center"></div>
-            <!-- <a class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]"
-                (click)="submit()">Save</a> -->
+            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Expertise</div>
+            <a (click)="addLineExpertise()"
+                class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
+                Expertise</a>
+        </div>
+        <div class="p-[16px]">
+            <form [formGroup]="form">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div formArrayName="expertise" *ngFor="let expertise of expertise.controls; let i = index" class="relative">
+                        <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
+                            <div class="gap-4 pt-[16px]">                             
+                                <div class="w-12/12 gap-4">
+                                    <div class="w-12/12">
+                                        <label class="labelForm">Title</label>
+                                        <textarea formControlName="title" nz-input class="w-full" nzSize="large"
+                                            placeholder="Title" type="text" class="w-full" nzSize="large" rows="2"></textarea>
+                                    </div>
+                                    <div class="w-12/12 pt-[8px]">
+                                        <label class="labelForm">Description</label>
+                                        <textarea formControlName="description" nz-input class="w-full" nzSize="large"
+                                            placeholder="Description" type="text" class="w-full" nzSize="large" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                                (click)="removeLineExpertise(i)">
+                                <span nz-icon nzType="delete"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
         <div
             class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
