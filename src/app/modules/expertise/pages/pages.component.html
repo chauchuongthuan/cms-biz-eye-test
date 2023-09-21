@@ -27,7 +27,7 @@
             [nzFrontPagination]="false">
             <thead>
                 <tr>
-                    <th [nzSortFn]="true" [nzColumnKey]="'title'">Category Name</th>
+                    <th [nzSortFn]="true" [nzColumnKey]="'title'">Expertise Name</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'description'">Short Description</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'active'">Status</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
@@ -38,7 +38,7 @@
                 <ng-container *ngFor="let data of tableCategory.data">
                     <tr>
                         <td>{{ data.title }}</td>
-                        <td>{{ data.description }}</td>
+                        <td>{{ data.shortDescription }}</td>
                         <td>
                             <nz-tag [nzColor]="'red'" *ngIf="!data.active">Tạm khoá</nz-tag>
                             <nz-tag [nzColor]="'green'" *ngIf="data.active">Hoạt động</nz-tag>

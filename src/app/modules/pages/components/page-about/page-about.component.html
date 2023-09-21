@@ -48,8 +48,8 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div formArrayName="about" *ngFor="let about of abouts.controls; let i = index" class="relative">
                         <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
-                            <div class="gap-4 pt-[16px] xl:flex">
-                                <div class="w-full xl:w-5/12 flex gap-4">
+                            <div class="gap-4 pt-[16px]">
+                                <div class="w-12/12 flex gap-4">
                                     <div class="w-full">
                                         <app-digitop-upload [fileList]="[about.get('bannerImage')?.value]"
                                             [title]="'Desktop Image'" CENSORSHIP class="w-full"
@@ -72,7 +72,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-full xl:w-7/12 gap-4">
+                                <div class="w-12/12 gap-4">
                                     <div class="w-12/12">
                                         <label class="labelForm">Name</label>
                                         <input formControlName="name" nz-input class="w-full" nzSize="large"

@@ -87,7 +87,7 @@
                     <div formArrayName="clients" *ngFor="let line of clients.controls; let i = index" class="relative">
                         <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
                             <div class="gap-4 pt-[16px] flex">
-                                <div class="w-2/12 flex gap-4">
+                                <div class="w-3/12 flex gap-4">
                                     <div class="w-full">
                                         <app-digitop-upload [fileList]="[line.get('bannerImage')?.value]"
                                             [title]="'Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
@@ -99,7 +99,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-10/12 gap-4">
+                                <div class="w-11/12 gap-4">
                                     <div class="w-12/12">
                                         <label class="labelForm">External link</label>
                                         <input formControlName="link" nz-input class="w-full" nzSize="large"

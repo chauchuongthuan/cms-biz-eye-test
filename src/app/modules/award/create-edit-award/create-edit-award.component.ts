@@ -17,7 +17,7 @@ export class CreateEditAwardComponent implements OnInit {
   submitted: boolean = false;
   isEdit: boolean = false;
   dataActive: boolean = true;
-  state: string = "Tạo mới";
+  state: string = "Create";
   id: string = "";
   hGutter = 16;
   vGutter = 8;
@@ -58,7 +58,7 @@ export class CreateEditAwardComponent implements OnInit {
      });
   }
   initData(data: any) {
-     this.state = "Câp nhật";
+     this.state = "Edit";
      this.id = data.id;
      this.isEdit = true;
      this.dataActive = data.active;
@@ -145,7 +145,7 @@ export class CreateEditAwardComponent implements OnInit {
   resetForm() {
      this.categoryForm = this.categoryFormControl();
      this.submitted = false;
-     this.state = "Tạo mới";
+     this.state = "Create";
      this.isEdit = false;
   }
 }

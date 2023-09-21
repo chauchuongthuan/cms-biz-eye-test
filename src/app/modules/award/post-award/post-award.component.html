@@ -56,7 +56,7 @@
                     </div>
                     <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
                         <div class="w-12/12">
-                            <label class="labelForm">Is Host <span class="text-[#ff0000]">*</span></label>
+                            <label class="labelForm">Is Hot </label>
                             <nz-switch formControlName="isHot"> </nz-switch>
                         </div>
                         <!-- <div class="w-12/12 pt-[16px]">
@@ -80,7 +80,7 @@
                                 class="input-title w-full" nz-input nzSize="large" nzBorderless
                                 placeholder="Impressions" />
                         </div> -->
-                        <div class="w-12/12 pt-[16px] flex gap-4">
+                        <div class="w-12/12 pt-[16px] flex gap-4 mb-6">
                             <div class="w-6/12">
                                 <label class="labelForm">Video <span class="text-[#ff0000]">*</span></label>
                                 <input formControlName="video"
@@ -100,8 +100,7 @@
                             <div class="w-6/12">
                                 <nz-form-item>
                                     <nz-form-control>
-                                        <nz-form-label [nzSpan]="'vertical'">Award
-                                            <span class="required">(*)</span></nz-form-label>
+                                        <label class="labelForm">Award <span class="text-[#ff0000]">*</span></label>
                                         <nz-select ngDefaultControl formControlName="award">
                                             <ng-container *ngIf="
                                 award &&
@@ -119,8 +118,7 @@
                             <div class="w-6/12">
                                 <nz-form-item>
                                     <nz-form-control>
-                                        <nz-form-label [nzSpan]="'vertical'">Category
-                                            <span class="required">(*)</span></nz-form-label>
+                                        <label class="labelForm">Category <span class="text-[#ff0000]">*</span></label>
                                         <nz-select ngDefaultControl formControlName="category">
                                             <ng-container *ngIf="
                                     categories &&
@@ -134,12 +132,13 @@
 
                                     </nz-form-control>
                                 </nz-form-item>
-                            </div>
+                            </div>                           
+                        </div>
+                        <div class="flex gap-4">
                             <div class="w-6/12">
                                 <nz-form-item>
                                     <nz-form-control>
-                                        <nz-form-label [nzSpan]="'vertical'">Expertise
-                                            <span class="required">(*)</span></nz-form-label>
+                                        <label class="labelForm">Expertise <span class="text-[#ff0000]">*</span></label>
                                         <nz-select ngDefaultControl formControlName="expertise">
                                             <ng-container *ngIf="
                                   expertise &&
@@ -154,6 +153,7 @@
                                     </nz-form-control>
                                 </nz-form-item>
                             </div>
+                            <div class="w-6/12"></div>
                         </div>
                     </div>
                 </div>
