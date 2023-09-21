@@ -50,7 +50,7 @@ export class CreateEditRoleComponent implements OnInit {
     let checkedList: Array<string> = []
     if(data.permissions) checkedList = Object.keys(data.permissions)
     this.isEdit = action;
-    this.state = 'Chỉnh sửa';
+    this.state = 'Edit';
     this.roleForm = this.fb.group({
       name: new FormControl(data.name, [Validators.required]),
       isAdmin: new FormControl(data.isAdmin, [Validators.required]),

@@ -5,7 +5,7 @@
    Create
 </a>
 <app-digitop-drawer
-   [title]="state + ' quyền'"
+   [title]="state + ' Role'"
    [visible]="visible"
    [size]="size"
    (onConfirm)="confirmDrawer()"
@@ -18,17 +18,17 @@
                <div nz-col class="gutter-row" [nzSpan]="24">
                   <nz-form-item>
                      <nz-form-control>
-                        <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Tên</nz-form-label>
+                        <nz-form-label [nzRequired]="true" [nzSpan]="'vertical'">Role Name</nz-form-label>
                         <nz-input-group>
                            <input
                               formControlName="name"
                               [ngClass]="submitted && roleForm.get('name')?.errors ? 'ant-input-status-error ng-invalid' : ''"
                               nz-input
-                              placeholder="Tên"
+                              placeholder="name"
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && roleForm.get('name')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập tên</span>
+                           <span>Please enter role name</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -48,12 +48,12 @@
                   <div nz-col class="gutter-row" [nzSpan]="24">
                      <nz-form-item>
                         <nz-form-control>
-                           <nz-form-label [nzRequired]="true">Phân quyền</nz-form-label>
+                           <nz-form-label [nzRequired]="true">Permissions</nz-form-label>
                            <div *ngIf="submitted && roleForm.get('checkedList')?.errors" class="input-text-error">
-                              <span>Vui lòng chọn phân quyền</span>
+                              <span>Please select permissions</span>
                            </div>
                            <div nz-row [nzGutter]="16">
-                              <div nz-col nzSpan="24" *ngFor="let permission of permissions">
+                              <div nz-col nzSpan="12" *ngFor="let permission of permissions">
                                  <app-permission
                                     [permission]="permission"
                                     [checkedList]="roleForm.controls['checkedList'].value"

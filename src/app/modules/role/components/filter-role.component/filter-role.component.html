@@ -3,10 +3,10 @@
       <form [formGroup]="filterForm" class="lg:flex w-full">
          <div class="w-12/12 lg:w-11/12 lg:flex gap-4">
             <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
-               <input nzSize="large" class="w-full" formControlName="name" nz-input type="text" placeholder="Tên Quyền" />
+               <input nzSize="large" class="w-full" formControlName="name" nz-input type="text" placeholder="Role name" />
             </div>
             <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
-               <nz-select nzSize="large" class="w-full" formControlName="active" style="width: 100%" nzPlaceHolder="Trạng thái">
+               <nz-select nzSize="large" class="w-full" formControlName="active" style="width: 100%" nzPlaceHolder="Status">
                   <nz-option nzLabel="Active" nzValue="true"> </nz-option>
                   <nz-option nzLabel="Locked" nzValue="false"> </nz-option>
                </nz-select>
@@ -18,7 +18,7 @@
                   nzFormat="yyyy-MM-dd"
                   formControlName="createdFrom"
                   style="width: 100%"
-                  nzPlaceHolder="Ngày tạo"
+                  nzPlaceHolder="Created At"
                ></nz-date-picker>
             </div>
          </div>

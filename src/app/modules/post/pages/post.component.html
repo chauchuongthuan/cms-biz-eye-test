@@ -1,6 +1,6 @@
 <div class="post" #mainScreen>
    <div class="pl-0 w-12/12 flex w-full justify-between items-center">
-      <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">Bài viết ({{ paginator.total }})</h3>
+      <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">News ({{ paginator.total }})</h3>
       <div class="flex justify-end items-center gap-4">
          <a
             (click)="changeMode()"
@@ -62,7 +62,7 @@
             href="/admin/news"
             class="text-[white] flex w-12/12 lg:w-3/12 h-[44px] lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
          >
-            Tạo bài viết
+            Create
          </a>
       </div>
    </div>
@@ -85,12 +85,12 @@
       >
          <thead>
             <tr class="hidden lg:contents">
-               <th [nzColumnKey]="'image'">Hình ảnh</th>
-               <th [nzSortFn]="true" [nzColumnKey]="'title'">Tiêu đề bài viết</th>
-               <th [nzSortFn]="true" [nzColumnKey]="'author'">Tác giả</th>
-               <th [nzSortFn]="true" [nzColumnKey]="'statusText'">Trạng thái</th>
-               <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Ngày tạo</th>
-               <th>Hành động</th>
+               <th [nzColumnKey]="'image'">Image</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'title'">Title</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'author'">Author</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'statusText'">Status</th>
+               <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
+               <th>Action</th>
             </tr>
          </thead>
          <tbody *ngIf="listPost?.length > 0">
@@ -116,7 +116,7 @@
                            (click)="goToDetail(data.id)"
                            nz-popconfirm
                         >
-                           Chỉnh sửa
+                           Edit
                         </a>
                         <a
                            nz-popconfirm
@@ -140,7 +140,7 @@
             <div class="droplist-container w-12/12 lg:w-3/12">
                <div cdkDropList [cdkDropListData]="newPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
                   <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">
-                     Bài viết mới
+                     New
                   </h2>
                   <div class="droplist-list__wrapper">
                      <ng-container *ngFor="let item of newPostList; let i = index">
@@ -152,7 +152,7 @@
                            <div nz-row style="justify-content: space-between" class="drop__footer">
                               <div nz-col>
                                  <div nz-row>
-                                    <button
+                                    <!-- <button
                                        nz-tooltip
                                        nzTooltipTitle="Sửa nhanh"
                                        nz-button
@@ -162,10 +162,10 @@
                                        (click)="goToDetail(item.id)"
                                     >
                                        <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
-                                    </button>
+                                    </button> -->
                                     <button
                                        nz-tooltip
-                                       nzTooltipTitle="Chi tiết"
+                                       nzTooltipTitle="Detail"
                                        nz-button
                                        nzType="default"
                                        style="border: none"
@@ -174,7 +174,7 @@
                                     >
                                        <span nz-icon nzType="align-left" nzTheme="outline"></span>
                                     </button>
-                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                    <!-- <div *ngIf="item.commentCount > 0" title="Comments">
                                        <span
                                           nz-icon
                                           nzType="comment"
@@ -183,10 +183,10 @@
                                           nzTheme="outline"
                                        ></span>
                                        {{ item.commentCount }}
-                                    </div>
+                                    </div> -->
                                  </div>
                               </div>
-                              <div nz-col>
+                              <!-- <div nz-col>
                                  <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
                                     <ng-container *ngFor="let assigned of item.assigned">
                                        <nz-avatar
@@ -205,7 +205,7 @@
                                        ></nz-avatar>
                                     </ng-container>
                                  </div>
-                              </div>
+                              </div> -->
                            </div>
                            <div class="flex">
                               <span class="px-[8px]">|</span>
@@ -218,7 +218,7 @@
             </div>
             <div class="droplist-container w-12/12 lg:w-3/12">
                <div cdkDropList [cdkDropListData]="reviewPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
-                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Xem trước</h2>
+                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">In Review</h2>
                   <div class="droplist-list__wrapper">
                      <ng-container *ngFor="let item of reviewPostList; let i = index">
                         <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
@@ -229,7 +229,7 @@
                            <div nz-row style="justify-content: space-between" class="drop__footer">
                               <div nz-col>
                                  <div nz-row>
-                                    <button
+                                    <!-- <button
                                        nz-tooltip
                                        nzTooltipTitle="Sửa nhanh"
                                        nz-button
@@ -239,10 +239,10 @@
                                        (click)="handleClick(item)"
                                     >
                                        <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
-                                    </button>
+                                    </button> -->
                                     <button
                                        nz-tooltip
-                                       nzTooltipTitle="Chi tiết"
+                                       nzTooltipTitle="Detail"
                                        nz-button
                                        nzType="default"
                                        style="border: none"
@@ -251,7 +251,7 @@
                                     >
                                        <span nz-icon nzType="align-left" nzTheme="outline"></span>
                                     </button>
-                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                    <!-- <div *ngIf="item.commentCount > 0" title="Comments">
                                        <span
                                           nz-icon
                                           nzType="comment"
@@ -260,10 +260,10 @@
                                           nzTheme="outline"
                                        ></span>
                                        {{ item.commentCount }}
-                                    </div>
+                                    </div> -->
                                  </div>
                               </div>
-                              <div nz-col>
+                              <!-- <div nz-col>
                                  <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
                                     <ng-container *ngFor="let assigned of item.assigned">
                                        <nz-avatar
@@ -282,7 +282,7 @@
                                        ></nz-avatar>
                                     </ng-container>
                                  </div>
-                              </div>
+                              </div> -->
                            </div>
                            <div class="flex">
                               <span class="px-[8px]">|</span>
@@ -295,7 +295,7 @@
             </div>
             <div class="droplist-container w-12/12 lg:w-3/12">
                <div cdkDropList [cdkDropListData]="censorshipPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
-                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Kiểm định</h2>
+                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Censorship</h2>
                   <div class="droplist-list__wrapper">
                      <ng-container *ngFor="let item of censorshipPostList; let i = index">
                         <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
@@ -306,7 +306,7 @@
                            <div nz-row style="justify-content: space-between" class="drop__footer">
                               <div nz-col>
                                  <div nz-row>
-                                    <button
+                                    <!-- <button
                                        nz-tooltip
                                        nzTooltipTitle="Sửa nhanh"
                                        nz-button
@@ -316,10 +316,10 @@
                                        (click)="handleClick(item)"
                                     >
                                        <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
-                                    </button>
+                                    </button> -->
                                     <button
                                        nz-tooltip
-                                       nzTooltipTitle="Chi tiết"
+                                       nzTooltipTitle="Detail"
                                        nz-button
                                        nzType="default"
                                        style="border: none"
@@ -328,7 +328,7 @@
                                     >
                                        <span nz-icon nzType="align-left" nzTheme="outline"></span>
                                     </button>
-                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                    <!-- <div *ngIf="item.commentCount > 0" title="Comments">
                                        <span
                                           nz-icon
                                           nzType="comment"
@@ -337,10 +337,10 @@
                                           nzTheme="outline"
                                        ></span>
                                        {{ item.commentCount }}
-                                    </div>
+                                    </div> -->
                                  </div>
                               </div>
-                              <div nz-col>
+                              <!-- <div nz-col>
                                  <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
                                     <ng-container *ngFor="let assigned of item.assigned">
                                        <nz-avatar
@@ -359,11 +359,11 @@
                                        ></nz-avatar>
                                     </ng-container>
                                  </div>
-                              </div>
+                              </div> -->
                            </div>
                            <div class="flex">
-                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
-                              <span class="px-[8px]">|</span>
+                              <!-- <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item?.postCategory?.title }}</span>
+                              <span class="px-[8px]">|</span> -->
                               <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
                            </div>
                         </div>
@@ -373,7 +373,7 @@
             </div>
             <div class="droplist-container w-12/12 lg:w-3/12">
                <div cdkDropList [cdkDropListData]="publishPostList" class="droplist-list" (cdkDropListDropped)="drop($event)">
-                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Công khai</h2>
+                  <h2 class="text-blue-100 text-[16px] font-bold pb-[16px]" style="border-bottom: 1px solid #ccc">Published</h2>
                   <div class="droplist-list__wrapper">
                      <ng-container *ngFor="let item of publishPostList; let i = index">
                         <div class="droplist-box" [cdkDragDisabled]="!this.changeStatus" cdkDrag>
@@ -384,7 +384,7 @@
                            <div nz-row style="justify-content: space-between" class="drop__footer">
                               <div nz-col>
                                  <div nz-row>
-                                    <button
+                                    <!-- <button
                                        nz-tooltip
                                        nzTooltipTitle="Sửa nhanh"
                                        nz-button
@@ -394,10 +394,10 @@
                                        (click)="handleClick(item)"
                                     >
                                        <span nz-icon nzType="thunderbolt" nzTheme="outline"></span>
-                                    </button>
+                                    </button> -->
                                     <button
                                        nz-tooltip
-                                       nzTooltipTitle="Chi tiết"
+                                       nzTooltipTitle="Detail"
                                        nz-button
                                        nzType="default"
                                        style="border: none"
@@ -406,7 +406,7 @@
                                     >
                                        <span nz-icon nzType="align-left" nzTheme="outline"></span>
                                     </button>
-                                    <div *ngIf="item.commentCount > 0" title="Comments">
+                                    <!-- <div *ngIf="item.commentCount > 0" title="Comments">
                                        <span
                                           nz-icon
                                           nzType="comment"
@@ -415,10 +415,10 @@
                                           nzTheme="outline"
                                        ></span>
                                        {{ item.commentCount }}
-                                    </div>
+                                    </div> -->
                                  </div>
                               </div>
-                              <div nz-col>
+                              <!-- <div nz-col>
                                  <div class="droplist-assigned" nz-row [nzGutter]="[10, 10]">
                                     <ng-container *ngFor="let assigned of item.assigned">
                                        <nz-avatar
@@ -437,11 +437,11 @@
                                        ></nz-avatar>
                                     </ng-container>
                                  </div>
-                              </div>
+                              </div> -->
                            </div>
                            <div class="flex">
-                              <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.postCategory.title }}</span>
-                              <span class="px-[8px]">|</span>
+                              <!-- <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item?.postCategory?.title }}</span>
+                              <span class="px-[8px]">|</span> -->
                               <span class="uppercase text-[#4F4F4F] font-semibold"> {{ item.createdAt }}</span>
                            </div>
                         </div>

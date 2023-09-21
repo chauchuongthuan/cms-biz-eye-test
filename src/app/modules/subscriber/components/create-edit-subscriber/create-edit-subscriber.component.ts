@@ -44,7 +44,7 @@ export class CreateEditSubscriberComponent implements OnInit {
 
   dataInit(data: ISubscriber, action: boolean){
     this.isEdit = action;
-    this.state = 'Chỉnh sửa';
+    this.state = 'Edit';
     this.subscriberForm = this.fb.group({
       email: new FormControl(data.email, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
    });

@@ -222,20 +222,20 @@ export class PostAwardComponent implements OnInit {
       if (this.formAward.invalid) {
          Object.keys(this.formAward.controls).map((key) => {
             if (this.formAward.controls[key]?.status === "INVALID") {
-               this.msg.create("error", "Vui lòng nhập " + key);
+               this.msg.create("error", "Please enter " + key);
             }
          });
          return;
       }
       for(let [index, item] of galleries.entries()){
         if(!item.value && !item.preview){
-          this.msg.create("error", "Vui lòng nhập hình ảnh gallery " + (index + 1));
+          this.msg.create("error", "Please enter gallery " + (index + 1));
           return;
         }
       }
       for(let [index, item] of socials.entries()){
         if(!item.value && !item.preview){
-          this.msg.create("error", "Vui lòng nhập hình ảnh social " + (index + 1));
+          this.msg.create("error", "Please enter social " + (index + 1));
           return;
         }
       }

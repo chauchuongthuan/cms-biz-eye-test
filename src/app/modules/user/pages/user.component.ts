@@ -49,20 +49,20 @@ export class UserComponent implements OnInit {
       },
       {
         dataIndex: 'name',
-        name: 'Tên',
+        name: 'Name',
       },
       {
         dataIndex: 'role',
-        name: 'Quyền',
+        name: 'Role',
         isHTML: true,
       },
       {
         dataIndex: "createdAt",
-        name: "Ngày tạo",
+        name: "Created At",
       },
       {
         dataIndex: "action",
-        name: "Hành động",
+        name: "Action",
         listButton: true,
       },
     ],
@@ -115,7 +115,7 @@ export class UserComponent implements OnInit {
             icon: "delete",
             isDanger: true,
             isComfirm: true,
-            tip: "Bạn có chắc muốn xóa?",
+            tip: "Are you sure you want to delete?",
             fn: () => this.onDelete(item.id || item._id),
           },
         ];

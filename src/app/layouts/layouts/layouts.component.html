@@ -80,7 +80,7 @@
             <span nz-icon nzType="bell" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Subscribers</span>
          </li>
-         <li nz-submenu nzTitle="Marketing Mail" nzIcon="notification" class="text-[12px] text-second-100 font-bold"
+         <!-- <li nz-submenu nzTitle="Marketing Mail" nzIcon="notification" class="text-[12px] text-second-100 font-bold"
             routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
                <li nz-menu-item [routerLink]="'interests'">
@@ -93,7 +93,7 @@
                   <a class="text-[12px] text-second-100 font-bold">Mail Schedule</a>
                </li>
             </ul>
-         </li>
+         </li> -->
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'history'"
             routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <span nz-icon nzType="history" nzTheme="outline"></span>
@@ -350,7 +350,7 @@
                            </nz-option>
                         </nz-select>
                         <div *ngIf="submitted && userForm.get('role')?.errors" class="input-text-error">
-                           <span>Vui lòng chọn quyền</span>
+                           <span>Please select quyền</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -376,7 +376,7 @@
                               nz-input placeholder="Tên" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('name')?.errors?.['required']" class="input-text-error">
-                           <span>Vui lòng nhập tên</span>
+                           <span>Please enter tên</span>
                         </div>
                         <div *ngIf="
                               submitted &&
@@ -397,10 +397,10 @@
                               nz-input placeholder="Email" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('email')?.errors?.['required']" class="input-text-error">
-                           <span>Vui lòng nhập email</span>
+                           <span>Please enter email</span>
                         </div>
                         <div *ngIf="submitted && userForm.get('email')?.errors?.['pattern']" class="input-text-error">
-                           <span>Vui lòng nhập định dạng email</span>
+                           <span>Please enter định dạng email</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -418,7 +418,7 @@
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('password')?.errors?.['required']"
                            class="input-text-error">
-                           <span>Vui lòng nhập password</span>
+                           <span>Please enter password</span>
                         </div>
                         <div *ngIf="
                               (submitted && userForm.get('password')?.errors?.['minlength']) ||
@@ -443,7 +443,7 @@
                               " nz-input placeholder="Confirm password" />
                         </nz-input-group>
                         <div *ngIf="submitted && userForm.get('confirmPassword')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập confirm password</span>
+                           <span>Please enter confirm password</span>
                         </div>
                         <div
                            *ngIf="submitted && userForm.controls['confirmPassword'].value !== userForm.controls['password'].value"

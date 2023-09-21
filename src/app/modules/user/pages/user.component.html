@@ -2,7 +2,7 @@
    <nz-row [nzGutter]="16" class="head-table">
       <div nz-col class="gutter-row pl-0 w-12/12 lg:w-6/12">
          <h3 style="padding-top: 6px; padding-left: 0" class="text-[22px] lg:text-[48px] font-bold text-pink-100">
-            QUẢN TRỊ VIÊN ({{ paginator.total }})
+            ADMINISTRATORS ({{ paginator.total }})
          </h3>
       </div>
       <div nz-col class="gutter-row filter-group w-full flex w-12/12 lg:w-6/12 justify-end pl-0 mt-[16px] lg:mt-0">
@@ -16,7 +16,7 @@
             (click)="exportUser()"
          >
             <span nz-icon nzType="download"></span>
-            Xuất excel
+            Export Excel
          </a>
       </div>
    </nz-row>
@@ -62,7 +62,7 @@
                                  (click)="btn.fn()"
                                  nz-popconfirm
                               >
-                                 Xóa
+                                 <span nz-icon nzType="delete"></span>
                               </a>
                               <a
                                  *ngIf="!btn.isComfirm"
@@ -70,7 +70,7 @@
                                  (click)="btn.fn()"
                                  nz-popconfirm
                               >
-                                 Chỉnh sửa
+                                 Edit
                               </a>
                            </div>
                         </div>

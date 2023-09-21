@@ -48,7 +48,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && categoryForm.get('sortOrder')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập số thứ tự</span>
+                           <span>Please enter số thứ tự</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -71,7 +71,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && categoryForm.get('title')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập tên tiêu đề</span>
+                           <span>Please enter tên tiêu đề</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -81,7 +81,7 @@
                      <nz-form-control>
                         <nz-form-label [nzSpan]="'vertical'">Slug <span class="required">(*)</span></nz-form-label>
                         <nz-input-group>
-                           <input class="disabled-ip" formControlName="slug" nz-input placeholder="Tên slug" readonly />
+                           <input class="disabled-ip" formControlName="slug" nz-input placeholder="Slug" readonly />
                         </nz-input-group>
                      </nz-form-control>
                   </nz-form-item>
@@ -103,7 +103,7 @@
                            ></textarea>
                         </nz-textarea-count>
                         <div *ngIf="submitted && categoryForm.get('shortDescription')?.errors" class="input-text-error">
-                           <span>Vui lòng nhập mô tả</span>
+                           <span>Please enter mô tả</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>

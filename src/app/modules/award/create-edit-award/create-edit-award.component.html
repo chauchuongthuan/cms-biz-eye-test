@@ -13,7 +13,7 @@
       <form nz-form [nzLayout]="'inline'" [formGroup]="categoryForm" (ngSubmit)="confirmDrawer()">
         <div nz-row [nzGutter]="[hGutter, vGutter]">
           <div nz-col class="gutter-row" [nzSpan]="24">
-            <app-digitop-upload [fileList]="[categoryForm.get('image')?.value]" [title]="'Hình ảnh'"
+            <app-digitop-upload [fileList]="[categoryForm.get('image')?.value]" [title]="'Image'"
                   CENSORSHIP (changeFile)="changeFileUpload($event, 'image')" class="w-full"
                   [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
           </div>
@@ -22,7 +22,7 @@
           <div nz-col class="gutter-row" [nzSpan]="12">
             <nz-form-item>
               <nz-form-control>
-                <nz-form-label [nzSpan]="'vertical'">Trạng thái <span class="required">(*)</span></nz-form-label>
+                <nz-form-label [nzSpan]="'vertical'">Status <span class="required">(*)</span></nz-form-label>
                 <nz-select ngDefaultControl formControlName="active" [(ngModel)]="this.dataActive">
                   <nz-option [nzValue]="false" nzLabel="Locked"></nz-option>
                   <nz-option [nzValue]="true" nzLabel="Active"></nz-option>
@@ -33,14 +33,14 @@
           <div nz-col class="gutter-row" [nzSpan]="12">
             <nz-form-item>
               <nz-form-control>
-                <nz-form-label [nzSpan]="'vertical'">Thứ tự <span class="required">(*)</span></nz-form-label>
+                <nz-form-label [nzSpan]="'vertical'">Sort Order <span class="required">(*)</span></nz-form-label>
                 <nz-input-group>
                   <input formControlName="sortOrder" [ngClass]="
                                  submitted && categoryForm.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="Thứ tự" type="number" min="1" step="1" />
+                              " nz-input placeholder="Sort Order" type="number" min="1" step="1" />
                 </nz-input-group>
                 <div *ngIf="submitted && categoryForm.get('sortOrder')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập số thứ tự</span>
+                  <span>Please enter sort order</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -48,14 +48,14 @@
           <div nz-col class="gutter-row" [nzSpan]="12">
             <nz-form-item>
               <nz-form-control>
-                <nz-form-label [nzSpan]="'vertical'">Sub title<span class="required">(*)</span></nz-form-label>
+                <nz-form-label [nzSpan]="'vertical'">Sub Title<span class="required">(*)</span></nz-form-label>
                 <nz-input-group>
                   <input formControlName="subTitle" [ngClass]="
                                  submitted && categoryForm.get('subTitle')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="Sub title"/>
+                              " nz-input placeholder="Sub Title"/>
                 </nz-input-group>
                 <div *ngIf="submitted && categoryForm.get('subTitle')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập tên tiêu đề</span>
+                  <span>Please enter sub title</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -70,7 +70,7 @@
                               " nz-input placeholder="2023"/>
                 </nz-input-group>
                 <div *ngIf="submitted && categoryForm.get('year')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập tên tiêu đề</span>
+                  <span>Please enter year</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -82,10 +82,10 @@
                 <nz-input-group>
                   <input formControlName="title" [ngClass]="
                                  submitted && categoryForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="Tiêu đề" (ngModelChange)="onChangeTitle('vi')" />
+                              " nz-input placeholder="Title" (ngModelChange)="onChangeTitle('vi')" />
                 </nz-input-group>
                 <div *ngIf="submitted && categoryForm.get('title')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập tên tiêu đề</span>
+                  <span>Please enter title</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -95,7 +95,7 @@
               <nz-form-control>
                 <nz-form-label [nzSpan]="'vertical'">Slug <span class="required">(*)</span></nz-form-label>
                 <nz-input-group>
-                  <input class="disabled-ip" formControlName="slug" nz-input placeholder="Tên slug" readonly />
+                  <input class="disabled-ip" formControlName="slug" nz-input placeholder="Slug" readonly />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -111,7 +111,7 @@
                   " nz-input placeholder="Client" />
                     </nz-input-group>
                     <div *ngIf="submitted && categoryForm.get('client')?.errors" class="input-text-error">
-                        <span>Client can not blank</span>
+                        <span>Please enter client</span>
                     </div>
                 </nz-form-control>
             </nz-form-item>

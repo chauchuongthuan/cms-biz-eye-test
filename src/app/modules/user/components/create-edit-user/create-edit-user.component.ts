@@ -74,7 +74,7 @@ export class CreateEditUserComponent implements OnInit {
 
   dataInit(data: IUser, action: boolean){
     this.isEdit = action;
-    this.state = 'Chỉnh sửa';
+    this.state = 'Edit';
     if(data.profileImage){
       this.profileImage = [{value: "", preview: data?.profileImage}]
     } else this.profileImage = []

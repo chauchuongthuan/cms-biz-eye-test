@@ -4,18 +4,18 @@
             <div class="w-12/12 lg:w-11/12 lg:flex gap-4 h-[38.1px] overflow-y-hidden">
                 <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
                     <input nzSize="large" class="w-full" formControlName="title" nz-input type="text"
-                        placeholder="Tiêu đề danh mục" />
+                        placeholder="Title" />
                 </div>
                 <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
                     <nz-select nzSize="large" class="w-full" formControlName="active" style="width: 100%"
-                        nzPlaceHolder="Trạng thái">
+                        nzPlaceHolder="Status">
                         <nz-option nzLabel="Active" nzValue="true"> </nz-option>
                         <nz-option nzLabel="Locked" nzValue="false"> </nz-option>
                     </nz-select>
                 </div>
                 <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
                     <nz-date-picker nzSize="large" class="w-full" nzFormat="yyyy-MM-dd" formControlName="createdFrom"
-                        style="width: 100%" nzPlaceHolder="Ngày tạo"></nz-date-picker>
+                        style="width: 100%" nzPlaceHolder="Created At"></nz-date-picker>
                 </div>
             </div>
             <div class="w-12/12 lg:w-1/12 ml-[8px] flex justify-center pt-[16px] lg:pt-0">

@@ -282,7 +282,7 @@ export class EditorComponent implements OnInit {
    onSEO() {
       this.submitted = true;
       if (!this.postForm.value.content) {
-         this.msg.create("error", "Vui lòng nhập nội dung");
+         this.msg.create("error", "Please enter content");
          return;
       }
       let message = `"${this.contentText}"`;
@@ -311,7 +311,7 @@ export class EditorComponent implements OnInit {
       if (this.postForm.invalid && type !== "view") {
          Object.keys(this.postForm.controls).map((key) => {
             if (this.postForm.controls[key]?.status === "INVALID") {
-               this.msg.create("error", "Vui lòng nhập " + key);
+               this.msg.create("error", "Please enter " + key);
             }
          });
          return;
@@ -408,6 +408,10 @@ export class EditorComponent implements OnInit {
       const now = moment();
       const timestamp = moment(datetime);
       return timestamp.fromNow();
+   }
+
+   onCancel(){
+      this.router.navigateByUrl(`/admin/posts`)
    }
 }
 

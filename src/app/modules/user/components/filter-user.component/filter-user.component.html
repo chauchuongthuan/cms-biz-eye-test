@@ -3,10 +3,10 @@
       <form [formGroup]="filterForm" class="lg:flex w-full">
         <div class="w-12/12 lg:w-11/12 lg:flex gap-4">
           <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0"><input nzSize="large" class="w-full" formControlName="email" nz-input type="text" placeholder="Email" /></div>
-          <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0"><input nzSize="large" formControlName="name" nz-input type="text" placeholder="Tên" />
+          <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0"><input nzSize="large" formControlName="name" nz-input type="text" placeholder="Name" />
           </div>
           <div class="w-12/12 lg:w-4/12 pt-[16px] lg:pt-0">
-            <nz-select nzSize="large" formControlName="role" class="w-full" nzPlaceHolder="Quyền">
+            <nz-select nzSize="large" formControlName="role" class="w-full" nzPlaceHolder="Role">
               <nz-option *ngFor="let item of roleList" nzLabel="{{item.name}}" nzValue="{{item.value}}">
               </nz-option>
             </nz-select>

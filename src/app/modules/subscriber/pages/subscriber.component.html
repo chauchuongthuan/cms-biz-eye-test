@@ -1,7 +1,7 @@
 <div class="subscriber" #mainScreen>
    <nz-row [nzGutter]="16" class="head-table">
       <div nz-col class="gutter-row pl-0" [nzSpan]="12">
-         <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">NGƯỜI ĐĂNG KÝ ({{ paginator.total }})</h3>
+         <h3 style="padding-top: 6px; padding-left: 0" class="titlePage">SUBSCRIBERS ({{ paginator.total }})</h3>
       </div>
       <div nz-col class="gutter-row filter-group" [nzSpan]="12">
          <app-create-edit-subscriber #actionComponent (onSuccess)="onSuccess()"></app-create-edit-subscriber>
@@ -12,7 +12,7 @@
          <a class="text-[white] flex w-6/12 lg:w-auto lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] ml-[20px] duration-300"
             (click)="exportExcel()">
             <span nz-icon nzType="download"></span>
-            Xuất excel
+            Export excel
          </a>
       </div>
    </nz-row>

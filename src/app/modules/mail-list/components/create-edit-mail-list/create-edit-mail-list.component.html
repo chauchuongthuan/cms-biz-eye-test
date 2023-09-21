@@ -36,7 +36,7 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && mailListForm.get('name')?.errors?.['required']" class="input-text-error">
-                           <span>Vui lòng nhập tên</span>
+                           <span>Please enter tên</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>
@@ -56,10 +56,10 @@
                            />
                         </nz-input-group>
                         <div *ngIf="submitted && mailListForm.get('email')?.errors?.['required']" class="input-text-error">
-                           <span>Vui lòng nhập email</span>
+                           <span>Please enter email</span>
                         </div>
                         <div *ngIf="submitted && mailListForm.get('email')?.errors?.['pattern']" class="input-text-error">
-                           <span>Vui lòng nhập định dạng email</span>
+                           <span>Please enter định dạng email</span>
                         </div>
                      </nz-form-control>
                   </nz-form-item>

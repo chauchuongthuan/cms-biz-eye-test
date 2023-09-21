@@ -96,7 +96,7 @@
                     nz-input placeholder="Thứ tự" type="number" min="1" step="1" />
                 </nz-input-group>
                 <div *ngIf="submitted && postForm.get('sortOrder')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập số thứ tự</span>
+                  <span>Please enter số thứ tự</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -113,7 +113,7 @@
                     nz-input placeholder="Thời gian đọc"/>
                 </nz-input-group>
                 <div *ngIf="submitted && postForm.get('readTime')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập thời gian đọc</span>
+                  <span>Please enter thời gian đọc</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -128,7 +128,7 @@
                     nz-input placeholder="Tiêu đề" (ngModelChange)="onChangeTitle('vi')" />
                 </nz-input-group>
                 <div *ngIf="submitted && postForm.get('title')?.errors" class="input-text-error">
-                  <span>Vui lòng nhập tên tiêu đề</span>
+                  <span>Please enter tên tiêu đề</span>
                 </div>
               </nz-form-control>
             </nz-form-item>
@@ -138,7 +138,7 @@
               <nz-form-control>
                 <nz-form-label [nzSpan]="'vertical'">Slug <span class="required">(*)</span></nz-form-label>
                 <nz-input-group>
-                  <input formControlName="slug" nz-input placeholder="Tên slug" />
+                  <input formControlName="slug" nz-input placeholder="Slug" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>
@@ -177,7 +177,7 @@
                 <app-digitop-editor [initData]="this.dataEditor"
                   (onChangeData)="onChangeEditor($event)"></app-digitop-editor>
                 <!-- <div *ngIf="submitted && postForm.get('content')?.errors" class="input-text-error">
-                <span>Vui lòng nhập mô tả</span>
+                <span>Please enter mô tả</span>
               </div> -->
               </nz-form-control>
             </nz-form-item>
@@ -192,7 +192,7 @@
                     rows="4" formControlName="shortDescription" nz-input></textarea>
                 </nz-textarea-count>
                 <!-- <div *ngIf="submitted && postForm.get('shortDescription')?.errors" class="input-text-error">
-                <span>Vui lòng nhập mô tả</span>
+                <span>Please enter mô tả</span>
               </div> -->
               </nz-form-control>
             </nz-form-item>

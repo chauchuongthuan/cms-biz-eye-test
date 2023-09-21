@@ -23,7 +23,7 @@ export class DigitopEditorComponent implements OnInit {
    // @Output() onChangeEditor = new EventEmitter();
    public config = {
       // width: '100%',
-      placeholder: "Nội dung",
+      placeholder: "Enter content",
       simpleUpload: {
          // The URL that the images are uploaded to.
          uploadUrl: `${environment.BASE_URL}admin/filemanagers/single`,
