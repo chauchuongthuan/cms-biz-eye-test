@@ -59,12 +59,13 @@ export class PageContactComponent implements OnInit {
          this.form.controls['metaDescription'].setValue(data.metaDescription)
          this.metaImage = [{ value: null, preview: data.metaImage }]
 
-         data?.content?.clients?.forEach((item: { title: any; link: any; address: any }) => {
+         data?.content?.clients?.forEach((item: { title: any; link: any; address: any; phone: any }) => {
             this.clients.push(
                this.fb.group({
                   link: item.link,
                   title: item.title,
                   address: item.address,
+                  phone: item.phone,
                }),
             );
          });
@@ -79,6 +80,7 @@ export class PageContactComponent implements OnInit {
             link: "",
             address: "",
             title: "",
+            phone: "",
          }),
       );
    }
