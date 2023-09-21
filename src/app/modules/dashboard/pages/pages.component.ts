@@ -34,27 +34,27 @@ export class DashboardComponent implements OnInit {
         this.single = [...this.single];
         this.single.push(
           {
-            name: "Bài viết",
+            name: "Total Posts",
             value: data.list?.totalPost || 0
           },
           {
-            name: "Bài viết chờ duyệt",
+            name: "Total Review Posts",
             value: data.list?.totalReviewPost || 0
           },
           {
-            name: "Bài viết công khai",
+            name: "Total Publish Posts",
             value: data.list?.totalPublishedPost || 0
           },
           {
-            name: "Người dùng",
+            name: "Total Users",
             value: data.list?.totalUser || 0
           },
           {
-            name: "Lượt truy cập",
+            name: "Access",
             value: parseInt(data.list?.access) || 0
           },
           {
-            name: "Lượt truy cập tháng",
+            name: "Access By Month",
             value: parseInt(data.list?.accessByMonth) || 0
           },
         )

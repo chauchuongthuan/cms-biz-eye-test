@@ -9,8 +9,8 @@
             <nz-form-control>
               <nz-form-label [nzSpan]="'vertical'">Trạng thái <span class="required">(*)</span></nz-form-label>
               <nz-select ngDefaultControl formControlName="active" [(ngModel)]="this.dataActive">
-                <nz-option [nzValue]="false" nzLabel="Tạm khoá"></nz-option>
-                <nz-option [nzValue]="true" nzLabel="Hoạt động"></nz-option>
+                <nz-option [nzValue]="false" nzLabel="Locked"></nz-option>
+                <nz-option [nzValue]="true" nzLabel="Active"></nz-option>
               </nz-select>
             </nz-form-control>
           </nz-form-item>

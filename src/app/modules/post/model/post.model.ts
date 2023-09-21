@@ -3,6 +3,7 @@ export interface IPost {
   author: any
   lastEditor: any
   feature: boolean
+  isHot: boolean
   postCategory: any
   tags: any
   assigned: any

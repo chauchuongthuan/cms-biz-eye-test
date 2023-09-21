@@ -20,7 +20,7 @@ export class CreateEditSubscriberComponent implements OnInit {
   idEdit: string = "";
   messageFile: any = [];
   public subscriberForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
  
@@ -108,7 +108,7 @@ export class CreateEditSubscriberComponent implements OnInit {
   resetForm() {
     this.subscriberForm = this.formControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false
   }
 

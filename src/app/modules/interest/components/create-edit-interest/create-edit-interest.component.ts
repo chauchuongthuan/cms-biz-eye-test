@@ -22,7 +22,7 @@ export class CreateEditInterestComponent implements OnInit {
    idEdit: string = "";
    messageFile: any = [];
    public interestForm!: UntypedFormGroup;
-   public state = "Tạo mới";
+   public state = "Create";
    public visible = false;
    public size: "large" | "default" = "default";
 
@@ -120,7 +120,7 @@ export class CreateEditInterestComponent implements OnInit {
    resetForm() {
       this.interestForm = this.formControl();
       this.submitted = false;
-      this.state = "Tạo mới";
+      this.state = "Create";
       this.isEdit = false;
    }
 

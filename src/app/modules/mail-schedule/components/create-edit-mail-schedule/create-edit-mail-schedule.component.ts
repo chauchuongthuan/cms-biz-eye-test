@@ -26,7 +26,7 @@ export class CreateEditMailScheduleComponent implements OnInit {
    interests: Array<any> = [];
    assignList: Array<any> = [];
    public mailScheduleForm!: UntypedFormGroup;
-   public state = "Tạo mới";
+   public state = "Create";
    public visible = false;
    public size: "large" | "default" = "default";
 
@@ -137,7 +137,7 @@ export class CreateEditMailScheduleComponent implements OnInit {
    resetForm() {
       this.mailScheduleForm = this.formControl();
       this.submitted = false;
-      this.state = "Tạo mới";
+      this.state = "Create";
       this.isEdit = false;
    }
 

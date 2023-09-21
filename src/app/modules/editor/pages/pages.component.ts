@@ -34,7 +34,7 @@ export class EditorComponent implements OnInit {
    isLoadingSEO: boolean = false;
    openeEditComment: string = "";
    dataEditor: string = "";
-   state: string = "Tạo mới";
+   state: string = "Create";
    idPost: string = "";
    hGutter = 16;
    vGutter = 8;
@@ -125,6 +125,7 @@ export class EditorComponent implements OnInit {
          image: new FormControl({ value: "", preview: null }, []),
          imageMb: new FormControl({ value: "", preview: null }, []),
          feature: new FormControl(true, []),
+         isHot: new FormControl(false, []),
          // postCategory: new FormControl("", [Validators.required]),
          status: new FormControl("1", [Validators.required]),
          // tags: new FormControl([], []),
@@ -173,6 +174,8 @@ export class EditorComponent implements OnInit {
          this.postForm.patchValue({
             status: data.status + "",
             title: data.title,
+            feature: data.feature,
+            isHot: data?.isHot,
             image: { value: "", preview: data.image },
             imageMb: { value: "", preview: data.imageMb },
             sortOrder: data.sortOrder,
@@ -364,7 +367,7 @@ export class EditorComponent implements OnInit {
    resetForm() {
       this.postForm = this.postFormControl();
       this.submitted = false;
-      this.state = "Tạo mới";
+      this.state = "Create";
       this.isEdit = false;
       this.image = [];
       this.imageMb = [];

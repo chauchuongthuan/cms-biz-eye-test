@@ -21,7 +21,7 @@ export class CreateEditCustomerCareTypeComponent implements OnInit {
   idEdit: string = "";
   image: any = [];
   public customerCareTypeForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
  
@@ -132,7 +132,7 @@ export class CreateEditCustomerCareTypeComponent implements OnInit {
   resetForm() {
     this.customerCareTypeForm = this.formControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false;
     this.image = [];
   }

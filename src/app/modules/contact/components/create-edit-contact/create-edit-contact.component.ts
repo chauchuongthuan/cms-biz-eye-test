@@ -21,7 +21,7 @@ export class CreateEditContactComponent implements OnInit {
   idEdit: string = "";
   messageFile: any = [];
   public contactForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
  
@@ -137,7 +137,7 @@ export class CreateEditContactComponent implements OnInit {
   resetForm() {
     this.contactForm = this.formControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false;
     this.messageFile = [];
   }

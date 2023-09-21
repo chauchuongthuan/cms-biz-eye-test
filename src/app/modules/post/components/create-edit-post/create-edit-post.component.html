@@ -1,6 +1,6 @@
 <a nz-button nzType="primary" [href]="'/admin/news'">
   <span nz-icon nzType="plus"></span>
-  Tạo mới
+  Create
 </a>
 
 <app-digitop-drawer [title]="state+' bài viết'" [visible]="visible" [size]="size" (onConfirm)="confirmDrawer()"
@@ -75,6 +75,14 @@
                   <nz-option [nzValue]="false" nzLabel="Không"></nz-option>
                   <nz-option [nzValue]="true" nzLabel="Có"></nz-option>
                 </nz-select>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Is hot</nz-form-label>
+                <nz-switch formControlName="isHot"></nz-switch>
               </nz-form-control>
             </nz-form-item>
           </div>

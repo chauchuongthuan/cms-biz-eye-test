@@ -121,7 +121,7 @@
                         <a
                            nz-popconfirm
                            class="text-[white] py-[16px] ml-[8px] px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
-                           [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'"
+                           [nzPopconfirmTitle]="'Are you sure you want to delete?'"
                            nzPopconfirmPlacement="bottom"
                            (nzOnConfirm)="onDelete(data.id)"
                         >
@@ -655,7 +655,7 @@
                   <span nz-icon nzType="edit"></span>
                 </button>
                 <button nz-button nzType="primary" nzDanger nz-popconfirm
-                  [nzPopconfirmTitle]="'Bạn có chắc muốn xoá danh mục này?'" nzPopconfirmPlacement="bottom"
+                  [nzPopconfirmTitle]="'Are you sure you want to delete?'" nzPopconfirmPlacement="bottom"
                   (nzOnConfirm)="onDelete(data.id)">
                   <span nz-icon nzType="delete"></span>
                 </button>

@@ -23,7 +23,7 @@ export class CreateEditMailListComponent implements OnInit {
    messageFile: any = [];
    interests: Array<any> = [];
    public mailListForm!: UntypedFormGroup;
-   public state = "Tạo mới";
+   public state = "Create";
    public visible = false;
    public size: "large" | "default" = "default";
 
@@ -131,7 +131,7 @@ export class CreateEditMailListComponent implements OnInit {
    resetForm() {
       this.mailListForm = this.formControl();
       this.submitted = false;
-      this.state = "Tạo mới";
+      this.state = "Create";
       this.isEdit = false;
    }
 

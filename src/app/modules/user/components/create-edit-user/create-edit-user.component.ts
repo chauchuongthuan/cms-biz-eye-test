@@ -25,7 +25,7 @@ export class CreateEditUserComponent implements OnInit {
   profileImage: any = [];
   public roleList: Array<any> = [];
   public userForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
   public statusValue = true;
@@ -43,7 +43,7 @@ export class CreateEditUserComponent implements OnInit {
   resetForm(): void {
     this.userForm = this.formControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false
   }
 

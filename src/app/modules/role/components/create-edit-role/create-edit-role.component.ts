@@ -21,7 +21,7 @@ export class CreateEditRoleComponent implements OnInit {
   messageFile: any = [];
   @Input() permissions: Array<any>;
   public roleForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
   public isAdmin = true;
@@ -124,7 +124,7 @@ export class CreateEditRoleComponent implements OnInit {
   resetForm() {
     this.roleForm = this.formControl();
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false
   }
   onChecked(data: {checked: boolean, key: string}){

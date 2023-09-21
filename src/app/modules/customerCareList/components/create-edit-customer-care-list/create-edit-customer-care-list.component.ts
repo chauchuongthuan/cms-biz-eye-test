@@ -22,7 +22,7 @@ export class CreateEditCustomerCareListComponent implements OnInit {
   image: any = [];
   dataEditor: string = '';
   public customerCareListForm!: UntypedFormGroup;
-  public state = 'Tạo mới';
+  public state = 'Create';
   public visible = false;
   public size: 'large' | 'default' = 'default';
   public typeSelectData: any = [];
@@ -143,7 +143,7 @@ export class CreateEditCustomerCareListComponent implements OnInit {
   resetForm() {
     this.customerCareListForm = this.formControl();   
     this.submitted = false;
-    this.state = 'Tạo mới';
+    this.state = 'Create';
     this.isEdit = false;
     this.image = [];
   }
