@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { CommonService } from 'src/app/common/services/common.service';
-import { convertToFormData, getFileNameFromPath } from 'src/app/shared/helper';
+import { convertToFormData, convertToFormDataV2, getFileNameFromPath } from 'src/app/shared/helper';
 import { SettingService } from '../service/setting.service';
 @Component({
   selector: 'app-setting',
@@ -68,12 +68,14 @@ export class SettingComponent implements OnInit {
       data?.map((item: any) => {
         let value = item.value
         if(['logo', 'metaImage'].includes(item.name)) {
-          value = {  value: '', preview: item.value || '' }
-          if(item.name == 'logo'){
-            this.logo = [{ value: "", preview: item?.value }];
-          }
-          if(item.name == 'metaImage'){
-            this.metaImage = [{ value: "", preview: item?.value }];
+          if(value != ''){
+            value = {  value: '', preview: item.value || '' }
+            if(item.name == 'logo'){
+              this.logo = [{ value: "", preview: item?.value }];
+            }
+            if(item.name == 'metaImage'){
+              this.metaImage = [{ value: "", preview: item?.value }];
+            }
           }
         }
         if(value && this.form.controls[item.name]){
@@ -113,8 +115,10 @@ export class SettingComponent implements OnInit {
 
   onSave() {
     let values = this.form.value;
-    let data = convertToFormData(values, ['logo', 'metaImage']);
+    let data = convertToFormDataV2(values, ['logo', 'metaImage']);
     ['logo', 'metaImage'].forEach((field) => {
+      console.log("field::", field)
+      console.log("data.get(field)::", data.get(field))
       if(!data.get(field)){
         let name = getFileNameFromPath(this.form.controls[field].value?.preview || '')
         data.set(field, name)
@@ -126,12 +130,14 @@ export class SettingComponent implements OnInit {
       data?.map((item: any) => {
         let value = item.value
         if(['logo', 'metaImage'].includes(item.name)) {
-          value = {  value: '', preview: item.value || '' }
-          if(item.name == 'logo'){
-            this.logo = [{ value: "", preview: item?.value }];
-          }
-          if(item.name == 'metaImage'){
-            this.metaImage = [{ value: "", preview: item?.value }];
+          if(value != ''){
+            value = {  value: '', preview: item.value || '' }
+            if(item.name == 'logo'){
+              this.logo = [{ value: "", preview: item?.value }];
+            }
+            if(item.name == 'metaImage'){
+              this.metaImage = [{ value: "", preview: item?.value }];
+            }
           }
         }
         if(value && this.form.controls[item.name]){
