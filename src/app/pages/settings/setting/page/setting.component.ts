@@ -47,7 +47,8 @@ export class SettingComponent implements OnInit {
       name: new FormControl('', []),
       address: new FormControl('', []),
       linkWebsite: new FormControl('', []),
-      linkFacebook: new FormControl('', []),
+      facebookLink: new FormControl('', []),
+      facebookText: new FormControl('', []),
       logo: new FormControl({ value: "", preview: null }, []),
       
       metaDescription: new FormControl('', []),
