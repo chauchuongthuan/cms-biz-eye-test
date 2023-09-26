@@ -34,6 +34,12 @@
                         </div>
                         <div class="w-12/12 pt-[16px]">
                             <label class="labelForm">Description <span class="text-[#ff0000]">*</span></label>
+                                <input formControlName="description"
+                                    [ngClass]="submitted && formAward.get('description')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                                    class="input-title w-full" nz-input nzSize="large" nzBorderless placeholder="Description"/>
+                        </div>
+                        <div class="w-12/12 pt-[16px]">
+                            <label class="labelForm">Description <span class="text-[#ff0000]">*</span></label>
                             <app-digitop-editor class="textEditor w-full" nzSize="large"
                                 [initData]="formAward.get('shortDescription')?.value"
                                 (onChangeData)="onChangeEditor($event, 'shortDescription')"
@@ -149,7 +155,9 @@
                                     </nz-form-control>
                                 </nz-form-item>
                             </div>
-                            <div class="w-6/12"></div>
+                            <div class="w-6/12">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
