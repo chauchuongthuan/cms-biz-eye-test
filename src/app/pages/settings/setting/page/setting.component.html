@@ -1,7 +1,7 @@
 <ng-container content>
     <nz-spin [nzSpinning]="isLoading">
         <form nz-form [nzLayout]="'inline'" [formGroup]="form" (ngSubmit)="onSave()">
-            <nz-tabset>
+            <nz-tabset class="w-full">
                 <nz-tab nzTitle="Website Information" (nzSelect)="tabNum = 1">
                     <div nz-row [nzGutter]="[hGutter, vGutter]">
                         <div nz-col class="gutter-row" *ngIf="!isLoading" [nzSpan]="12">
@@ -40,7 +40,7 @@
                                 <nz-form-control>
                                     <nz-form-label [nzSpan]="'vertical'"> Website text </nz-form-label>
                                     <nz-input-group>
-                                        <input formControlName="websiteText" nz-input placeholder="websiteText" />
+                                        <input formControlName="websiteText" nz-input placeholder="Website text" />
                                     </nz-input-group>
                                 </nz-form-control>
                             </nz-form-item>
@@ -50,17 +50,7 @@
                                 <nz-form-control>
                                     <nz-form-label [nzSpan]="'vertical'">Website link </nz-form-label>
                                     <nz-input-group>
-                                        <input formControlName="websiteLink" nz-input placeholder="linkWebsite" />
-                                    </nz-input-group>
-                                </nz-form-control>
-                            </nz-form-item>
-                        </div>
-                        <div nz-col class="gutter-row" [nzSpan]="12">
-                            <nz-form-item>
-                                <nz-form-control>
-                                    <nz-form-label [nzSpan]="'vertical'">Facebook Link </nz-form-label>
-                                    <nz-input-group>
-                                        <input formControlName="facebookLink" nz-input placeholder="Link facebook" />
+                                        <input formControlName="websiteLink" nz-input placeholder="Link website" />
                                     </nz-input-group>
                                 </nz-form-control>
                             </nz-form-item>
@@ -75,6 +65,16 @@
                                 </nz-form-control>
                             </nz-form-item>
                         </div>
+                        <div nz-col class="gutter-row" [nzSpan]="12">
+                            <nz-form-item>
+                                <nz-form-control>
+                                    <nz-form-label [nzSpan]="'vertical'">Facebook Link </nz-form-label>
+                                    <nz-input-group>
+                                        <input formControlName="facebookLink" nz-input placeholder="Link facebook" />
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>              
                         <div nz-col class="gutter-row" [nzSpan]="24">
                             <nz-form-item>
                                 <nz-form-control>
