@@ -217,7 +217,6 @@ export class PostAwardComponent implements OnInit {
       this.submitted = true;
       
       const data = this.formAward.value;
-      console.log("data submit::", data);
       let galleries: any[] = this.formAward.controls["gallery"].value;
       let socials: any[] = this.formAward.controls["social"].value;
 
