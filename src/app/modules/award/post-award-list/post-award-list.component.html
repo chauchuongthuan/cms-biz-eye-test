@@ -18,6 +18,7 @@
         <nz-table 
         (nzQueryParams)="tableChange($event)"
         #tableCategory
+        [nzScroll]="{ y: 'calc(100vh - 310px)' }"
         [nzTotal]="paginator.total"
         [nzPageSize]="paginator.limit"
         [nzPageIndex]="paginator.currentPage"
@@ -28,7 +29,7 @@
         nzShowSizeChanger
         [nzFrontPagination]="false">
             <thead>
-                <tr class="hidden lg:contents">
+                <tr class="lg:contents">
                     <th [nzSortFn]="true" [nzColumnKey]="'image'">Image</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'title'">Title</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'client'">Client</th>
@@ -40,8 +41,8 @@
             </thead>
             <tbody *ngIf="listCategory?.length > 0">
                 <ng-container *ngFor="let data of tableCategory.data" class="flex lg:contents">
-                    <tr class="flex lg:table-row">
-                        <td class="lg:w-full w-[120px]">
+                    <tr>
+                        <td >
                             <img style="width: 100px; cursor: pointer" nz-image [nzSrc]="data.image" *ngIf="data.image"
                                 alt="" />
                         </td>
@@ -54,7 +55,7 @@
                         </td> -->
                         <td>{{ data.createdAt }}</td>
                         <td>
-                            <div nz-row class="lg:flex items-center py-[16px] min-w-[230px]">
+                            <div nz-row>
                                 <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
                                     (click)="goToDetail(data.id)" nz-popconfirm>
                                     Edit
