@@ -34,6 +34,7 @@
                     <th [nzSortFn]="true" [nzColumnKey]="'title'">Title</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'client'">Client</th>
                     <th [nzSortFn]="true" [nzColumnKey]="'category'">Category</th>
+                    <th [nzSortFn]="true" [nzColumnKey]="'sortOrder'">Sort Order</th>
                     <!-- <th [nzSortFn]="true" [nzColumnKey]="'active'">Status</th> -->
                     <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
                     <th>Action</th>
@@ -49,6 +50,7 @@
                         <td>{{data?.title}}</td>
                         <td>{{ data.client }}</td>
                         <td>{{ data?.category[0]?.title }}</td>
+                        <td>{{ data?.sortOrder }}</td>
                         <!-- <td>
                             <nz-tag [nzColor]="'red'" *ngIf="!data.active">Locked</nz-tag>
                             <nz-tag [nzColor]="'green'" *ngIf="data.active">Active</nz-tag>

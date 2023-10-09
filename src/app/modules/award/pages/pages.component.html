@@ -37,9 +37,10 @@
           <thead>
               <tr class="lg:contents">
                   <th [nzSortFn]="true" [nzColumnKey]="'title'">Title</th>
-                  <th [nzSortFn]="true" [nzColumnKey]="'description'">Sub Title</th>
-                  <th [nzSortFn]="true" [nzColumnKey]="'description'">Client</th>
-                  <th [nzSortFn]="true" [nzColumnKey]="'description'">Year</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'subTitle'">Sub Title</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'client'">Client</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'sortOrder'">Sort Order</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'year'">Year</th>
                   <th [nzSortFn]="true" [nzColumnKey]="'active'">Status</th>
                   <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
                   <th>Action</th>
@@ -51,6 +52,7 @@
                       <td>{{ data.title }}</td>
                       <td>{{ data.subTitle }}</td>
                       <td>{{ data.client }}</td>
+                      <td>{{ data.sortOrder }}</td>
                       <td>{{ data.year }}</td>
                       <td>
                           <nz-tag [nzColor]="'red'" *ngIf="!data.active">Locked</nz-tag>

@@ -156,7 +156,11 @@
                                 </nz-form-item>
                             </div>
                             <div class="w-6/12">
-                                
+                                <label class="labelForm">Sort Order <span class="text-[#ff0000]">*</span></label>
+                                <input formControlName="sortOrder"
+                                    [ngClass]="submitted && formAward.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                                    class="input-title w-full" nz-input type="number"
+                                    placeholder="Sort Order" />
                             </div>
                         </div>
                     </div>
@@ -271,16 +275,12 @@
                                 <div class="flex flex-wrap mx-[-8px]">
                                     <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
                                         <label class="labelForm">Meta Title </label>
-                                        <input formControlName="metaTitle" [ngClass]="
-                             submitted && formAward.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                          " nz-input class="w-full" nzSize="large" placeholder="Meta Title" type="text" />
+                                        <input formControlName="metaTitle" nz-input class="w-full" nzSize="large" placeholder="Meta Title" type="text" />
                                     </div>
 
                                     <div class="w-1/2 px-[8px] mb-[16px] tl-p:w-full">
                                         <label class="labelForm">Meta Keyword </label>
-                                        <input formControlName="metaKeyword" [ngClass]="
-                             submitted && formAward.get('sortOrder')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                          " nz-input class="w-full" nzSize="large" placeholder="Meta Keyword" type="text" />
+                                        <input formControlName="metaKeyword" nz-input class="w-full" nzSize="large" placeholder="Meta Keyword" type="text" />
                                     </div>
 
                                     <div class="w-full px-[8px] mb-[16px]">
