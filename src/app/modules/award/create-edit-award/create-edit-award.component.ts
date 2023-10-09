@@ -22,6 +22,7 @@ export class CreateEditAwardComponent implements OnInit {
   hGutter = 16;
   vGutter = 8;
   metaImage: any = [];
+  image: any = [];
   public titleSlug: string = "";
   public expandSet = new Set<number>();
   public categoryForm!: UntypedFormGroup;
@@ -64,6 +65,8 @@ export class CreateEditAwardComponent implements OnInit {
      this.dataActive = data.active;
      if (data.metaImage) this.metaImage = [{ value: "", preview: data.metaImage }];
      else this.metaImage = [];
+     if (data.image) this.image = [{ value: "", preview: data.image }];
+     else this.image = [];
      this.categoryForm = this.fb.group({
         active: new FormControl(data.active, [Validators.required]),
         image: new FormControl({ value: "", preview: data?.image }, []),
