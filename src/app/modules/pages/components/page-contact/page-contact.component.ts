@@ -17,6 +17,7 @@ export class PageContactComponent implements OnInit {
    public metaImage: any = [];
    public bannerClient: any = [];
    public submitted: boolean = false;
+   public isLoading: boolean = false;
    public dataType: string = "images";
    public id: any = "";
    constructor(
@@ -119,6 +120,7 @@ export class PageContactComponent implements OnInit {
       if (this.form.invalid) {
          return;
       }
+      this.isLoading = true;
       console.log(this.form.value);
       const data = {
          content: {
@@ -133,6 +135,7 @@ export class PageContactComponent implements OnInit {
 
       this.pageService.editorPage(formData, this.id).subscribe((data) => {
          console.log(data);
+         this.isLoading = false;
       });
    }
 }

@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@ang
 import { PageService } from "../../services/page.service";
 import { convertToFormDataV2 } from "src/app/shared/helper";
 import { ActivatedRoute } from "@angular/router";
+import { NzMessageService } from "ng-zorro-antd/message";
 
 @Component({
    selector: "app-page-home",
@@ -19,10 +20,12 @@ export class PageHomeComponent implements OnInit {
    public submitted: boolean = false;
    public dataType: string = "images";
    public id: any = "";
+   public isLoading: boolean = false;
    constructor(
       private fb: FormBuilder,
       private pageService: PageService,
       private router: ActivatedRoute,
+      private msg: NzMessageService,
    ) {
       const id = router.snapshot.queryParamMap.get("id");
       this.id = id;
@@ -140,6 +143,14 @@ export class PageHomeComponent implements OnInit {
       if (this.form.invalid) {
          return;
       }
+      let heroBanners: any[] = this.form.controls["heroBanner"].value;
+      for(let [index, item] of heroBanners.entries()){
+         if(!item.type || item.type == ""){
+           this.msg.create("error", "Please select type of hero banner " + (index + 1));
+           return;
+         }
+       }
+      this.isLoading = true;
       console.log(this.form.value);
       const data = {
          content: {
@@ -156,6 +167,7 @@ export class PageHomeComponent implements OnInit {
 
       this.pageService.editorPage(formData, this.id).subscribe((data) => {
          console.log(data);
+         this.isLoading = false;
       });
    }
 }

@@ -1,187 +1,190 @@
-<div class="block w-full">
-    <div class="w-full mb-[30px]">
-        <h3 class="titlePage">Editor About</h3>
-    </div>
-
-    <div class="bg-[white] py-[16px] rounded-[10px]">
-        <div class="postContent">
-            <div class="border-b border-[#f2f2f2] flex justify-between items-center">
-                <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">About</div>
-            </div>
-            <div class="p-[16px]">
-                <form class="flex" [formGroup]="form">
-                    <div class="w-1/12 gap-4">
-                        <div class="w-full">
-                            <app-digitop-upload [fileList]="[form.get('imageBanner')?.value]" [title]="'Desktop Image'"
-                                CENSORSHIP class="w-full" (changeFile)="changeFileUpload($event, 'imageBanner')"
-                                [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
-                            <div *ngIf="submitted && form.get('imageBanner')?.errors" class="input-text-error">
-                                <span>Image not blank</span>
-                            </div>
-                        </div>
-                        <div class="w-full pt-[16px]">
-                            <app-digitop-upload [fileList]="[form.get('imageBannerMobile')?.value]"
-                                [title]="'Mobile Image'" CENSORSHIP class="w-full"
-                                (changeFile)="changeFileUpload($event,'imageBannerMobile')" [isUsingFormArray]="true"
-                                [multiple]="false"></app-digitop-upload>
-                            <div *ngIf="submitted && form.get('imageBannerMobile')?.errors" class="input-text-error">
-                                <span>Image not blank</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-11/12 gap-4">
-                        <app-digitop-editor [initData]="form.get('content')?.value"
-                            (onChangeData)="onChangeEditor($event)"></app-digitop-editor>
-                    </div>
-                </form>
-            </div>
+<nz-spin [nzSpinning]="isLoading">
+    <div class="block w-full">
+        <div class="w-full mb-[30px]">
+            <h3 class="titlePage">Editor About</h3>
         </div>
-        <div
-            class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
-            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Our People</div>
-            <a (click)="addLine()"
-                class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
-                Client</a>
-        </div>
-        <div class="p-[16px]">
-            <form [formGroup]="form">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div formArrayName="about" *ngFor="let about of abouts.controls; let i = index" class="relative">
-                        <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
-                            <div class="gap-4 pt-[16px]">
-                                <div class="w-12/12 flex gap-4">
-                                    <div class="w-full">
-                                        <app-digitop-upload [fileList]="[about.get('bannerImage')?.value]"
-                                            [title]="'Desktop Image'" CENSORSHIP class="w-full"
-                                            [isUsingFormArray]="true"
-                                            (changeFile)="changeFileUploadForm($event,i, 'bannerImage')"
-                                            [multiple]="false"></app-digitop-upload>
-                                        <div *ngIf="submitted && about.get('bannerImage')?.errors"
-                                            class="input-text-error">
-                                            <span>Image not blank</span>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <app-digitop-upload [fileList]="[about.get('bannerImageMobile')?.value]"
-                                            [title]="'Mobile Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
-                                            (changeFile)="changeFileUploadForm($event,i, 'bannerImageMobile')"
-                                            [multiple]="false"></app-digitop-upload>
-                                        <div *ngIf="submitted && about.get('bannerImageMobile')?.errors"
-                                            class="input-text-error">
-                                            <span>Image not blank</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-12/12 gap-4">
-                                    <div class="w-12/12">
-                                        <label class="labelForm">Name</label>
-                                        <textarea formControlName="name" nz-input class="w-full" nzSize="large"
-                                            placeholder="Name" type="text" rows="2"></textarea>
-                                    </div>
-                                    <div class="w-12/12 pt-[8px]">
-                                        <label class="labelForm">Role</label>
-                                        <textarea formControlName="role" nz-input class="w-full" nzSize="large"
-                                            placeholder="role" type="text" rows="2"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
-                                (click)="removeLine(i)">
-                                <span nz-icon nzType="delete"></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>               
-                <!-- <button (click)="submit()">Submit</button> -->
-            </form>
-        </div>
-        
-        <div
-            class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
-            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Expertise</div>
-            <a (click)="addLineExpertise()"
-                class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
-                Expertise</a>
-        </div>
-        <div class="p-[16px]">
-            <form [formGroup]="form">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div formArrayName="expertise" *ngFor="let expertise of expertise.controls; let i = index" class="relative">
-                        <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
-                            <div class="gap-4 pt-[16px]">                             
-                                <div class="w-12/12 gap-4">
-                                    <div class="w-12/12">
-                                        <label class="labelForm">Title</label>
-                                        <textarea formControlName="title" nz-input class="w-full" nzSize="large"
-                                            placeholder="Title" type="text" rows="2"></textarea>
-                                    </div>
-                                    <div class="w-12/12 pt-[8px]">
-                                        <label class="labelForm">Description</label>
-                                        <textarea formControlName="description" nz-input class="w-full" nzSize="large"
-                                            placeholder="Description" type="text" rows="4"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
-                                (click)="removeLineExpertise(i)">
-                                <span nz-icon nzType="delete"></span>
-                            </a>
-                        </div>
-                    </div>
+    
+        <div class="bg-[white] py-[16px] rounded-[10px]">
+            <div class="postContent">
+                <div class="border-b border-[#f2f2f2] flex justify-between items-center">
+                    <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">About</div>
                 </div>
-            </form>
-        </div>
-        <div
-            class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
-            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">SEO</div>
-        </div>
-        <div class="p-[16px] w-full">
-            <form [formGroup]="form">
-                <div class="grid grid-cols-1 ">
-                    <div class="gap-4 pt-[16px] flex w-full">
-                        <div class="w-1/12 flex gap-4">
+                <div class="p-[16px]">
+                    <form class="flex" [formGroup]="form">
+                        <div class="w-1/12 gap-4">
                             <div class="w-full">
-                                <app-digitop-upload [fileList]="[form.get('metaImage')?.value]"
-                                    [title]="'Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
-                                    (changeFile)="changeFileUpload($event, 'metaImage')"
-                                    [multiple]="false"></app-digitop-upload>
-                                <!-- <div *ngIf="submitted && line.get('bannerImage')?.errors"
-                                    class="input-textw-full
+                                <app-digitop-upload [fileList]="[form.get('imageBanner')?.value]" [title]="'Desktop Image'"
+                                    CENSORSHIP class="w-full" (changeFile)="changeFileUpload($event, 'imageBanner')"
+                                    [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
+                                <div *ngIf="submitted && form.get('imageBanner')?.errors" class="input-text-error">
                                     <span>Image not blank</span>
-                                </div> -->
+                                </div>
+                            </div>
+                            <div class="w-full pt-[16px]">
+                                <app-digitop-upload [fileList]="[form.get('imageBannerMobile')?.value]"
+                                    [title]="'Mobile Image'" CENSORSHIP class="w-full"
+                                    (changeFile)="changeFileUpload($event,'imageBannerMobile')" [isUsingFormArray]="true"
+                                    [multiple]="false"></app-digitop-upload>
+                                <div *ngIf="submitted && form.get('imageBannerMobile')?.errors" class="input-text-error">
+                                    <span>Image not blank</span>
+                                </div>
                             </div>
                         </div>
                         <div class="w-11/12 gap-4">
-                            <div class="w-12/12">
-                                <label class="labelForm">Meta Title</label>
-                                <input formControlName="metaTitle" nz-input class="w-full" nzSize="large"
-                                    placeholder="Meta Title" type="text" />
+                            <app-digitop-editor [initData]="form.get('content')?.value"
+                                (onChangeData)="onChangeEditor($event)"></app-digitop-editor>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div
+                class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+                <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Our People</div>
+                <a (click)="addLine()"
+                    class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
+                    Client</a>
+            </div>
+            <div class="p-[16px]">
+                <form [formGroup]="form">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div formArrayName="about" *ngFor="let about of abouts.controls; let i = index" class="relative">
+                            <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
+                                <div class="gap-4 pt-[16px]">
+                                    <div class="w-12/12 flex gap-4">
+                                        <div class="w-full">
+                                            <app-digitop-upload [fileList]="[about.get('bannerImage')?.value]"
+                                                [title]="'Desktop Image'" CENSORSHIP class="w-full"
+                                                [isUsingFormArray]="true"
+                                                (changeFile)="changeFileUploadForm($event,i, 'bannerImage')"
+                                                [multiple]="false"></app-digitop-upload>
+                                            <div *ngIf="submitted && about.get('bannerImage')?.errors"
+                                                class="input-text-error">
+                                                <span>Image not blank</span>
+                                            </div>
+                                        </div>
+                                        <div class="w-full">
+                                            <app-digitop-upload [fileList]="[about.get('bannerImageMobile')?.value]"
+                                                [title]="'Mobile Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
+                                                (changeFile)="changeFileUploadForm($event,i, 'bannerImageMobile')"
+                                                [multiple]="false"></app-digitop-upload>
+                                            <div *ngIf="submitted && about.get('bannerImageMobile')?.errors"
+                                                class="input-text-error">
+                                                <span>Image not blank</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-12/12 gap-4">
+                                        <div class="w-12/12">
+                                            <label class="labelForm">Name</label>
+                                            <textarea formControlName="name" nz-input class="w-full" nzSize="large"
+                                                placeholder="Name" type="text" rows="2"></textarea>
+                                        </div>
+                                        <div class="w-12/12 pt-[8px]">
+                                            <label class="labelForm">Role</label>
+                                            <textarea formControlName="role" nz-input class="w-full" nzSize="large"
+                                                placeholder="role" type="text" rows="2"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                                    (click)="removeLine(i)">
+                                    <span nz-icon nzType="delete"></span>
+                                </a>
                             </div>
-                            <div class="w-12/12 pt-[8px]">
-                                <label class="labelForm">Meta Keyword</label>
-                                <input formControlName="metaKeyword" nz-input class="w-full" nzSize="large"
-                                    placeholder="Meta Keyword" type="text" />
+                        </div>
+                    </div>               
+                    <!-- <button (click)="submit()">Submit</button> -->
+                </form>
+            </div>
+            
+            <div
+                class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+                <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">Expertise</div>
+                <a (click)="addLineExpertise()"
+                    class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]">Add
+                    Expertise</a>
+            </div>
+            <div class="p-[16px]">
+                <form [formGroup]="form">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div formArrayName="expertise" *ngFor="let expertise of expertise.controls; let i = index" class="relative">
+                            <div [formGroupName]="i" class="border-dashed border-2 border-sky-500 p-[16px]">
+                                <div class="gap-4 pt-[16px]">                             
+                                    <div class="w-12/12 gap-4">
+                                        <div class="w-12/12">
+                                            <label class="labelForm">Title</label>
+                                            <textarea formControlName="title" nz-input class="w-full" nzSize="large"
+                                                placeholder="Title" type="text" rows="2"></textarea>
+                                        </div>
+                                        <div class="w-12/12 pt-[8px]">
+                                            <label class="labelForm">Description</label>
+                                            <textarea formControlName="description" nz-input class="w-full" nzSize="large"
+                                                placeholder="Description" type="text" rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="text-[white] absolute top-0 right-0 w-[29px] flex items-center py-[8px] px-[8px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white]"
+                                    (click)="removeLineExpertise(i)">
+                                    <span nz-icon nzType="delete"></span>
+                                </a>
                             </div>
-                            
                         </div>
                     </div>
-                    <div class="w-full  pt-[8px]">
-                        <label class="labelForm">Meta Description</label>
-                        <!-- <input formControlName="metaDescription" nz-input class="w-full" nzSize="large"
-                            placeholder="Meta Description" type="text" /> -->
-                        <nz-textarea-count [nzMaxCharacterCount]="1000">
-                            <textarea rows="6" formControlName="metaDescription" nz-input></textarea>
-                        </nz-textarea-count>
+                </form>
+            </div>
+            <div
+                class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+                <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">SEO</div>
+            </div>
+            <div class="p-[16px] w-full">
+                <form [formGroup]="form">
+                    <div class="grid grid-cols-1 ">
+                        <div class="gap-4 pt-[16px] flex w-full">
+                            <div class="w-1/12 flex gap-4">
+                                <div class="w-full">
+                                    <app-digitop-upload [fileList]="[form.get('metaImage')?.value]"
+                                        [title]="'Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
+                                        (changeFile)="changeFileUpload($event, 'metaImage')"
+                                        [multiple]="false"></app-digitop-upload>
+                                    <!-- <div *ngIf="submitted && line.get('bannerImage')?.errors"
+                                        class="input-textw-full
+                                        <span>Image not blank</span>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="w-11/12 gap-4">
+                                <div class="w-12/12">
+                                    <label class="labelForm">Meta Title</label>
+                                    <input formControlName="metaTitle" nz-input class="w-full" nzSize="large"
+                                        placeholder="Meta Title" type="text" />
+                                </div>
+                                <div class="w-12/12 pt-[8px]">
+                                    <label class="labelForm">Meta Keyword</label>
+                                    <input formControlName="metaKeyword" nz-input class="w-full" nzSize="large"
+                                        placeholder="Meta Keyword" type="text" />
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="w-full  pt-[8px]">
+                            <label class="labelForm">Meta Description</label>
+                            <!-- <input formControlName="metaDescription" nz-input class="w-full" nzSize="large"
+                                placeholder="Meta Description" type="text" /> -->
+                            <nz-textarea-count [nzMaxCharacterCount]="1000">
+                                <textarea rows="6" formControlName="metaDescription" nz-input></textarea>
+                            </nz-textarea-count>
+                        </div>
                     </div>
-                </div>
-
-                <!-- <button (click)="submit()">Submit</button> -->
-            </form>
-        </div>
-        <div
-            class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
-            <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center"></div>
-            <a class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]"
-                (click)="submit()">Save</a>
+    
+                    <!-- <button (click)="submit()">Submit</button> -->
+                </form>
+            </div>
+            <div
+                class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+                <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center"></div>
+                <a class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]"
+                    (click)="submit()">Save</a>
+            </div>
         </div>
     </div>
+</nz-spin>

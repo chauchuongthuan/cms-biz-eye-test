@@ -190,8 +190,8 @@ class Editor extends ClassicEditor {
 		style: {
 			definitions: [
 				{
-					name: 'caption',
-					element: 'figcation',
+					name: 'align right',
+					element: 'p',
 					classes: ['align-right'],
 				}
 			]

@@ -1,63 +1,65 @@
-<div class="block w-full">
-    <div class="w-full mb-[30px]">
-        <h3 class="titlePage">Editor Homepage</h3>
-    </div>
-
-    <div class="bg-[white] py-[16px] rounded-[10px]">
-        <div class="postContent">
-            <div
-                class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
-                <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">SEO</div>
-            </div>
-            <div class="p-[16px] w-full">
-                <form [formGroup]="form">
-                    <div class="grid grid-cols-1 ">
-                        <div class="gap-4 pt-[16px] flex w-full">
-                            <div class="w-1/12 flex gap-4">
-                                <div class="w-full">
-                                    <app-digitop-upload [fileList]="[form.get('metaImage')?.value]"
-                                        [title]="'Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
-                                        (changeFile)="changeFileUpload($event,1, 'metaImage', 'form')"
-                                        [multiple]="false"></app-digitop-upload>
-                                    <!-- <div *ngIf="submitted && line.get('bannerImage')?.errors"
-                                        class="input-textw-full
-                                        <span>Image not blank</span>
-                                    </div> -->
+<nz-spin [nzSpinning]="isLoading">
+    <div class="block w-full">
+        <div class="w-full mb-[30px]">
+            <h3 class="titlePage">Editor Award</h3>
+        </div>
+    
+        <div class="bg-[white] py-[16px] rounded-[10px]">
+            <div class="postContent">
+                <div
+                    class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+                    <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center">SEO</div>
+                </div>
+                <div class="p-[16px] w-full">
+                    <form [formGroup]="form">
+                        <div class="grid grid-cols-1 ">
+                            <div class="gap-4 pt-[16px] flex w-full">
+                                <div class="w-1/12 flex gap-4">
+                                    <div class="w-full">
+                                        <app-digitop-upload [fileList]="[form.get('metaImage')?.value]"
+                                            [title]="'Image'" CENSORSHIP class="w-full" [isUsingFormArray]="true"
+                                            (changeFile)="changeFileUpload($event,1, 'metaImage', 'form')"
+                                            [multiple]="false"></app-digitop-upload>
+                                        <!-- <div *ngIf="submitted && line.get('bannerImage')?.errors"
+                                            class="input-textw-full
+                                            <span>Image not blank</span>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="w-11/12 gap-4">
+                                    <div class="w-12/12">
+                                        <label class="labelForm">Meta Title</label>
+                                        <input formControlName="metaTitle" nz-input class="w-full" nzSize="large"
+                                            placeholder="Meta Title" type="text" />
+                                    </div>
+                                    <div class="w-12/12 pt-[8px]">
+                                        <label class="labelForm">Meta Keyword</label>
+                                        <input formControlName="metaKeyword" nz-input class="w-full" nzSize="large"
+                                            placeholder="Meta Keyword" type="text" />
+                                    </div>
+                                    
                                 </div>
                             </div>
-                            <div class="w-11/12 gap-4">
-                                <div class="w-12/12">
-                                    <label class="labelForm">Meta Title</label>
-                                    <input formControlName="metaTitle" nz-input class="w-full" nzSize="large"
-                                        placeholder="Meta Title" type="text" />
-                                </div>
-                                <div class="w-12/12 pt-[8px]">
-                                    <label class="labelForm">Meta Keyword</label>
-                                    <input formControlName="metaKeyword" nz-input class="w-full" nzSize="large"
-                                        placeholder="Meta Keyword" type="text" />
-                                </div>
-                                
+                            <div class="w-full  pt-[8px]">
+                                <label class="labelForm">Meta Description</label>
+                                <!-- <input formControlName="metaDescription" nz-input class="w-full" nzSize="large"
+                                    placeholder="Meta Description" type="text" /> -->
+                                <nz-textarea-count [nzMaxCharacterCount]="1000">
+                                    <textarea rows="6" formControlName="metaDescription" nz-input></textarea>
+                                </nz-textarea-count>
                             </div>
                         </div>
-                        <div class="w-full  pt-[8px]">
-                            <label class="labelForm">Meta Description</label>
-                            <!-- <input formControlName="metaDescription" nz-input class="w-full" nzSize="large"
-                                placeholder="Meta Description" type="text" /> -->
-                            <nz-textarea-count [nzMaxCharacterCount]="1000">
-                                <textarea rows="6" formControlName="metaDescription" nz-input></textarea>
-                            </nz-textarea-count>
-                        </div>
-                    </div>
-
-                    <!-- <button (click)="submit()">Submit</button> -->
-                </form>
-            </div>
-            <div
-                class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
-                <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center"></div>
-                <a class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]"
-                    (click)="submit()">Save</a>
+    
+                        <!-- <button (click)="submit()">Submit</button> -->
+                    </form>
+                </div>
+                <div
+                    class="text-[16px] text-blue-100 font-bold py-[16px] border-y border-[#f2f2f2] flex justify-between items-center">
+                    <div class="text-[16px] text-blue-100 font-bold px-[16px] flex items-center"></div>
+                    <a class="text-[white] w-[120px] flex lg:w-[150px] justify-center items-center py-[8px] px-[8px] lg:py-[16px] lg:px-[20px] bg-pink-100 hover:bg-blue-100 font-bold hover:text-[white] mr-[16px] duration-300 mb-[16px]"
+                        (click)="submit()">Save</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</nz-spin>
