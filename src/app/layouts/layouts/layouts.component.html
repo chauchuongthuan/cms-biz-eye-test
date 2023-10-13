@@ -18,44 +18,46 @@
       </li> -->
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'category-work'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            #rla="routerLinkActive">
             <span nz-icon>
                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path fill="#000000" d="m12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5s4.5-2.01 4.5-4.5s-2.01-4.5-4.5-4.5zm0 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z"/>
-              </svg>
+                  <path fill="#000000"
+                     d="m12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5s4.5-2.01 4.5-4.5s-2.01-4.5-4.5-4.5zm0 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z" />
+               </svg>
             </span>
             <span class="text-[12px] text-second-100 font-bold">Category OurWork</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'expertise'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
-            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>           
+            #rla="routerLinkActive">
+            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Expertise</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'award'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            #rla="routerLinkActive">
             <span nz-icon>
                <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                      <path d="M6 9a6 6 0 1 0 12 0A6 6 0 1 0 6 9"/>
-                      <path d="m12 15l3.4 5.89l1.598-3.233l3.598.232l-3.4-5.889M6.802 12l-3.4 5.89L7 17.657l1.598 3.232l3.4-5.889"/>
+                     <path d="M6 9a6 6 0 1 0 12 0A6 6 0 1 0 6 9" />
+                     <path
+                        d="m12 15l3.4 5.89l1.598-3.233l3.598.232l-3.4-5.889M6.802 12l-3.4 5.89L7 17.657l1.598 3.232l3.4-5.889" />
                   </g>
-              </svg>
+               </svg>
             </span>
             <span class="text-[12px] text-second-100 font-bold">Award</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'posts'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            #rla="routerLinkActive">
             <span nz-icon nzType="highlight" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">News</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'list-award'"
-         class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
-         #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
-         <span nz-icon nzType="file" nzTheme="outline"></span>
-         <span class="text-[12px] text-second-100 font-bold">Post Award</span>
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
+            <span nz-icon nzType="file" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Post Award</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'pages'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
@@ -116,74 +118,97 @@
          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
       </span>
 
-      <div class="sidebar-logo" (click)="isCollapsed = !isCollapsed">
+      <div class="sidebar-logo">
          <a href="/admin">
             <img src="assets/logo.svg" alt="logo" />
          </a>
       </div>
       <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'/admin'"
-            (click)="isCollapsed = !isCollapsed">
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'/admin'">
             <span nz-icon nzType="pie-chart"></span>
-            <span class="text-[12px] text-second-100 font-bold">Thống kê</span>
+            <span class="text-[12px] text-second-100 font-bold">Dashboard</span>
          </li>
          <!-- <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'menus'"
         >
         <span nz-icon nzType="menu"></span>
         <span>Menu</span>
       </li> -->
-         <li nz-submenu nzTitle="Tin tức" nzIcon="highlight" class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
-            <ul>
-               <li nz-menu-item [routerLink]="'tags'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Tag</a>
-               </li>
-               <li nz-menu-item [routerLink]="'post-category'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Danh mục</a>
-               </li>
-               <li nz-menu-item [routerLink]="'posts'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Bài viết</a>
-               </li>
-            </ul>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'category-work'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
+            <span nz-icon>
+               <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#000000"
+                     d="m12 2l-5.5 9h11L12 2zm0 3.84L13.93 9h-3.87L12 5.84zM17.5 13c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5s4.5-2.01 4.5-4.5s-2.01-4.5-4.5-4.5zm0 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5zM3 21.5h8v-8H3v8zm2-6h4v4H5v-4z" />
+               </svg>
+            </span>
+            <span class="text-[12px] text-second-100 font-bold">Category OurWork</span>
          </li>
-         <li nz-submenu nzTitle="Quản trị" nzIcon="setting" class="text-[12px] text-second-100 font-bold"
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'expertise'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
+            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Expertise</span>
+         </li>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'award'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
+            <span nz-icon>
+               <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                     <path d="M6 9a6 6 0 1 0 12 0A6 6 0 1 0 6 9" />
+                     <path
+                        d="m12 15l3.4 5.89l1.598-3.233l3.598.232l-3.4-5.889M6.802 12l-3.4 5.89L7 17.657l1.598 3.232l3.4-5.889" />
+                  </g>
+               </svg>
+            </span>
+            <span class="text-[12px] text-second-100 font-bold">Award</span>
+         </li>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'posts'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
+            <span nz-icon nzType="highlight" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">News</span>
+         </li>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'list-award'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
+            <span nz-icon nzType="file" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Post Award</span>
+         </li>
+         <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'pages'"
+            class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
+            #rla="routerLinkActive">
+            <span nz-icon nzType="pic-left" nzTheme="outline"></span>
+            <span class="text-[12px] text-second-100 font-bold">Pages</span>
+         </li>
+         <li nz-submenu nzTitle="Administration" nzIcon="setting" class="text-[12px] text-second-100 font-bold"
             routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <ul>
-               <li nz-menu-item [routerLink]="'users'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Quản trị viên</a>
+               <li nz-menu-item [routerLink]="'users'">
+                  <a class="text-[12px] text-second-100 font-bold">Administrators</a>
                </li>
-               <li nz-menu-item [routerLink]="'roles'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Quyền quản trị</a>
+               <li nz-menu-item [routerLink]="'roles'">
+                  <a class="text-[12px] text-second-100 font-bold">Roles</a>
+               </li>
+               <li nz-menu-item [routerLink]="'setting'">
+                  <a class="text-[12px] text-second-100 font-bold">Setting</a>
                </li>
             </ul>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'subscribers'"
             class="text-[12px] text-second-100 font-bold" routerLinkActive="ant-menu-item-selected"
-            #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            #rla="routerLinkActive">
             <span nz-icon nzType="bell" nzTheme="outline"></span>
-            <span class="text-[12px] text-second-100 font-bold">Người đăng ký</span>
-         </li>
-         <li nz-submenu nzTitle="Marketing Mail" nzIcon="notification" class="text-[12px] text-second-100 font-bold"
-            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
-            <ul>
-               <li nz-menu-item [routerLink]="'interests'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Interests</a>
-               </li>
-               <li nz-menu-item [routerLink]="'mail-lists'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Mail List</a>
-               </li>
-               <li nz-menu-item [routerLink]="'mail-schedules'" (click)="isCollapsed = !isCollapsed">
-                  <a class="text-[12px] text-second-100 font-bold">Mail Schedule</a>
-               </li>
-            </ul>
+            <span class="text-[12px] text-second-100 font-bold">Subscribers</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'history'"
-            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <span nz-icon nzType="history" nzTheme="outline"></span>
-            <span class="text-[12px] text-second-100 font-bold">Lịch sử chatGPT</span>
+            <span class="text-[12px] text-second-100 font-bold">ChatGPT History</span>
          </li>
          <li nz-menu-item nz-tooltip nzTooltipPlacement="right" [routerLink]="'activities'"
-            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive" (click)="isCollapsed = !isCollapsed">
+            routerLinkActive="ant-menu-item-selected" #rla="routerLinkActive">
             <span nz-icon nzType="check" nzTheme="outline"></span>
             <span class="text-[12px] text-second-100 font-bold">Activities</span>
          </li>

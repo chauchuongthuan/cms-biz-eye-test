@@ -24,6 +24,7 @@
       <nz-table 
           (nzQueryParams)="tableChange($event)"
           #tableCategory
+          [nzScroll]="{ y: 'calc(100vh - 310px)' }"
           [nzTotal]="paginator.total" 
           [nzPageSize]="paginator.limit" 
           [nzPageIndex]="paginator.currentPage"
@@ -34,11 +35,12 @@
           nzShowSizeChanger
           [nzFrontPagination]="false">
           <thead>
-              <tr class="hidden lg:contents">
+              <tr class="lg:contents">
                   <th [nzSortFn]="true" [nzColumnKey]="'title'">Title</th>
-                  <th [nzSortFn]="true" [nzColumnKey]="'description'">Sub Title</th>
-                  <th [nzSortFn]="true" [nzColumnKey]="'description'">Client</th>
-                  <th [nzSortFn]="true" [nzColumnKey]="'description'">Year</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'subTitle'">Sub Title</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'client'">Client</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'sortOrder'">Sort Order</th>
+                  <th [nzSortFn]="true" [nzColumnKey]="'year'">Year</th>
                   <th [nzSortFn]="true" [nzColumnKey]="'active'">Status</th>
                   <th [nzSortFn]="true" [nzColumnKey]="'createdAt'">Created At</th>
                   <th>Action</th>
@@ -50,6 +52,7 @@
                       <td>{{ data.title }}</td>
                       <td>{{ data.subTitle }}</td>
                       <td>{{ data.client }}</td>
+                      <td>{{ data.sortOrder }}</td>
                       <td>{{ data.year }}</td>
                       <td>
                           <nz-tag [nzColor]="'red'" *ngIf="!data.active">Locked</nz-tag>
@@ -57,7 +60,7 @@
                       </td>
                       <td>{{ data.createdAt }}</td>
                       <td>
-                        <div nz-row class="lg:flex items-center py-[16px] min-w-[230px]">
+                        <div nz-row>
                             <a class="text-[white] py-[16px] px-[20px] hover:bg-pink-100 bg-blue-100 font-bold hover:text-[white]"
                                 (click)="onEdit(data)" nz-popconfirm>
                                 Edit

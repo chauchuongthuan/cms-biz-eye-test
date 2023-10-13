@@ -60,8 +60,6 @@ export class SettingComponent implements OnInit {
   }
 
   changeFileUpload(data: any, field: string){
-    console.log("data::", data)
-    console.log("this.form.value::", this.form.value)
     this.form.controls[field].setValue(data)
   }
 
@@ -96,31 +94,10 @@ export class SettingComponent implements OnInit {
     })
   }
 
-  // onSave() {
-  //   let values = this.form.value;
-  //   let data = convertToFormData(values, ['logo', 'metaImage']);
-  //   ['logo', 'metaImage'].forEach((field) => {
-  //     if(!data.get(field)){
-  //       let name = getFileNameFromPath(this.form.controls[field].value?.preview || '')
-  //       data.set(field, name)
-  //     } 
-  //   })
-  //   this.isLoading = true;
-  //   this.commonService.loadingState(true);
-  //   this.settingService.editSetting(data).subscribe(data => {
-  //     this.isLoading = false;
-  //     setTimeout(() => {
-  //       this.commonService.loadingState(false);
-  //     }, 200)
-  //   })    
-  // }
-
   onSave() {
     let values = this.form.value;
     let data = convertToFormDataV2(values, ['logo', 'metaImage']);
     ['logo', 'metaImage'].forEach((field) => {
-      console.log("field::", field)
-      console.log("data.get(field)::", data.get(field))
       if(!data.get(field)){
         let name = getFileNameFromPath(this.form.controls[field].value?.preview || '')
         data.set(field, name)

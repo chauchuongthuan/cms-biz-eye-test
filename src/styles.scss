@@ -186,3 +186,10 @@ tbody {
       width: 100%;
    }
 }
+.ck-editor__editable figcaption {
+   text-align: right;
+   /* Định nghĩa tùy chọn style của bạn */
+ }
+.ck.ck-content p.align-right {
+   text-align: right;
+}

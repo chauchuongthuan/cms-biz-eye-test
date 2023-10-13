@@ -6,16 +6,16 @@
   (click)="open()">
   Create
 </a>
-<app-digitop-drawer [title]="state + ' Award'" [visible]="visible" [size]="size"
-  (onConfirm)="confirmDrawer()" (onLeave)="close()">
+<app-digitop-drawer [title]="state + ' Award'" [visible]="visible" [size]="size" (onConfirm)="confirmDrawer()"
+  (onLeave)="close()">
   <ng-container content>
     <nz-spin [nzSpinning]="isLoading">
       <form nz-form [nzLayout]="'inline'" [formGroup]="categoryForm" (ngSubmit)="confirmDrawer()">
         <div nz-row [nzGutter]="[hGutter, vGutter]">
           <div nz-col class="gutter-row" [nzSpan]="24">
-            <app-digitop-upload [fileList]="[categoryForm.get('image')?.value]" [title]="'Image'"
-                  CENSORSHIP (changeFile)="changeFileUpload($event, 'image')" class="w-full"
-                  [isUsingFormArray]="true" [multiple]="false"></app-digitop-upload>
+            <app-digitop-upload [fileList]="[categoryForm.get('image')?.value]" [title]="'Image'" CENSORSHIP
+              (changeFile)="changeFileUpload($event, 'image')" class="w-full" [isUsingFormArray]="true"
+              [multiple]="false"></app-digitop-upload>
           </div>
         </div>
         <div nz-row [nzGutter]="[hGutter, vGutter]">
@@ -49,11 +49,11 @@
             <nz-form-item>
               <nz-form-control>
                 <nz-form-label [nzSpan]="'vertical'">Sub Title<span class="required">(*)</span></nz-form-label>
-                <nz-input-group>
-                  <input formControlName="subTitle" [ngClass]="
-                                 submitted && categoryForm.get('subTitle')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="Sub Title"/>
-                </nz-input-group>
+                <nz-textarea-count [nzMaxCharacterCount]="100">
+                  <textarea [ngClass]="submitted && categoryForm.get('subTitle')?.errors
+                  ? 'ant-input-status-error ng-invalid' : ''" 
+                  rows="1" formControlName="subTitle" nz-input></textarea>
+                </nz-textarea-count>
                 <div *ngIf="submitted && categoryForm.get('subTitle')?.errors" class="input-text-error">
                   <span>Please enter sub title</span>
                 </div>
@@ -67,7 +67,7 @@
                 <nz-input-group>
                   <input formControlName="year" [ngClass]="
                                  submitted && categoryForm.get('year')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="2023"/>
+                              " nz-input placeholder="2023" />
                 </nz-input-group>
                 <div *ngIf="submitted && categoryForm.get('year')?.errors" class="input-text-error">
                   <span>Please enter year</span>
@@ -79,11 +79,10 @@
             <nz-form-item>
               <nz-form-control>
                 <nz-form-label [nzSpan]="'vertical'">Title <span class="required">(*)</span></nz-form-label>
-                <nz-input-group>
-                  <input formControlName="title" [ngClass]="
-                                 submitted && categoryForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''
-                              " nz-input placeholder="Title" (ngModelChange)="onChangeTitle('vi')" />
-                </nz-input-group>
+                <nz-textarea-count [nzMaxCharacterCount]="100">
+                  <textarea [ngClass]="submitted && categoryForm.get('title')?.errors
+                  ? 'ant-input-status-error ng-invalid' : ''" rows="1" formControlName="title" nz-input (ngModelChange)="onChangeTitle('vi')"></textarea>
+                </nz-textarea-count>
                 <div *ngIf="submitted && categoryForm.get('title')?.errors" class="input-text-error">
                   <span>Please enter title</span>
                 </div>
@@ -102,20 +101,19 @@
           </div>
           <div nz-col class="gutter-row" [nzSpan]="24">
             <nz-form-item>
-                <nz-form-control>
-                    <nz-form-label [nzSpan]="'vertical'">Client <span
-                            class="required">(*)</span></nz-form-label>
-                    <nz-input-group>
-                        <input formControlName="client" [ngClass]="
+              <nz-form-control>
+                <nz-form-label [nzSpan]="'vertical'">Client <span class="required">(*)</span></nz-form-label>
+                <nz-input-group>
+                  <input formControlName="client" [ngClass]="
                      submitted && categoryForm.get('client')?.errors ? 'ant-input-status-error ng-invalid' : ''
                   " nz-input placeholder="Client" />
-                    </nz-input-group>
-                    <div *ngIf="submitted && categoryForm.get('client')?.errors" class="input-text-error">
-                        <span>Please enter client</span>
-                    </div>
-                </nz-form-control>
+                </nz-input-group>
+                <div *ngIf="submitted && categoryForm.get('client')?.errors" class="input-text-error">
+                  <span>Please enter client</span>
+                </div>
+              </nz-form-control>
             </nz-form-item>
-        </div>
+          </div>
         </div>
       </form>
     </nz-spin>

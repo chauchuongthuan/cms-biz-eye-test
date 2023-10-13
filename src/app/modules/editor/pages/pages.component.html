@@ -25,6 +25,13 @@
                     <div class="flex flex-wrap mx-[-8px]">
                         <div class="w-6/12 px-[8px] mb-[16px] tl-p:w-full">
                             <div class="w-12/12">
+                                <label class="labelForm">Image Caption</label>
+                                <input formControlName="imageCaption"
+                                    [ngClass]="submitted && postForm.get('imageCaption')?.errors ? 'ant-input-status-error ng-invalid' : ''"
+                                    class="input-title w-full" nz-input nzSize="large" nzBorderless
+                                    placeholder="Image Caption"/>
+                            </div>
+                            <div class="w-12/12">
                                 <label class="labelForm">Title <span class="text-[#ff0000]">*</span></label>
                                 <input formControlName="title"
                                     [ngClass]="submitted && postForm.get('title')?.errors ? 'ant-input-status-error ng-invalid' : ''"
@@ -36,6 +43,7 @@
                                 <nz-date-picker class="w-full" nzSize="large" ngDefaultControl
                                     formControlName="publishedAt" style="width: 100%"></nz-date-picker>
                             </div>
+                            
                         </div>
                         <div class="w-5/12 px-[8px] mb-[16px] tl-p:w-full">
                             <label class="labelForm">Status <span class="text-[#ff0000]">*</span></label>

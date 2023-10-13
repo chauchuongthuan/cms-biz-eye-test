@@ -13,6 +13,7 @@ export class PageAboutComponent implements OnInit {
    public id: any;
    public form: FormGroup;
    public submitted: boolean = false;
+   public isLoading: boolean = false;
    public imageBanner: any = [];
    public imageBannerMobile: any = [];
    public metaImage: any = [];
@@ -133,6 +134,7 @@ export class PageAboutComponent implements OnInit {
       if (this.form.invalid) {
          return;
       }
+      this.isLoading = true;
       console.log(this.form.value);
       const data = {
          content: {
@@ -151,6 +153,7 @@ export class PageAboutComponent implements OnInit {
 
       this.pageService.editorPage(formData, this.id).subscribe((data) => {
          console.log(data);
+         this.isLoading = false;
       });
    }
 }

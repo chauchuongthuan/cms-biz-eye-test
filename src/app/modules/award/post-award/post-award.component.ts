@@ -60,6 +60,7 @@ export class PostAwardComponent implements OnInit {
          image: new FormControl({ value: "", preview: null }, []),
          detailImage: new FormControl({ value: "", preview: null }, []),
          thumbnailVideo: new FormControl({ value: "", preview: null }, []),
+         coverSocial: new FormControl({ value: "", preview: null }, []),
          shareOfVoice: this.fb.array([], [Validators.required]),
          // followers: new FormControl("", [Validators.required]),
          // engagementRate: new FormControl("", [Validators.required]),
@@ -111,6 +112,7 @@ export class PostAwardComponent implements OnInit {
             image: { value: "", preview: data.image },
             detailImage: { value: "", preview: data.detailImage },
             thumbnailVideo: { value: "", preview: data.thumbnailVideo },
+            coverSocial: { value: "", preview: data.coverSocial },
             sortOrder: data.sortOrder,
             shortDescription: data.shortDescription,
             description: data.description,
@@ -217,7 +219,6 @@ export class PostAwardComponent implements OnInit {
       this.submitted = true;
       
       const data = this.formAward.value;
-      console.log("data submit::", data);
       let galleries: any[] = this.formAward.controls["gallery"].value;
       let socials: any[] = this.formAward.controls["social"].value;
 
@@ -242,7 +243,7 @@ export class PostAwardComponent implements OnInit {
         }
       }
       this.isLoading = true;
-      let formData = convertToFormDataV2(data, ["metaImage", "image", "detailImage", "gallery", "social", "thumbnailVideo"]);
+      let formData = convertToFormDataV2(data, ["coverSocial" ,"metaImage", "image", "detailImage", "gallery", "social", "thumbnailVideo"]);
       if (this.id) {
          this.awardService.editPostAward(formData, this.id).subscribe((data) => {
            this.router.navigateByUrl("/admin/list-award");
